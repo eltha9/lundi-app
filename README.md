@@ -1,4 +1,4 @@
-# lundi-app
+# app
 
 ## Project setup
 ```
