@@ -25,13 +25,13 @@ module.exports = {
       },
       greyscale: {
         black: "#191919",
-        900: "#31302F",
+        800: "#31302F",
         700: "#504F4D",
         600: "#6D6C6A",
         500: "#8E8C88",
-        300: "#B7B3AD",
-        200: "#D9D6D2",
-        100: "#F0EEEB",
+        400: "#B7B3AD",
+        300: "#D9D6D2",
+        200: "#F0EEEB",
         white: "#FAFAFA",
       },
       semantic: {
