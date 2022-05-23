@@ -5,7 +5,7 @@
 			<div>
 				<Avatar large />
 				<AvatarStack />
-				<!-- <Btn> tewt</Btn> -->
+				<Btn color="semantic-info" icon primary> <i class="icon-call"></i></Btn>
 				<div>icon <i class="icon-call text-secondary-500"></i></div>
 			</div>
 		</div>
@@ -33,12 +33,12 @@
 <script>
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
 	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
-	// import Btn from "@/components/lundi-uiKit/Button";
+	import Btn from "@/components/lundi-uiKit/Button";
 	export default {
 		components: {
 			Avatar,
 			AvatarStack,
-			// Btn,
+			Btn,
 		},
 	};
 </script>
