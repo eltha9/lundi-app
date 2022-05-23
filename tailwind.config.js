@@ -57,8 +57,9 @@ module.exports = {
 				},
 			},
 		},
-		// fontFamily: {
-		// },
+		fontFamily: {
+			sato: ['sato-v', 'sans-serif'],
+		},
 		extend: {},
 	},
 	plugins: [],
