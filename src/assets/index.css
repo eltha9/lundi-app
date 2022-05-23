@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* import icons */
+@import url('./icon.css');
+
+
+/* global css here */
 @font-face {
 	font-family: 'sato-v';
-	src: url('../../public/assets/fonts/sato-v.ttf') format('ttf');
+	src: url('./fonts/sato-v.ttf') format('ttf');
 }
 
 html,
