@@ -4,7 +4,7 @@
 			<sidebar />
 		</div>
 		<div class="flex-1">
-			<main class="main-view dashboard">main</main>
+			<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">main</main>
 		</div>
 	</div>
 </template>
@@ -22,11 +22,15 @@
 </style>
 
 <script>
-	import Sidebar from "./Sidebar";
+	import {mapState} from 'vuex';
+	import Sidebar from './Sidebar';
 	export default {
-		name: "Dashboard",
+		name: 'Dashboard',
 		components: {
 			Sidebar,
+		},
+		computed: {
+			...mapState(['isSidebarCollapsed']),
 		},
 	};
 </script>
