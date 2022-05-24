@@ -9,12 +9,12 @@
 /* global css here */
 @font-face {
 	font-family: 'sato-v';
-	src: url('./fonts/sato-v.ttf') format('ttf');
+	src: url('./fonts/sato-v.ttf') format('truetype');
 }
 
 html,
 body {
-	font-family: 'sato-v', sans-serif !important;
+	font-family: 'sato-v','Satoshi Variable', monospace ;
 }
 body{
     height: 100vh;
