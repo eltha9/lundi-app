@@ -60,6 +60,8 @@
 		}
 		.link,
 		.link-btn {
+			will-change: color;
+			transition: color 0.2s ease;
 			i::before {
 				width: 20px;
 				height: 20px;
@@ -67,7 +69,8 @@
 			i {
 				margin-right: 12px;
 			}
-			&.router-link-active {
+			&.router-link-active,
+			&.active {
 				@apply text-greyscale-white;
 				i {
 					margin-right: 24px;
@@ -75,6 +78,9 @@
 				span {
 					font-weight: bold !important;
 				}
+			}
+			&:not(&.router-link-active, &.active):hover {
+				@apply text-greyscale-white;
 			}
 		}
 		.top {
@@ -89,6 +95,6 @@
 
 <script>
 	export default {
-		name: "Sidebar",
+		name: 'Sidebar',
 	};
 </script>
