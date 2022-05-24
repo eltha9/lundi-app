@@ -1,14 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Test from "@/views/other/Test"
 
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'home',
-  //   component: HomeView
-  // }
+  {
+    path: "/",
+    name: "test",
+    component: Test
+  },
+  {
+    path: "/dashboard",
+    name:"dashboard",
+    component: ()=> import("../views/Dashboard/index.vue")
+  }
 ];
 
 const router = new VueRouter({
