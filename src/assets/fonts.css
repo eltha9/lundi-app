@@ -1,0 +1,373 @@
+/* 
+	SATO-V 
+*/
+@font-face {
+	font-family: 'sato-v';
+	src: url('./fonts/sato-v.ttf') format('truetype');
+}
+
+/* 
+	SALVA 
+*/
+/* Thin */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-thin.otf') format('opentype');
+	font-weight: lighter;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-thin-italic.otf') format('opentype');
+	font-weight: lighter;
+	font-style: italic;
+}
+
+/* UltraLight */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-ultralight.otf') format('opentype');
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-ultralight-italic.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+/* Light */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-light.otf') format('opentype');
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-light-italic.otf') format('opentype');
+	font-weight: 200;
+	font-style: italic;
+}
+
+/* Book */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-book.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-book-italic.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+/* Regular */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-regular.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-regular-italic.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+}
+
+/* Bold */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-bold.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-bold-italic.otf') format('opentype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+/* ExtraBold */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-extrabold.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-extrabold-italic.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+}
+
+/* Black */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-black.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-black-italic.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+/* ExtraBlack */
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-ultrablack.otf') format('opentype');
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'salva';
+	src: url('./fonts/salva-ultrablack-italic.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+/*
+ 	text styles 
+ */
+
+/* 
+	OLD TO REMOVE
+*/
+/* Display */
+.fs-display {
+	font-weight: bold;
+	font-size: 72px;
+	line-height: 80px;
+	letter-spacing: -3%;
+}
+
+/* Headlines */
+.fs-h1 {
+	font-weight: bold;
+	font-size: 56px;
+	line-height: 64px;
+	letter-spacing: -3%;
+}
+.fs-h2 {
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 48px;
+	letter-spacing: -2%;
+}
+.fs-h3 {
+	font-weight: bold;
+	font-size: 32px;
+	line-height: 40px;
+	letter-spacing: -1%;
+}
+.fs-h4 {
+	font-weight: bold;
+	font-size: 28px;
+	line-height: 32px;
+	letter-spacing: -1%;
+}
+.fs-h5 {
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 28px;
+	letter-spacing: 0%;
+}
+.fs-h6 {
+	font-weight: bold;
+	font-size: 22px;
+	line-height: 28px;
+	letter-spacing: 0%;
+}
+
+/* Body */
+.fs-body,
+.fs-body-m {
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0%;
+}
+/* .fs-body-m {
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0%;
+} */
+.fs-body-b {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0%;
+}
+
+/* Button */
+.fs-button {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0%;
+}
+
+/* Captions */
+.fs-caption {
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0%;
+}
+.fs-caption-b {
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 24px;
+	letter-spacing: 0%;
+}
+
+/* Footnote */
+.fs-footnote {
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 24px;
+	letter-spacing: 0%;
+}
+
+/* 
+	SALVA
+*/
+[class^='salva-'] {
+	font-family: 'salva';
+}
+
+/* display */
+.salva-d-xl {
+	font-weight: 600;
+	font-size: 64px;
+	line-height: 72px;
+}
+.salva-d-l {
+	font-weight: 600;
+	font-size: 56px;
+	line-height: 64px;
+}
+.salva-d-m {
+	font-weight: 600;
+	font-size: 48px;
+	line-height: 56px;
+}
+.salva-d-s {
+	font-weight: 600;
+	font-size: 40px;
+	line-height: 48px;
+}
+
+/* heading */
+.salva-h1 {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 40px;
+}
+.salva-h2 {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 32px;
+}
+.salva-h3 {
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 28px;
+}
+.salva-h4 {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 24px;
+}
+/* label */
+.salva-l-xl {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+}
+.salva-l-l {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+}
+.salva-l-m {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+}
+.salva-l-s {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+}
+
+/* 
+SATO-V
+*/
+[class^='sato-'] {
+	font-family: 'sato-v';
+}
+
+/* label */
+.sato-l-xl {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 24px;
+}
+.sato-l-l {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+}
+.sato-l-m {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+}
+.sato-l-s {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 14px;
+}
+.sato-l-xs {
+	font-weight: 500;
+	font-size: 10px;
+	line-height: 12px;
+}
+
+/* paragraph */
+.sato-p-xl {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 28px;
+}
+.sato-p-l {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+}
+.sato-p-m {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+}
+.sato-p-s {
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 18px;
+}
+.sato-p-xs {
+	font-weight: 500;
+	font-size: 10px;
+	line-height: 16px;
+}

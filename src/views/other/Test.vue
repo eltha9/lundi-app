@@ -9,6 +9,7 @@
 				<div>icon <i class="icon-call text-secondary-500"></i></div>
 			</div>
 			<router-link to="/dashboard">Go to dashboard</router-link>
+			<div class="sato-p-xs">test de text</div>
 		</div>
 	</div>
 </template>
@@ -16,11 +17,11 @@
 <style lang="scss" scoped></style>
 
 <script>
-	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
-	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
-	import Btn from "@/components/lundi-uiKit/Button";
+	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
+	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
+	import Btn from '@/components/lundi-uiKit/Button';
 	export default {
-		name: "Test",
+		name: 'Test',
 		components: {
 			Avatar,
 			AvatarStack,
