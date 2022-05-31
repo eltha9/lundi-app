@@ -1,8 +1,8 @@
 <template>
 	<button class="btn salva-l-l" :class="buttonClasses" :style="variables" :disabled="disabled">
-		<slot v-if="!icon" name="left"> </slot>
+		<slot v-if="!icon" name="left" class="bt-icon"> </slot>
 		<slot> Btn text </slot>
-		<slot v-if="!icon" name="right"> </slot>
+		<slot v-if="!icon" name="right" class="bt-icon"> </slot>
 	</button>
 </template>
 
@@ -11,13 +11,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		gap: 8px;
+		gap: 12px;
 		border-radius: 12px;
 		box-sizing: border-box;
 		padding: 8px 16px;
+		height: 44px;
+		.btn-icon {
+			font-size: 20px;
+		}
 		&.icon {
+			width: 44px;
 			border-radius: 12px;
 			padding: 8px;
+			.btn-icon {
+				font-size: 24px;
+			}
+
 			&:focus {
 				padding: 7px;
 			}
@@ -68,7 +77,8 @@
 			padding: 0;
 			border: 1px solid transparent;
 			border-radius: 0;
-			padding-bottom: 8px;
+			// padding-bottom: 8px;
+
 			&:hover {
 				color: var(--text-hover);
 				border-bottom: 1px solid var(--border-hover);
@@ -155,7 +165,6 @@
 				for (const colorPart of colorData) {
 					color = color[colorPart];
 				}
-				console.log(color);
 				if (this.secondary) {
 					return {
 						// default

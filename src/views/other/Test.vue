@@ -20,6 +20,9 @@
 			</div>
 			<router-link to="/dashboard">Go to dashboard</router-link>
 			<div class="sato-p-xs">test de text</div>
+
+			<span>navbar test</span>
+			<nav-bar v-model="navBarTest" :items="['gauche', 'droite']" />
 		</div>
 	</div>
 </template>
@@ -28,12 +31,19 @@
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
 	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
 	import Btn from "@/components/lundi-uiKit/Button";
+	import NavBar from "@/components/lundi-uiKit/NavBar";
 	export default {
 		name: "Test",
 		components: {
 			Avatar,
 			AvatarStack,
 			Btn,
+			NavBar,
+		},
+		data() {
+			return {
+				navBarTest: true,
+			};
 		},
 	};
 </script>
