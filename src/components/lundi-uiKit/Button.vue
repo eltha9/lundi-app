@@ -23,9 +23,8 @@
 			width: 44px;
 			border-radius: 12px;
 			padding: 8px;
-			.btn-icon {
-				font-size: 24px;
-			}
+
+			font-size: 24px;
 
 			&:focus {
 				padding: 7px;

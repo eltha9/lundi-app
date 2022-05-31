@@ -2,6 +2,7 @@
 	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar">
 			<nav-header title="Home" />
+			<div class="stat-bar mt-6">some stats</div>
 			<div class="sub-bar flex justify-between mt-10">
 				<nav-bar v-model="isTemplateView" :items="['Templates', 'Membres']" />
 				<btn ternary>
@@ -18,7 +19,7 @@
 
 <style lang="scss" scoped>
 	.main-view.dashboard {
-		padding-top: 52px;
+		padding-top: 48px;
 	}
 	.top-bar {
 		grid-column: 1/13;
