@@ -1,5 +1,5 @@
 <template>
-	<button class="btn fs-body-m" :class="buttonClasses" :style="variables" :disabled="disabled">
+	<button class="btn salva-l-l" :class="buttonClasses" :style="variables" :disabled="disabled">
 		<slot v-if="!icon" name="left"> </slot>
 		<slot> Btn text </slot>
 		<slot v-if="!icon" name="right"> </slot>
