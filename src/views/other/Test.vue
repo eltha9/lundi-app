@@ -4,7 +4,7 @@
 			<span>test view</span>
 			<div>
 				<Avatar large />
-				<AvatarStack />
+				<AvatarStack :users="['', '', '', '', '', '']" />
 				<Btn color="semantic-info" icon primary> <i class="icon-call"></i></Btn>
 				<div>icon <i class="icon-call text-secondary-500"></i></div>
 			</div>

@@ -4,7 +4,7 @@
 			<Avatar />
 		</div>
 		<div v-if="avatarLeft > 0" class="avatars" :style="{transform: `translateX(${limit * 50}%)`}">
-			<div class="count text-greyscale-white bg-ternary-900">+{{ avatarLeft }}</div>
+			<div class="count text-greyscale-white bg-ternary-900 sato-p-s">+{{ avatarLeft }}</div>
 		</div>
 	</div>
 </template>
@@ -27,9 +27,6 @@
 				justify-content: center;
 
 				font-weight: bold;
-				font-size: 12px;
-				line-height: 24px;
-				letter-spacing: 0%;
 			}
 		}
 	}

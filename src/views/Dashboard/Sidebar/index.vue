@@ -6,23 +6,23 @@
 		<div class="top flex flex-col flex-1">
 			<div class="top-logo">{{ isSidebarCollapsed ? 'L' : 'Lundi' }}</div>
 			<div class="top-menu menu-list flex flex-col my-8">
-				<router-link to="/dashboard" class="link" title="home">
+				<router-link :to="{name: 'dashboard-home'}" class="link" title="home">
 					<i class="icon-home"></i>
 					<span class="fs-body">Home</span>
 				</router-link>
-				<router-link to="/dashboard/equipes" class="link" title="Equipes">
+				<router-link :to="{name: 'dashboard-teams'}" class="link" title="Equipes">
 					<i class="icon-home"></i>
 					<span class="fs-body">Equipes</span>
 				</router-link>
-				<router-link to="/dashboard/templates" class="link" title="Templates">
+				<router-link :to="{name: 'dashboard-templates'}" class="link" title="Templates">
 					<i class="icon-document"></i>
 					<span class="fs-body">Templates</span>
 				</router-link>
-				<router-link to="/dashboard/suivi" class="link" title="Dashboard">
+				<router-link :to="{name: 'dashboard-analytics'}" class="link" title="Dashboard">
 					<i class="icon-bar-chart-alt"></i>
 					<span class="fs-body">Dashboard</span>
 				</router-link>
-				<router-link to="/dashboard/collaborateurs" class="link" title="Collaborateurs">
+				<router-link :to="{name: 'dashboard-collaborators'}" class="link" title="Collaborateurs">
 					<i class="icon-users"></i>
 					<span class="fs-body">Collaborateurs</span>
 				</router-link>
