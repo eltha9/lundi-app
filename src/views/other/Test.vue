@@ -1,11 +1,13 @@
 <template>
-	<div class="main-view">
+	<div class="p-6">
 		<div class="text-semantic-positive-500">
 			<span>test view</span>
 			<div>
 				<Avatar large />
-				<AvatarStack :users="['', '', '', '', '', '']" />
-				<Btn color="semantic-info" icon primary> <i class="icon-call"></i></Btn>
+				<!-- <AvatarStack :users="['', '', '', '', '', '']" /> -->
+				<Btn color="semantic-info" icon secondary> <i class="icon-call"></i></Btn>
+				<Btn color="semantic-warning" secondary class="mb-2"> test secondary</Btn>
+				<Btn color="ternary" primary> test primary</Btn>
 				<div>icon <i class="icon-call text-secondary-500"></i></div>
 			</div>
 			<router-link to="/dashboard">Go to dashboard</router-link>
@@ -13,8 +15,6 @@
 		</div>
 	</div>
 </template>
-
-<style lang="scss" scoped></style>
 
 <script>
 	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
