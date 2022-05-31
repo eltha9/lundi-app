@@ -18,9 +18,6 @@
 </template>
 
 <style lang="scss" scoped>
-	.main-view.dashboard {
-		padding-top: 48px;
-	}
 	.top-bar {
 		grid-column: 1/13;
 		.sub-bar {

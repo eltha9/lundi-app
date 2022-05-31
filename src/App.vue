@@ -20,8 +20,10 @@
 
 		&.dashboard {
 			padding: 0 32px;
+			padding-top: 48px;
 			&.collapsed {
 				padding: 0 40px;
+				padding-top: 48px;
 			}
 		}
 	}

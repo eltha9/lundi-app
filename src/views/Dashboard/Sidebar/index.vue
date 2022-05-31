@@ -1,28 +1,31 @@
 <template>
-	<div
-		class="sidebar bg-greyscale-black text-greyscale-400 px-6 py-14 flex flex-col justify-between"
-		:class="isSidebarCollapsed ? 'collapsed ' : ''"
-	>
+	<div class="sidebar bg-greyscale-black text-greyscale-400 pt-8 flex flex-col justify-between" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top flex flex-col flex-1">
-			<div class="top-logo">{{ isSidebarCollapsed ? 'L' : 'Lundi' }}</div>
-			<div class="top-menu menu-list flex flex-col my-8">
-				<router-link :to="{name: 'dashboard-home'}" class="link" title="home">
+			<div class="top-logo px-6 pb-6 flex flex-col">
+				<div class="flex justify-between items-center mb-1 text-greyscale-200">
+					<span>{{ isSidebarCollapsed ? compagnie.name[0] : compagnie.name }}</span>
+					<button class="collapser" @click="collapseBar()"><i class="icon-arrow-left"></i></button>
+				</div>
+				<span class="text-greyscale-400 sato-l-s">Lundi</span>
+			</div>
+			<div class="top-menu menu-list flex flex-col py-8 px-3">
+				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
 					<span class="fs-body">Home</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-teams'}" class="link" title="Equipes">
+				<router-link :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
 					<i class="icon-home"></i>
 					<span class="fs-body">Equipes</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-templates'}" class="link" title="Templates">
+				<router-link :to="{ name: 'dashboard-templates' }" class="link" title="Templates">
 					<i class="icon-document"></i>
 					<span class="fs-body">Templates</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-analytics'}" class="link" title="Dashboard">
+				<router-link :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
 					<i class="icon-bar-chart-alt"></i>
 					<span class="fs-body">Dashboard</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-collaborators'}" class="link" title="Collaborateurs">
+				<router-link :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
 					<i class="icon-users"></i>
 					<span class="fs-body">Collaborateurs</span>
 				</router-link>
@@ -70,7 +73,7 @@
 		}
 
 		.menu-list {
-			gap: 24px;
+			gap: 8px;
 		}
 		.link,
 		.link-btn {
@@ -103,19 +106,33 @@
 				border-top: 1px solid;
 				border-bottom: 1px solid;
 			}
+			.top-logo {
+				box-sizing: border-box;
+				font-size: 28px;
+				@apply text-primary-700;
+				border-bottom: 1px solid;
+				.collapser {
+					cursor: pointer;
+					font-size: 28px;
+				}
+			}
 		}
 	}
 </style>
 
 <script>
-	import {mapMutations, mapState} from 'vuex';
+	import { mapMutations, mapState } from "vuex";
 	export default {
-		name: 'Sidebar',
+		name: "Sidebar",
 		computed: {
-			...mapState(['isSidebarCollapsed']),
+			...mapState(["isSidebarCollapsed", "me", "compagnie"]),
 		},
 		methods: {
-			...mapMutations(['setIsSidebarCollapsed']),
+			...mapMutations(["setSidebarCollapsed"]),
+			collapseBar() {
+				console.log("plp");
+				this.setSidebarCollapsed(!this.isSidebarCollapsed);
+			},
 		},
 	};
 </script>
