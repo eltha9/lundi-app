@@ -1,5 +1,5 @@
 <template>
-	<div class="sidebar bg-greyscale-black text-greyscale-400 pt-8 flex flex-col justify-between" :class="isSidebarCollapsed ? 'collapsed ' : ''">
+	<div class="sidebar bg-primary-900 text-greyscale-400 pt-8 flex flex-col justify-between" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top flex flex-col flex-1">
 			<div class="top-logo px-6 pb-6 flex flex-col">
 				<div class="flex justify-between items-center mb-1 text-greyscale-200">
@@ -8,21 +8,21 @@
 				</div>
 				<span class="text-greyscale-400 sato-l-s">Lundi</span>
 			</div>
-			<div class="top-menu menu-list flex flex-col py-8 px-3">
+			<div class="top-menu menu-list flex flex-col py-8 px-3 sato-l-l">
 				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
 					<span class="fs-body">Home</span>
 				</router-link>
 				<router-link :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
-					<i class="icon-home"></i>
+					<i class="icon-grid"></i>
 					<span class="fs-body">Equipes</span>
 				</router-link>
 				<router-link :to="{ name: 'dashboard-templates' }" class="link" title="Templates">
-					<i class="icon-document"></i>
+					<i class="icon-tag"></i>
 					<span class="fs-body">Templates</span>
 				</router-link>
 				<router-link :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
-					<i class="icon-bar-chart-alt"></i>
+					<i class="icon-layout"></i>
 					<span class="fs-body">Dashboard</span>
 				</router-link>
 				<router-link :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
@@ -30,22 +30,27 @@
 					<span class="fs-body">Collaborateurs</span>
 				</router-link>
 			</div>
+			<!-- favoris -->
 			<div class="top-fav py-8 flex-1 text-greyscale-700">
-				<button class="link-btn text-greyscale-400" title="Favoris">
+				<button class="fav-btn text-greyscale-400" title="Favoris">
 					<i class="icon-tag"></i>
 					<span class="fs-body">Favoris</span>
 				</button>
 			</div>
 		</div>
+
 		<div class="bottom menu-list flex flex-col mt-8">
-			<router-link to="/dashboard/avis" class="link" title="Donner votre avis">
-				<i class="icon-message-alt"></i>
-				<span class="fs-body">Donne votre avis</span>
-			</router-link>
-			<router-link to="/dashboard/aide" class="link" title="Aide">
-				<i class="icon-sun"></i>
-				<span class="fs-body">Aide</span>
-			</router-link>
+			<div class="bottom-setting flex flex-col">
+				<router-link to="/dashboard/avis" class="link" title="Donner votre avis">
+					<i class="icon-message-alt"></i>
+					<span class="fs-body">Donne votre avis</span>
+				</router-link>
+				<router-link to="/dashboard/aide" class="link" title="Aide">
+					<i class="icon-circle-help"></i>
+					<span class="fs-body">Aide</span>
+				</router-link>
+			</div>
+			<div class="bottom-user"></div>
 		</div>
 	</div>
 </template>
@@ -60,11 +65,10 @@
 		&.collapsed {
 			width: 72px;
 
-			.link,
-			.link-btn {
+			.link {
 				margin: 0;
 				&.active {
-					margin: 0;
+					// margin: 0;
 				}
 				span {
 					display: none;
@@ -75,36 +79,38 @@
 		.menu-list {
 			gap: 8px;
 		}
-		.link,
-		.link-btn {
-			will-change: color;
-			transition: color 0.2s ease;
-			i::before {
-				width: 20px;
-				height: 20px;
-			}
+		.link {
+			will-change: color, background;
+			transition-property: color, background;
+			transition: 0.3s ease;
+			padding: 8px 12px;
+			@apply text-greyscale-400;
+			border-radius: 8px;
+			overflow: hidden;
 			i {
+				font-size: 20px;
 				margin-right: 12px;
 			}
 			&.router-link-active,
 			&.active {
-				@apply text-greyscale-white;
-				i {
-					margin-right: 24px;
-				}
+				padding: 8px 14px;
+				@apply text-greyscale-white bg-light-20;
 				span {
 					font-weight: bold !important;
 				}
 			}
 			&:not(&.router-link-active, &.active):hover {
-				@apply text-greyscale-white;
+				@apply text-greyscale-white bg-light-40;
+				span {
+					font-weight: bold !important;
+				}
 			}
 		}
 		.top {
 			.top-fav {
 				box-sizing: border-box;
-				border-top: 1px solid;
 				border-bottom: 1px solid;
+				@apply text-primary-700;
 			}
 			.top-logo {
 				box-sizing: border-box;
@@ -113,8 +119,20 @@
 				border-bottom: 1px solid;
 				.collapser {
 					cursor: pointer;
-					font-size: 28px;
+					font-size: 20px;
+					width: fit-content;
+					height: fit-content;
 				}
+			}
+			.top-menu {
+				border-bottom: 1px solid;
+				@apply text-primary-700;
+			}
+		}
+		.bottom {
+			.bottom-setting {
+				border-bottom: 1px solid;
+				@apply text-primary-700;
 			}
 		}
 	}
