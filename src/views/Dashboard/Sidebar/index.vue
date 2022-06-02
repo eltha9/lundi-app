@@ -32,18 +32,24 @@
 			</div>
 			<!-- favoris -->
 			<div class="top-fav py-6 px-3 flex-1 text-greyscale-700 flex flex-col">
-				<button class="fav-btn text-greyscale-500 flex items-center justify-between px-3" title="Favoris">
+				<button class="fav-btn text-greyscale-500 flex items-center justify-between px-3" title="Favoris" @click="isFavOpen = !isFavOpen">
 					<i class="icon-favorite res-icon"></i>
 					<span class="sato-l-m">Favoris</span>
-					<i class="icon-caret-down text-greyscale-400"></i>
+					<i class="text-greyscale-400" :class="isFavOpen ? 'icon-caret-up ' : 'icon-caret-down '"></i>
 				</button>
-				<div class="fav-menu flex-1">
+				<div v-show="isFavOpen" class="fav-menu flex-1">
 					<div class="fav-menu-container">
-						<div v-for="(item, i) in me.settings.favs" :key="`${i}-${item.title}`">
-							<span class="sub-link text-greyscale-400 pl-6 py-2 mt-2 sato-l-s">
+						<router-link
+							v-for="(item, i) in me.settings.favs"
+							:key="`${i}-${item.title}`"
+							:to="item.link"
+							class="sub-link text-greyscale-400 px-6 py-2 mt-2 sato-l-s flex justify-between"
+						>
+							<span>
 								{{ item.title }}
 							</span>
-						</div>
+							<i class="icon-options-vertical"></i>
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -135,6 +141,19 @@
 						top: 0;
 						left: 0;
 						width: 100%;
+
+						.sub-link {
+							border-radius: 8px;
+							will-change: color, background;
+							transition-property: color, background;
+							transition: 0.3s ease;
+							&.active {
+								@apply bg-light-40 text-greyscale-white;
+							}
+							&:hover {
+								@apply bg-light-20 text-greyscale-white;
+							}
+						}
 					}
 				}
 			}
@@ -173,9 +192,6 @@
 
 			.link {
 				margin: 0;
-				&.active {
-					// margin: 0;
-				}
 				span {
 					display: none;
 				}
@@ -191,6 +207,11 @@
 		name: 'Sidebar',
 		components: {
 			Avatar,
+		},
+		data() {
+			return {
+				isFavOpen: false,
+			};
 		},
 		computed: {
 			...mapState(['isSidebarCollapsed', 'me', 'compagnie']),
