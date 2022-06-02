@@ -8,7 +8,7 @@ const full = {
 		role: 'admin', // admin, edit, manager, onborder
 		firstName: 'Théa',
 		lastName: 'D',
-		picture: './assets/test/avatar.jpeg',
+		picture: '/assets/test/avatar.jpeg',
 		settings: {
 			favs: [
 				{
