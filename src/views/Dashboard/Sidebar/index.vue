@@ -203,6 +203,7 @@
 <script>
 	import {mapGetters, mapMutations, mapState} from 'vuex';
 	import Avatar from '@/components/lundi-uiKit/avatar/Avatar.vue';
+	// import Btn from '@/components/lundi-uiKit/Button.vue'
 	export default {
 		name: 'Sidebar',
 		components: {
