@@ -9,23 +9,19 @@
 				<span class="text-greyscale-400 sato-l-s">Lundi</span>
 			</div>
 			<div class="top-menu menu-list flex flex-col py-8 px-3 sato-l-l">
-				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
+				<router-link :to="{name: 'dashboard-home'}" class="link" title="home">
 					<i class="icon-home"></i>
 					<span class="sato-l-l">Home</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
+				<router-link :to="{name: 'dashboard-teams'}" class="link" title="Equipes">
 					<i class="icon-grid"></i>
-					<span class="sato-l-l">Equipes</span>
+					<span class="sato-l-l">Mon équipes</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-templates' }" class="link" title="Templates">
-					<i class="icon-tag"></i>
-					<span class="sato-l-l">Templates</span>
-				</router-link>
-				<router-link :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
+				<router-link :to="{name: 'dashboard-analytics'}" class="link" title="Dashboard">
 					<i class="icon-layout"></i>
 					<span class="sato-l-l">Dashboard</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
+				<router-link :to="{name: 'dashboard-collaborators'}" class="link" title="Collaborateurs">
 					<i class="icon-users"></i>
 					<span class="sato-l-l">Collaborateurs</span>
 				</router-link>
@@ -56,7 +52,7 @@
 		</div>
 
 		<div class="bottom menu-list flex flex-col">
-			<div class="bottom-setting flex flex-col py-4 px-3">
+			<!-- <div class="bottom-setting flex flex-col py-4 px-3">
 				<router-link to="/dashboard/avis" class="link" title="Donner votre avis">
 					<i class="icon-message-alt"></i>
 					<span class="sato-l-l">Donne votre avis</span>
@@ -65,7 +61,7 @@
 					<i class="icon-circle-help"></i>
 					<span class="sato-l-l">Aide</span>
 				</router-link>
-			</div>
+			</div> -->
 			<div class="bottom-user flex justify-between items-center">
 				<div class="flex items-center">
 					<avatar :url="me.picture" class="mr-4" />
@@ -202,11 +198,11 @@
 </style>
 
 <script>
-	import { mapGetters, mapMutations, mapState } from "vuex";
-	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
+	import {mapGetters, mapMutations, mapState} from 'vuex';
+	import Avatar from '@/components/lundi-uiKit/avatar/Avatar.vue';
 	// import Btn from '@/components/lundi-uiKit/Button.vue'
 	export default {
-		name: "Sidebar",
+		name: 'Sidebar',
 		components: {
 			Avatar,
 		},
@@ -216,13 +212,13 @@
 			};
 		},
 		computed: {
-			...mapState(["isSidebarCollapsed", "me", "compagnie"]),
-			...mapGetters(["getFullName"]),
+			...mapState(['isSidebarCollapsed', 'me', 'compagnie']),
+			...mapGetters(['getFullName']),
 		},
 		methods: {
-			...mapMutations(["setSidebarCollapsed"]),
+			...mapMutations(['setSidebarCollapsed']),
 			collapseBar() {
-				console.log("plp");
+				console.log('plp');
 				this.setSidebarCollapsed(!this.isSidebarCollapsed);
 			},
 		},
