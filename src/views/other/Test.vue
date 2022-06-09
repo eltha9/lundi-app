@@ -28,34 +28,38 @@
 			<div class="mt-8">
 				<h3>input test</h3>
 				<l-select v-model="selectModel" name="test" :options="['a', 'b', 'c']" />
+				<l-input v-model="textModel" name="test" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
-	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
-	import Btn from '@/components/lundi-uiKit/Button';
-	import NavBar from '@/components/lundi-uiKit/NavBar';
-	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
+	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
+	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
+	import Btn from "@/components/lundi-uiKit/Button";
+	import NavBar from "@/components/lundi-uiKit/NavBar";
+	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
+	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
 	export default {
-		name: 'Test',
+		name: "Test",
 		components: {
 			Avatar,
 			AvatarStack,
 			Btn,
 			NavBar,
 			LSelect,
+			LInput,
 		},
 		data() {
 			return {
 				navBarTest: true,
-				selectModel: '',
+				selectModel: "",
+				textModel: "",
 			};
 		},
 		watch: {
-			selectModel() {
+			textModel() {
 				console.log(this.selectModel);
 			},
 		},
