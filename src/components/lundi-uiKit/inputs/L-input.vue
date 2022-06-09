@@ -8,9 +8,6 @@
 	<div v-else-if="type === 'password'" class="l-input">
 		<input type="text" />
 	</div>
-	<div v-else-if="type === 'select'" class="l-input">
-		<input type="text" />
-	</div>
 	<div v-else class="l-input">an error occuried</div>
 </template>
 <style lang="scss" scoped>
@@ -20,7 +17,7 @@
 
 <script>
 	export default {
-		name: 'l-nnput',
+		name: 'l-input',
 		props: {
 			type: {
 				require: true,

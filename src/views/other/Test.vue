@@ -23,27 +23,41 @@
 
 			<span>navbar test</span>
 			<nav-bar v-model="navBarTest" :items="['gauche', 'droite']" />
+
+			<!-- test input -->
+			<div class="mt-8">
+				<h3>input test</h3>
+				<l-select v-model="selectModel" name="test" :options="['a', 'b', 'c']" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
-	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
-	import Btn from "@/components/lundi-uiKit/Button";
-	import NavBar from "@/components/lundi-uiKit/NavBar";
+	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
+	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
+	import Btn from '@/components/lundi-uiKit/Button';
+	import NavBar from '@/components/lundi-uiKit/NavBar';
+	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
 	export default {
-		name: "Test",
+		name: 'Test',
 		components: {
 			Avatar,
 			AvatarStack,
 			Btn,
 			NavBar,
+			LSelect,
 		},
 		data() {
 			return {
 				navBarTest: true,
+				selectModel: '',
 			};
+		},
+		watch: {
+			selectModel() {
+				console.log(this.selectModel);
+			},
 		},
 	};
 </script>
