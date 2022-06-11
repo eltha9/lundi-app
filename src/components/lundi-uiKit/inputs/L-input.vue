@@ -27,7 +27,7 @@
 			</div>
 			<i
 				v-if="type === 'password'"
-				class="text-greyscale-black"
+				class="text-greyscale-black input-icon"
 				:class="showPassword ? 'icon-eye-off' : 'icon-eye'"
 				@mousedown="showPassword = true"
 				@mouseup="showPassword = false"
@@ -44,7 +44,10 @@
 		position: relative;
 		box-sizing: border-box;
 		height: 56px;
-		width: 350px;
+
+		.input-icon {
+			font-size: 24px;
+		}
 		.input-container {
 			cursor: pointer;
 			border: 1px solid;

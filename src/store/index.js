@@ -63,6 +63,7 @@ export default new Vuex.Store({
 		isSidebarCollapsed: false,
 		compagnie: full.compagnie,
 		me: full.me,
+        createAccount: false
 	},
 	getters: {
 		getFullName(state) {
@@ -73,6 +74,12 @@ export default new Vuex.Store({
 		setSidebarCollapsed(state, status) {
 			state.isSidebarCollapsed = status;
 		},
+        toggleLogin(state, status){
+            if(status) state.createAccount = status
+
+            state.createAccount = !state.createAccount
+
+        }
 	},
 	actions: {},
 	modules: {},

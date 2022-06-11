@@ -2,14 +2,15 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Test from '@/views/other/Test';
 import Dashboard from '@/views/Dashboard/index.vue';
+import Login from '@/views/Login/index.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
 	{
 		path: '/',
-		name: 'test',
-		component: Test,
+		name: 'login',
+		component: Login,
 	},
 	{
 		path: '/test',
