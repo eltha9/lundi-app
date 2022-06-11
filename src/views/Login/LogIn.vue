@@ -6,10 +6,8 @@
 				<l-input v-model="passwordModel" name="Mot de passe" type="password" />
 			</div>
 			<div class="submit-div flex flex-col items-center">
-				<btn class="button mb-6" primary>Se connecter</btn>
-				<span class="text-greyscale-700">
-					Vous n’avez pas de compte ? <button class="switch-btn" @click="toggleLogin()">Inscrivez-vous</button>
-				</span>
+				<btn class="button mb-6" primary @click.native.prevent="logIn()">Se connecter</btn>
+				<span class="text-greyscale-700"> Vous n’avez pas de compte ? <button class="switch-btn" @click="toggleLogin()">Inscrivez-vous</button> </span>
 			</div>
 		</form>
 	</div>
@@ -41,9 +39,9 @@
 	}
 </style>
 <script>
-	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
-	import Btn from '@/components/lundi-uiKit/Button.vue';
-	import {mapActions, mapMutations} from 'vuex';
+	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
+	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import { mapActions, mapMutations } from "vuex";
 	export default {
 		components: {
 			LInput,
@@ -51,12 +49,15 @@
 		},
 		data() {
 			return {
-				emailModel: '',
-				passwordModel: '',
+				emailModel: "",
+				passwordModel: "",
 			};
 		},
 		methods: {
-			...mapMutations(['toggleLogin']),
+			...mapMutations(["toggleLogin"]),
+			logIn() {
+				console.log("login");
+			},
 		},
 	};
 </script>

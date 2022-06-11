@@ -12,10 +12,8 @@
 				</div>
 			</div>
 			<div class="submit-div flex flex-col items-center">
-				<btn class="button mb-6" primary>Créer un compte</btn>
-				<div class="text-greyscale-700">
-					Vous avez déjà un compte ? <button class="switch-btn" @click="togglesignin()">Connectez-vous</button>
-				</div>
+				<btn class="button mb-6" primary @click.native.prevent="createAccount()">Créer un compte</btn>
+				<div class="text-greyscale-700">Vous avez déjà un compte ? <button class="switch-btn" @click="toggleLogin()">Connectez-vous</button></div>
 				<div class="cgi sato-p-s text-greyscale-500">En cliquant sur Créer mon compte, vous acceptez nos Conditions générales.</div>
 			</div>
 		</form>
@@ -56,9 +54,9 @@
 	}
 </style>
 <script>
-	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
-	import Btn from '@/components/lundi-uiKit/Button.vue';
-	import {mapMutations} from 'vuex';
+	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
+	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import { mapMutations } from "vuex";
 	export default {
 		components: {
 			LInput,
@@ -66,14 +64,18 @@
 		},
 		data() {
 			return {
-				firstNameModel: '',
-				lastNameModel: '',
-				emailModel: '',
-				passwordModel: '',
+				firstNameModel: "",
+				lastNameModel: "",
+				emailModel: "",
+				passwordModel: "",
 			};
 		},
 		methods: {
-			...mapMutations(['toggleLogin']),
+			...mapMutations(["toggleLogin"]),
+			createAccount() {
+				console.log("plop");
+				this.$router.push({ name: "create-account" });
+			},
 		},
 	};
 </script>

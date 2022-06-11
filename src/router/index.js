@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Test from '@/views/other/Test';
 import Dashboard from '@/views/Dashboard/index.vue';
 import Login from '@/views/Login/index.vue'
-
+import CreateAccount from "@/views/Login/CreateAccount/index.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -11,6 +11,11 @@ const routes = [
 		path: '/',
 		name: 'login',
 		component: Login,
+	},
+	{
+		path: '/create-account',
+		name: 'create-account',
+		component: CreateAccount,
 	},
 	{
 		path: '/test',
