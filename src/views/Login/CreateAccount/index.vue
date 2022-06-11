@@ -1,5 +1,5 @@
 <template>
-	<div>create account</div>
+	<div class="main-view">create account</div>
 </template>
 
 <style lang="scss" scoped></style>
