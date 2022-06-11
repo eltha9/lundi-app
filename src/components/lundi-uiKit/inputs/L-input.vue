@@ -1,9 +1,11 @@
 <template>
 	<div class="l-input">
-		<div class="input-container flex justify-between items-center px-4 bg-greyscale-white" :class="getInputClass">
+		<div class="input-container flex justify-between items-center px-4 bg-greyscale-white" :class="getInputClass" @click="clickEvent">
 			<div class="label-container flex flex-col">
-				<span class="container text-greyscale-500" :class="getLabelClass">{{ placeholder.trim() === "" ? name : placeholder }}</span>
-				<span v-if="asValue" class="value text-greyscale-black sato-l-l">{{ inputValue }}</span>
+				<span class="container text-greyscale-500" :class="getLabelClass">{{ placeholder.trim() === '' ? name : placeholder }}</span>
+				<span v-if="asValue || showInput" class="value text-greyscale-black sato-l-l">
+					<input ref="textInput" type="text" :name="name" v-model="inputValue" @blur="blurEvent()" />
+				</span>
 			</div>
 		</div>
 		<div v-if="asError" class="error-text text-semantic-negative-500 sato-l-s pt-2">Sorry an error occuried</div>
@@ -40,12 +42,12 @@
 
 <script>
 	export default {
-		name: "l-input",
+		name: 'l-input',
 		props: {
 			value: {
 				require: true,
 				type: String,
-				default: "",
+				default: '',
 			},
 			type: {
 				require: false,
@@ -55,54 +57,67 @@
 				 * password
 				 * phone
 				 */
-				default: "text",
+				default: 'text',
 			},
 			name: {
 				require: true,
 				type: String,
-				default: "Input",
+				default: 'Input',
 			},
 			placeholder: {
 				require: false,
 				type: String,
-				default: "",
+				default: '',
 			},
 		},
 		data() {
 			return {
-				inputValue: "",
+				inputValue: '',
+				showInput: false,
 				asError: false,
+				inputNode: '',
 			};
 		},
 		computed: {
 			asValue() {
-				return this.inputValue.trim() !== "";
+				return this.inputValue.trim() !== '';
 			},
 			getLabelClass() {
 				const classes = [];
-				this.inputValue.trim() !== "" ? classes.push("sato-p-s") : classes.push("sato-l-l");
-				this.asError ? classes.push("text-semantic-negative-500") : classes.push("text-greyscale-500");
+				if (this.showInput) !this.showInput ? classes.push('sato-p-s') : classes.push('sato-l-l');
+				else this.inputValue.trim() !== '' ? classes.push('sato-p-s') : classes.push('sato-l-l');
+				this.asError ? classes.push('text-semantic-negative-500') : classes.push('text-greyscale-500');
 
-				return classes.join(" ");
+				return classes.join(' ');
 			},
 			getInputClass() {
 				const classes = [];
 				if (this.asError) {
-					classes.push("text-semantic-negative-500 error");
+					classes.push('text-semantic-negative-500 error');
 				} else {
-					this.isOpen ? classes.push("text-greyscale-black active") : classes.push("text-greyscale-300");
+					this.showInput ? classes.push('text-greyscale-black active') : classes.push('text-greyscale-300');
 				}
-				return classes.join(" ");
+				return classes.join(' ');
 			},
 		},
 		watch: {
 			selected() {
-				this.$emit("input", this.inputValue);
+				this.$emit('input', this.inputValue);
 			},
 		},
 		mounted() {
 			this.inputValue = this.value;
 		},
-		methods: {},
+		methods: {
+			clickEvent() {
+				this.showInput = true;
+				setTimeout(() => {
+					this.$refs.textInput.focus();
+				}, 200);
+			},
+			blurEvent() {
+				this.showInput = false;
+			},
+		},
 	};
 </script>
