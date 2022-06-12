@@ -31,6 +31,7 @@
 				<l-input v-model="textModel" name="test" class="mt-4" />
 				<l-input v-model="passwordModel" name="Mot de passe" type="password" class="mt-4" />
 				<l-input v-model="phoneModel" name="numéro de téléphone" type="phone" class="mt-4" />
+				<l-file class="mt-4" placeholder="votre photo" v-model="fileModel" />
 			</div>
 		</div>
 	</div>
@@ -43,6 +44,7 @@
 	import NavBar from "@/components/lundi-uiKit/NavBar";
 	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
 	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
+	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
 	export default {
 		name: "Test",
 		components: {
@@ -52,6 +54,7 @@
 			NavBar,
 			LSelect,
 			LInput,
+			LFile,
 		},
 		data() {
 			return {
@@ -60,6 +63,7 @@
 				textModel: "",
 				passwordModel: "",
 				phoneModel: "",
+				fileModel: "",
 			};
 		},
 		watch: {
