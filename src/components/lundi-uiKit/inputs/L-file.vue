@@ -1,17 +1,20 @@
 <template>
 	<div class="l-file">
 		<label for="fileInput" class="flex flex-col py-8 px-4 text-primary-300 items-center">
-			<div class="icon bg-primary-100 mb-3">
-				<i :class="icon" class=""></i>
+			<div class="icon bg-primary-100 mb-3" :class="file === null ? 'bg-primary-100' : 'bg-primary-500'">
+				<i :class="file === null ? 'text-primary-500 ' + icon : 'icon-check text-primary-100'"></i>
 			</div>
 			<div class="text mb-2 text-primary-500 sato-l-l">
-				<span class="underliner">Importez</span> <span class="text-greyscale-black">{{ placeholder }}</span>
+				<span class="underliner">{{ file === null ? "Importez" : "Modifier" }}</span> <span class="text-greyscale-black">{{ placeholder }}</span>
 			</div>
-			<span class="sub-text sato-l-s text-greyscale-500"
-				>Types de fichier supporté : <span>{{ fileTypes }}</span></span
-			>
+			<span class="sub-text sato-l-s text-greyscale-500">
+				<template v-if="file === null">
+					Types de fichier supporté : <span>{{ fileTypes }}</span>
+				</template>
+				<template v-else> {{ fileName }} </template>
+			</span>
 		</label>
-		<input @change="onfileChange" type="file" name="fileInput" id="fileInput" class="hidden-input" :accept="fileTypesForInput" />
+		<input @change="onFileChange" type="file" name="fileInput" id="fileInput" class="hidden-input" :accept="fileTypesForInput" />
 	</div>
 </template>
 
@@ -69,7 +72,6 @@
 			},
 			value: {
 				require: true,
-				type: File,
 				default: null,
 			},
 			acceptedFileTypes: {
@@ -98,12 +100,24 @@
 
 				return this.acceptedFileTypes.map((item) => "." + item).join(", ");
 			},
+			fileName() {
+				return this.file?.name || "un fichier";
+			},
+		},
+		watch: {
+			file() {
+				this.$emit("input", this.file);
+			},
+		},
+		mounted() {
+			this.file = this.value === "" ? null : this.value;
 		},
 		methods: {
 			onFileChange(event) {
 				let files = event.target.files || event.dataTransfer.files;
 				if (!files.length) return;
-				this.$emit("input", files[0]);
+				this.file = files[0];
+				console.log(this.file);
 			},
 		},
 	};
