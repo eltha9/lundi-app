@@ -4,6 +4,8 @@ import Test from '@/views/other/Test';
 import Dashboard from '@/views/Dashboard/index.vue';
 import Login from '@/views/Login/index.vue'
 import CreateAccount from "@/views/Login/CreateAccount/index.vue"
+import Invitation from "@/views/Invitation/index.vue"
+import InvitationCreate from "@/views/Invitation/CreateAccount/index.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -16,6 +18,16 @@ const routes = [
 		path: '/create-account',
 		name: 'create-account',
 		component: CreateAccount,
+	},
+	{
+		path: '/invitation/:id',
+		name: 'invitation',
+		component: Invitation,
+	},
+	{
+		path: '/invitation/create',
+		name: 'invitation-create',
+		component: InvitationCreate,
 	},
 	{
 		path: '/test',

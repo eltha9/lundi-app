@@ -1,9 +1,9 @@
 <template>
 	<div class="avatar-stack">
-		<div class="avatars" v-for="(userId, i) in showedAvatar" :key="userId" :style="{transform: `translateX(${i * 50}%)`}">
+		<div class="avatars" v-for="(userId, i) in showedAvatar" :key="userId" :style="{ transform: `translateX(${i * 50}%)` }">
 			<Avatar />
 		</div>
-		<div v-if="avatarLeft > 0" class="avatars" :style="{transform: `translateX(${limit * 50}%)`}">
+		<div v-if="avatarLeft > 0" class="avatars" :style="{ transform: `translateX(${userLimit * 50}%)` }">
 			<div class="count text-greyscale-white bg-ternary-900 sato-p-s">+{{ avatarLeft }}</div>
 		</div>
 	</div>
@@ -33,29 +33,28 @@
 </style>
 
 <script>
-	import Avatar from './Avatar';
-	const userLimit = 4;
+	import Avatar from "./Avatar";
 	export default {
-		name: 'AvatarStack',
-		components: {Avatar},
+		name: "AvatarStack",
+		components: { Avatar },
 		props: {
 			users: {
 				type: Array,
 				require: false,
 				default: () => [],
 			},
-		},
-		data() {
-			return {
-				limit: userLimit,
-			};
+			userLimit: {
+				type: Number,
+				require: false,
+				default: 4,
+			},
 		},
 		computed: {
 			showedAvatar() {
-				return this.users.slice(0, userLimit);
+				return this.users.slice(0, this.userLimit);
 			},
 			avatarLeft() {
-				return Math.max(this.users.length - userLimit, 0);
+				return Math.max(this.users.length - this.userLimit, 0);
 			},
 		},
 	};
