@@ -2,7 +2,7 @@
 	<div class="main-view create-compagnie">
 		<div class="timeliner">
 			<img src="@/../public/assets/lundi-temp.png" class="mt-8 mb-2" alt="Lundi logo" />
-			<div class="flex justify-center mb-16">
+			<div class="flex justify-center mb-16" v-show="timeLineStep !== 5">
 				<time-line :to-show="timeLineStep" :steps="steps" />
 			</div>
 			<div class="step-container">
@@ -18,6 +18,7 @@
 
 <style lang="scss" scoped>
 	.create-compagnie {
+		position: relative;
 		.timeliner {
 			height: fit-content;
 			grid-column: 1/13;

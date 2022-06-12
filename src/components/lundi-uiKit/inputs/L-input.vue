@@ -12,6 +12,7 @@
 						:name="name"
 						v-model="inputValue"
 						@blur="blurEvent()"
+						@keypress.enter="enterEvent()"
 					/>
 					<input
 						v-else-if="type === 'password'"
@@ -21,8 +22,18 @@
 						:name="name"
 						v-model="inputValue"
 						@blur="blurEvent()"
+						@keypress.enter="enterEvent()"
 					/>
-					<input v-else ref="textInput" class="sato-l-l text-greyscale-black" type="tel" :name="name" v-model="inputValue" @blur="blurEvent()" />
+					<input
+						v-else
+						ref="textInput"
+						class="sato-l-l text-greyscale-black"
+						type="tel"
+						:name="name"
+						v-model="inputValue"
+						@blur="blurEvent()"
+						@keypress.enter="enterEvent()"
+					/>
 				</span>
 			</div>
 			<i
@@ -133,8 +144,11 @@
 			},
 		},
 		watch: {
-			selected() {
+			inputValue() {
 				this.$emit("input", this.inputValue);
+			},
+			value() {
+				this.inputValue = this.value;
 			},
 		},
 		mounted() {
@@ -149,6 +163,9 @@
 			},
 			blurEvent() {
 				this.showInput = false;
+			},
+			enterEvent() {
+				this.$emit("enter", this.inputValue);
 			},
 		},
 	};

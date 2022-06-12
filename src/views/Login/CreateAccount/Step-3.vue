@@ -4,10 +4,18 @@
 
 		<div>
 			<span>Ajouter une équipe</span>
-			<div>
+			<div class="mt-4">
 				<l-input v-model="data.name" name="Nom de l'équipe" class="mb-8" />
-				<div class="tags">
-					<div class="tag">RH</div>
+				<div class="tags flex">
+					<div
+						v-for="tagValue in tags"
+						class="tag"
+						:key="tagValue"
+						:class="data.tags.includes(tagValue) ? 'active' : ''"
+						@click="selectTag(tagValue)"
+					>
+						<span class="sato-l-m"> <i :class="data.tags.includes(tagValue) ? 'icon-check' : 'icon-add'"></i> {{ tagValue }} </span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -27,6 +35,34 @@
 	.create-account-step3 {
 		height: fit-content;
 		grid-column: 4/10;
+
+		.tags {
+			gap: 8px;
+			.tag {
+				cursor: pointer;
+				@apply text-greyscale-400;
+				border: 1px solid;
+				padding: 8px 16px 8px 12px;
+				border-radius: 34px;
+				span {
+					@apply text-greyscale-500;
+					font-weight: bold;
+					i {
+						margin-right: 8px;
+						font-size: 16px;
+					}
+				}
+				&.active {
+					@apply text-primary-500 bg-primary-100;
+					span {
+						@apply text-primary-500;
+					}
+				}
+				&:hover {
+					@apply text-greyscale-black;
+				}
+			}
+		}
 	}
 </style>
 <script>
@@ -77,7 +113,13 @@
 			previousStep(nb) {
 				this.setTimeLineStep(nb);
 			},
-			selectTag(id) {},
+			selectTag(tagName) {
+				if (this.data.tags.includes(tagName)) {
+					this.data.tags = this.data.tags.filter((tag) => tag !== tagName);
+				} else {
+					this.data.tags.push(tagName);
+				}
+			},
 		},
 	};
 </script>

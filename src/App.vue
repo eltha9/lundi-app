@@ -18,6 +18,7 @@
 		grid-template-columns: repeat(12, 1fr);
 		gap: 16px;
 		overflow: auto;
+		overflow-x: hidden;
 		&.dashboard {
 			overflow: hidden;
 			padding: 0 32px;
