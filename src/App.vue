@@ -17,8 +17,9 @@
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
 		gap: 16px;
-
+		overflow: auto;
 		&.dashboard {
+			overflow: hidden;
 			padding: 0 32px;
 			padding-top: 48px;
 			&.collapsed {
