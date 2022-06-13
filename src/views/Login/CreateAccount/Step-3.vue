@@ -6,7 +6,7 @@
 			<span>Ajouter une équipe</span>
 			<div class="mt-4">
 				<l-input v-model="data.name" name="Nom de l'équipe" class="mb-8" />
-				<div class="tags flex">
+				<div class="tags flex flex-wrap">
 					<div
 						v-for="tagValue in tags"
 						class="tag"

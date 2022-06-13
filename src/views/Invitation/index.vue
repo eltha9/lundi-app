@@ -6,7 +6,7 @@
 		<div class="left bg-background-100">
 			<img src="@/../public/assets/lundi-temp.png" class="mt-8 mb-12" alt="Lundi logo" />
 			<div class="login-title mb-3">
-				<h1 class="salva-d-s text-primary-700">L'onboarding qui <span class="text-primary-300">grandit avec vous</span></h1>
+				<h1 class="salva-d-s text-primary-700">L'onboarding qui <br /><span class="text-primary-300">grandit avec vous</span></h1>
 			</div>
 			<div class="text-greyscale-700 sato-l-l mb-12">Rejoingez votre équipe dès maintenant !</div>
 			<sign-in />

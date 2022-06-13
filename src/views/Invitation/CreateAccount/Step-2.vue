@@ -9,6 +9,7 @@
 			<div class="create-team mb-8">
 				<span class="text-greyscale-700 sato-l-l">Créer mon équipe</span>
 				<l-input v-model="teamCreation" name="Nom de l'équipe" class="mt-8" @enter="createTeam" />
+				<!-- created team -->
 				<div v-if="data.createdTeam.name !== undefined" class="created-team">
 					<div>
 						<input type="checkbox" :checked="data.createdTeam.selected" />

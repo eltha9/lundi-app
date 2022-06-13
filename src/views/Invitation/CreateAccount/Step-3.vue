@@ -1,6 +1,6 @@
 <template>
 	<div class="create-account-step4">
-		<div class="step-title salva-h3 text-greyscale-800 mb-6">Invitez les managers de vos équipes</div>
+		<div class="step-title salva-h3 text-greyscale-800 mb-3">Invitez les managers de vos équipes</div>
 		<l-input v-model="maillerModel" name="mario@lundi.ovh" class="mb-4" @enter="addEmail" />
 		<div class="mail-container mb-8">
 			<div v-for="mail in data.mails" :key="mail" class="mail mb-4 flex items-center">

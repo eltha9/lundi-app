@@ -1,6 +1,6 @@
 <template>
 	<div class="create-account-step1">
-		<div class="step-title salva-h3 text-greyscale-800">Personnalisez votre compte</div>
+		<div class="step-title salva-h3 text-greyscale-800 mb-3">Personnalisez votre compte</div>
 		<div class="step-subtitle text-greyscale-700 sato-l-l mb-8">
 			Ajouter une photo et rensignez votre rôle afin que les membres de votre équipe puisse vous reconaitre
 		</div>
