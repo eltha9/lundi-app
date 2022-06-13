@@ -32,6 +32,7 @@
 				<l-input v-model="passwordModel" name="Mot de passe" type="password" class="mt-4" />
 				<l-input v-model="phoneModel" name="numéro de téléphone" type="phone" class="mt-4" />
 				<l-file class="mt-4" placeholder="votre photo" v-model="fileModel" />
+				<l-checkbox class="mt-4" />
 			</div>
 		</div>
 	</div>
@@ -45,6 +46,7 @@
 	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
 	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
 	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
 	export default {
 		name: "Test",
 		components: {
@@ -55,6 +57,7 @@
 			LSelect,
 			LInput,
 			LFile,
+			LCheckbox,
 		},
 		data() {
 			return {

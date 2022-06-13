@@ -10,21 +10,26 @@
 				<span class="text-greyscale-700 sato-l-l">Créer mon équipe</span>
 				<l-input v-model="teamCreation" name="Nom de l'équipe" class="mt-8" @enter="createTeam" />
 				<!-- created team -->
-				<div v-if="data.createdTeam.name !== undefined" class="created-team">
-					<div>
-						<input type="checkbox" :checked="data.createdTeam.selected" />
-						<span>{{ data.createdTeam.name }}</span>
+				<div v-if="data.createdTeam.name !== undefined" class="created-team flex justify-between items-center mt-4">
+					<div class="flex-1 team-name bg-primary-100 text-primary-500 p-4 flex items-center">
+						<input type="checkbox" :checked="data.createdTeam.selected" class="mr-3" />
+						<span class="salva-l-m text-primary-500">{{ data.createdTeam.name }}</span>
 					</div>
-					<i class="icon-close" @click="data.createdTeam = {}"></i>
+					<i class="icon-close text-greyscale-black mx-3" @click="data.createdTeam = {}"></i>
 				</div>
 			</div>
 
 			<div v-if="compagnie.teams.length > 0" class="join-team">
 				<span class="text-greyscale-700 sato-l-l">Rejoindre mon équipe</span>
-				<div class="teams">
-					<div v-for="team in compagnie.teams" :key="team.id" :class="data.selectedTeam === team.id ? 'selected' : ''" class="team">
-						<div>
-							<input type="checkbox" :checked="data.selectedTeam === team.id" />
+				<div class="teams mt-4 flex flex-wrap justify-between">
+					<div
+						v-for="team in compagnie.teams"
+						:key="team.id"
+						:class="data.selectedTeam === team.id ? 'selected' : ''"
+						class="team mb-3 flex justify-between items-center text-primary-500 bg-primary-100 py-3 px-4"
+					>
+						<div class="flex items-center">
+							<input type="checkbox" :checked="data.selectedTeam === team.id" class="mr-3" />
 							<span>{{ team.name }}</span>
 						</div>
 						<avatar-stack :user-limit="2" :users="team.users" />
@@ -48,6 +53,33 @@
 	.create-account-step2 {
 		height: fit-content;
 		grid-column: 4/10;
+
+		.team-container {
+			.create-team {
+				.created-team {
+					.team-name {
+						border: 1px solid;
+						border-radius: 8px;
+						cursor: pointer;
+					}
+					i {
+						cursor: pointer;
+						font-size: 28px;
+					}
+				}
+			}
+
+			.join-team {
+				.teams {
+					gap: 16px;
+					.team {
+						border: 1px solid;
+						border-radius: 8px;
+						width: 50%;
+					}
+				}
+			}
+		}
 	}
 </style>
 <script>
