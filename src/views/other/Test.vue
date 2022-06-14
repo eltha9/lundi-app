@@ -32,23 +32,23 @@
 				<l-input v-model="passwordModel" name="Mot de passe" type="password" class="mt-4" />
 				<l-input v-model="phoneModel" name="numéro de téléphone" type="phone" class="mt-4" />
 				<l-file class="mt-4" placeholder="votre photo" v-model="fileModel" />
-				<l-checkbox class="mt-4" />
+				<l-checkbox class="mt-4" v-model="checkBoxModel" />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
-	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
-	import Btn from "@/components/lundi-uiKit/Button";
-	import NavBar from "@/components/lundi-uiKit/NavBar";
-	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
-	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
-	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
+	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
+	import Btn from '@/components/lundi-uiKit/Button';
+	import NavBar from '@/components/lundi-uiKit/NavBar';
+	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
+	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
+	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
 	export default {
-		name: "Test",
+		name: 'Test',
 		components: {
 			Avatar,
 			AvatarStack,
@@ -62,11 +62,12 @@
 		data() {
 			return {
 				navBarTest: true,
-				selectModel: "",
-				textModel: "",
-				passwordModel: "",
-				phoneModel: "",
-				fileModel: "",
+				selectModel: '',
+				textModel: '',
+				passwordModel: '',
+				phoneModel: '',
+				fileModel: '',
+				checkBoxModel: true,
 			};
 		},
 		watch: {
