@@ -23,6 +23,10 @@
 			width: 40px;
 			height: 40px;
 		}
+		&.small {
+			width: 24px;
+			height: 24px;
+		}
 	}
 </style>
 
@@ -31,6 +35,11 @@
 	export default {
 		name: 'Avatar',
 		props: {
+			small: {
+				require: false,
+				type: Boolean,
+				default: false,
+			},
 			large: {
 				type: Boolean,
 				require: false,
@@ -54,6 +63,8 @@
 			getClass() {
 				let classes = ['avatar', 'text-greyscale-white'];
 				if (this.large) classes.push('large');
+				if (this.small) classes.push('small');
+
 				return classes.join(' ');
 			},
 			avatarLink() {

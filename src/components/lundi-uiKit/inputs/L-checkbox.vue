@@ -1,9 +1,9 @@
 <template>
 	<div class="l-checkbox">
-		<label for="hidden-checkbox" class="flex justify-center items-center" :class="checkboxModel ? 'checked' : ''">
+		<label :for="`hidden-checkbox-${name}`" class="flex justify-center items-center" :class="checkboxModel ? 'checked' : ''">
 			<i v-show="checkboxModel" class="icon-check"></i>
 		</label>
-		<input type="checkbox" id="hidden-checkbox" v-model="checkboxModel" />
+		<input type="checkbox" :id="`hidden-checkbox-${name}`" class="hidden-checkbox" v-model="checkboxModel" />
 	</div>
 </template>
 
@@ -29,7 +29,7 @@
 				@apply bg-primary-500 text-primary-500;
 			}
 		}
-		input#hidden-checkbox {
+		input.hidden-checkbox {
 			position: absolute;
 			opacity: 0;
 			z-index: -10;
@@ -41,8 +41,18 @@
 <script>
 	export default {
 		props: {
-			value: {
+			name: {
 				require: true,
+				type: String,
+				default: '',
+			},
+			value: {
+				require: false,
+				type: Boolean,
+				default: false,
+			},
+			checked: {
+				reequire: false,
 				type: Boolean,
 				default: false,
 			},
@@ -55,6 +65,7 @@
 		watch: {
 			checkboxModel() {
 				this.$emit('input', this.checkboxModel);
+				this.$emit('click', this.checkboxModel);
 			},
 		},
 		mounted() {
