@@ -38,13 +38,14 @@
 		}
 	}
 </style>
+
 <script>
 	export default {
 		props: {
 			name: {
 				require: true,
 				type: String,
-				default: '',
+				default: "",
 			},
 			value: {
 				require: false,
@@ -64,8 +65,11 @@
 		},
 		watch: {
 			checkboxModel() {
-				this.$emit('input', this.checkboxModel);
-				this.$emit('click', this.checkboxModel);
+				this.$emit("input", this.checkboxModel);
+				this.$emit("click", this.checkboxModel);
+			},
+			value() {
+				this.checkboxModel = this.value;
 			},
 		},
 		mounted() {
