@@ -3,7 +3,7 @@
 		<div class="select-container flex justify-between items-center px-4 bg-greyscale-white" @click.prevent="isOpen = !isOpen" :class="getInputClass">
 			<div class="label-container flex flex-col">
 				<span class="container text-greyscale-500" :class="getLabelClass">{{ placeholder.trim() === "" ? name : placeholder }}</span>
-				<span v-if="asValue" class="value text-greyscale-black sato-l-l">{{ selected }}</span>
+				<span v-if="asValue" class="value text-greyscale-black sato-l-l capitalize">{{ selected }}</span>
 			</div>
 			<i class="text-greyscale-black" :class="isOpen ? 'icon-chevron-up' : 'icon-chevron-down'"></i>
 		</div>
@@ -12,6 +12,7 @@
 				v-for="item in options"
 				:value="item"
 				:key="item"
+				class="capitalize"
 				:class="item === selected ? 'text-greyscale-black' : 'text-greyscale-500'"
 				:selected="item === selected"
 				@click="selectEvent(item)"
@@ -28,7 +29,6 @@
 		position: relative;
 		box-sizing: border-box;
 		height: 56px;
-		width: 350px;
 		.select-container {
 			cursor: pointer;
 			border: 1px solid;

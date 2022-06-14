@@ -12,3 +12,7 @@ export const ROLES = [
         name:"Onboardé"
      },
 ]
+export const SENIORITY = [
+    "senior",
+    "junior"
+]

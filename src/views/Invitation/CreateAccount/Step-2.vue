@@ -2,11 +2,14 @@
 	<div class="create-account-step2">
 		<div class="step-title salva-h3 text-greyscale-800 mb-3">Créez ou rejoignez votre équipe</div>
 		<div class="sato-l-l text-greeyscale-700 mb-8">
-			Sélectionnez ou crée l’équipe métier qui correspond à votre poste pour contribuer à la création et à l’amélioration des oboardings de
-			votre entreprise.
+			{{
+				role === "admin"
+					? "Sélectionnez ou crée l’équipe métier qui correspond à votre poste pour contribuer à la création et à l’amélioration des oboardings de votre entreprise."
+					: "Choisissez l’équipe métier qui correspond à votre poste pour y retrouver toutes les informations nécéssaire à votre arrivée dans l’entreprise."
+			}}
 		</div>
 		<div class="team-container">
-			<div class="create-team mb-8">
+			<div v-if="role === 'admin'" class="create-team mb-8">
 				<span class="text-greyscale-700 sato-l-l">Créer mon équipe</span>
 				<l-input v-model="teamCreation" name="Nom de l'équipe" class="mt-8" @enter="createTeam" />
 				<!-- created team -->
@@ -25,7 +28,7 @@
 			</div>
 
 			<div v-if="compagnie.teams.length > 0" class="join-team">
-				<span class="text-greyscale-700 sato-l-l">Rejoindre mon équipe</span>
+				<span v-if="role === 'admin'" class="text-greyscale-700 sato-l-l">Rejoindre mon équipe</span>
 				<div class="teams mt-4 flex flex-wrap justify-between">
 					<div
 						v-for="team in compagnie.teams"
@@ -89,11 +92,11 @@
 	}
 </style>
 <script>
-	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
-	import Btn from '@/components/lundi-uiKit/Button.vue';
-	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack.vue';
-	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
-	import {mapState, mapMutations} from 'vuex';
+	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
+	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack.vue";
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import { mapState, mapMutations } from "vuex";
 	export default {
 		components: {
 			LInput,
@@ -108,22 +111,27 @@
 				default: () => {
 					return {
 						createdTeam: {},
-						selectedTeam: '',
+						selectedTeam: "",
 					};
 				},
+			},
+			role: {
+				require: false,
+				type: String,
+				default: "admin",
 			},
 		},
 		data() {
 			return {
-				data: {createdTeam: {}, selectedTeam: ''},
-				teamCreation: '',
+				data: { createdTeam: {}, selectedTeam: "" },
+				teamCreation: "",
 			};
 		},
 		computed: {
-			...mapState(['me', 'compagnie']),
+			...mapState(["me", "compagnie"]),
 			isDisable() {
 				return false;
-				if (this.data.compagnieName.trim() === '') return true;
+				if (this.data.compagnieName.trim() === "") return true;
 				if (this.data.logo === null) return true;
 				return false;
 			},
@@ -132,7 +140,7 @@
 			this.data = this.value;
 		},
 		methods: {
-			...mapMutations(['setTimeLineStep']),
+			...mapMutations(["setTimeLineStep"]),
 			nextStep(nb) {
 				if (this.isDisable) return;
 				this.setTimeLineStep(nb);
@@ -146,11 +154,11 @@
 					selected: true,
 				};
 				this.data.createdTeam = team;
-				this.teamCreation = '';
+				this.teamCreation = "";
 			},
 			selectTeam(id) {
 				if (this.data.selectedTeam === id) {
-					this.data.selectedTeam = '';
+					this.data.selectedTeam = "";
 					return;
 				}
 				this.data.selectedTeam = id;

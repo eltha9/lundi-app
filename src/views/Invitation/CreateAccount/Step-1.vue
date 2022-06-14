@@ -6,6 +6,7 @@
 		</div>
 		<l-file v-model="data.profilePicture" placeholder="votre photo" :accepted-file-types="['png', 'jpg', 'jpeg']" class="mb-8" />
 		<l-input v-model="data.role" name="Renseignez votre rôle" />
+		<l-select v-if="role === 'onboardee'" v-model="senorietyModel" name="Renseignez votre expérience" :options="seniorityOptions" class="mt-8" />
 		<div class="flex justify-end mt-14">
 			<btn :disabled="isDisable" @click.native="nextStep(2)">
 				<template #right> <i class="icon-arrow-right"></i> </template>
@@ -24,12 +25,15 @@
 	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
 	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
 	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
+	import { SENIORITY } from "@/lib/config.js";
 	import { mapState, mapMutations } from "vuex";
 	export default {
 		components: {
 			LInput,
 			LFile,
 			Btn,
+			LSelect,
 		},
 		props: {
 			value: {
@@ -42,10 +46,17 @@
 					};
 				},
 			},
+			role: {
+				require: false,
+				type: String,
+				default: "admin",
+			},
 		},
 		data() {
 			return {
 				data: { role: "", profilePicture: null },
+				seniorityOptions: SENIORITY,
+				senorietyModel: SENIORITY[1],
 			};
 		},
 		computed: {

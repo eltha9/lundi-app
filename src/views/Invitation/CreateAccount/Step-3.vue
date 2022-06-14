@@ -28,7 +28,7 @@
 			<role-selection v-model="linkRoleModel" />
 		</div>
 		<div class="flex justify-between mt-14">
-			<btn :disabled="isDisable" @click.native="previousStep(3)" secondary>
+			<btn :disabled="isDisable" @click.native="previousStep(2)" secondary>
 				<template #left> <i class="icon-arrow-left"></i> </template>
 				Retour
 			</btn>

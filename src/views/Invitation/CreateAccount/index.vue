@@ -2,16 +2,24 @@
 	<div class="main-view create-compagnie">
 		<div class="timeliner">
 			<img src="@/../public/assets/lundi-temp.png" class="mt-8 mb-2" alt="Lundi logo" />
-			<div class="flex justify-center mb-16" v-show="timeLineStep !== 4">
+			<div class="flex justify-center mb-16" v-show="timeLineStep !== stepCount">
 				<time-line :to-show="timeLineStep" :steps="steps" />
 			</div>
-			<div class="step-container">
+			<div v-if="accountType === 'admin'" class="step-container">
 				<step-1 v-if="timeLineStep === 1" v-model="createData.customisation" />
 				<step-2 v-if="timeLineStep === 2" />
 				<step-3 v-if="timeLineStep === 3" />
 			</div>
+			<div v-else-if="accountType === 'editor'" class="step-container">
+				<step-1 v-if="timeLineStep === 1" v-model="createData.customisation" />
+				<step-2 v-if="timeLineStep === 2" role="editor" />
+			</div>
+			<div v-else-if="accountType === 'onboardee'" class="step-container">
+				<step-1 v-if="timeLineStep === 1" v-model="createData.customisation" role="onboardee" />
+				<step-2 v-if="timeLineStep === 2" role="onboardee" />
+			</div>
 		</div>
-		<complete v-if="timeLineStep === 4" />
+		<complete v-if="timeLineStep === stepCount" />
 	</div>
 </template>
 
@@ -47,6 +55,7 @@
 		data() {
 			return {
 				steps: [true, true, true, true],
+				stepCount: 4,
 				createData: {
 					customisation: {
 						role: "",
@@ -81,13 +90,16 @@
 			switch (this.accountType) {
 				case "admin":
 					this.steps = [true, false, true, true];
+					this.stepCount = 4;
 					break;
 				case "editor":
 					this.steps = [true, false, true, false];
+					this.stepCount = 3;
 					break;
 				case "onboardee":
 				default:
 					this.steps = [true, false, true, false];
+					this.stepCount = 3;
 			}
 		},
 		methods: {
