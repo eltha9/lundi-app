@@ -13,6 +13,7 @@ module.exports = {
 		'no-unreachable': 'warn',
 		'no-unused-vars': 'warn',
 		'vue/no-unused-vars': 'warn',
+		'vue/no-unused-components': 'warn',
 		'vue/multi-word-component-names': 'off',
 	},
 };

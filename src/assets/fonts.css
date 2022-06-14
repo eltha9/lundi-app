@@ -140,172 +140,81 @@
  */
 
 /* 
-	OLD TO REMOVE
-*/
-/* Display */
-.fs-display {
-	font-weight: bold;
-	font-size: 72px;
-	line-height: 80px;
-	letter-spacing: -3%;
-}
-
-/* Headlines */
-.fs-h1 {
-	font-weight: bold;
-	font-size: 56px;
-	line-height: 64px;
-	letter-spacing: -3%;
-}
-.fs-h2 {
-	font-weight: bold;
-	font-size: 40px;
-	line-height: 48px;
-	letter-spacing: -2%;
-}
-.fs-h3 {
-	font-weight: bold;
-	font-size: 32px;
-	line-height: 40px;
-	letter-spacing: -1%;
-}
-.fs-h4 {
-	font-weight: bold;
-	font-size: 28px;
-	line-height: 32px;
-	letter-spacing: -1%;
-}
-.fs-h5 {
-	font-weight: bold;
-	font-size: 24px;
-	line-height: 28px;
-	letter-spacing: 0%;
-}
-.fs-h6 {
-	font-weight: bold;
-	font-size: 22px;
-	line-height: 28px;
-	letter-spacing: 0%;
-}
-
-/* Body */
-.fs-body,
-.fs-body-m {
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0%;
-}
-/* .fs-body-m {
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0%;
-} */
-.fs-body-b {
-	font-weight: bold;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0%;
-}
-
-/* Button */
-.fs-button {
-	font-weight: bold;
-	font-size: 16px;
-	line-height: 24px;
-	letter-spacing: 0%;
-}
-
-/* Captions */
-.fs-caption {
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 20px;
-	letter-spacing: 0%;
-}
-.fs-caption-b {
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0%;
-}
-
-/* Footnote */
-.fs-footnote {
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 24px;
-	letter-spacing: 0%;
-}
-
-/* 
 	SALVA
 */
-[class^='salva-'] {
-	font-family: 'salva';
-}
 
 /* display */
 .salva-d-xl {
-	font-weight: 600;
+	font-family: 'salva', monospace;
+	font-weight: 400;
 	font-size: 64px;
 	line-height: 72px;
 }
 .salva-d-l {
-	font-weight: 600;
+	font-family: 'salva', monospace;
+	font-weight: 400;
 	font-size: 56px;
 	line-height: 64px;
 }
 .salva-d-m {
-	font-weight: 600;
+	font-family: 'salva', monospace;
+	font-weight: 400;
 	font-size: 48px;
 	line-height: 56px;
 }
 .salva-d-s {
-	font-weight: 600;
+	font-family: 'salva', monospace;
+	font-weight: 400;
 	font-size: 40px;
 	line-height: 48px;
 }
 
 /* heading */
 .salva-h1 {
+	font-family: 'salva', monospace;
 	font-weight: 600;
 	font-size: 32px;
 	line-height: 40px;
 }
 .salva-h2 {
+	font-family: 'salva', monospace;
 	font-weight: 600;
 	font-size: 28px;
 	line-height: 32px;
 }
 .salva-h3 {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 24px;
 	line-height: 28px;
 }
 .salva-h4 {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 20px;
 	line-height: 24px;
 }
 /* label */
 .salva-l-xl {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 24px;
 }
 .salva-l-l {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 20px;
 }
 .salva-l-m {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 16px;
 }
 .salva-l-s {
+	font-family: 'salva', monospace;
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 14px;
@@ -314,32 +223,34 @@
 /* 
 SATO-V
 */
-[class^='sato-'] {
-	font-family: 'sato-v';
-}
 
 /* label */
 .sato-l-xl {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 24px;
 }
 .sato-l-l {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 20px;
 }
 .sato-l-m {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 16px;
 }
 .sato-l-s {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 14px;
 }
 .sato-l-xs {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 10px;
 	line-height: 12px;
@@ -347,26 +258,31 @@ SATO-V
 
 /* paragraph */
 .sato-p-xl {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 28px;
 }
 .sato-p-l {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 24px;
 }
 .sato-p-m {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 20px;
 }
 .sato-p-s {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 18px;
 }
 .sato-p-xs {
+	font-family: 'sato-v', monospace;
 	font-weight: 500;
 	font-size: 10px;
 	line-height: 16px;

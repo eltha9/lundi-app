@@ -1,31 +1,79 @@
 <template>
-	<div class="main-view">
+	<div class="p-6">
 		<div class="text-semantic-positive-500">
 			<span>test view</span>
 			<div>
 				<Avatar large />
-				<AvatarStack />
-				<Btn color="semantic-info" icon primary> <i class="icon-call"></i></Btn>
+				<AvatarStack :users="['a', 'z', 'e', 'r', 't', 'y']" />
+				<Btn color="semantic-info" icon secondary> <i class="icon-call"></i></Btn>
+				<Btn color="semantic-warning" secondary class="mb-2"> test secondary</Btn>
+				<Btn color="ternary" primary class="mb-2"> test primary</Btn>
+				<Btn color="ternary" ternary class="mb-2">
+					<span>right ternary</span>
+					<template #right> <i class="icon-arrow-right"></i> </template>
+				</Btn>
+				<Btn color="ternary" ternary class="mb-2" disabled> ternary</Btn>
+
+				<Btn color="semantic-info" icon ternary class="mb-2" disabled> <i class="icon-call"></i></Btn>
+
 				<div>icon <i class="icon-call text-secondary-500"></i></div>
 			</div>
 			<router-link to="/dashboard">Go to dashboard</router-link>
 			<div class="sato-p-xs">test de text</div>
+
+			<span>navbar test</span>
+			<nav-bar v-model="navBarTest" :items="['gauche', 'droite']" />
+
+			<!-- test input -->
+			<div class="mt-8">
+				<h3>input test</h3>
+				<l-select v-model="selectModel" name="test" :options="['a', 'b', 'c']" />
+				<l-input v-model="textModel" name="test" class="mt-4" />
+				<l-input v-model="passwordModel" name="Mot de passe" type="password" class="mt-4" />
+				<l-input v-model="phoneModel" name="numéro de téléphone" type="phone" class="mt-4" />
+				<l-file class="mt-4" placeholder="votre photo" v-model="fileModel" />
+				<l-checkbox class="mt-4" v-model="checkBoxModel" />
+			</div>
 		</div>
 	</div>
 </template>
-
-<style lang="scss" scoped></style>
 
 <script>
 	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
 	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
 	import Btn from '@/components/lundi-uiKit/Button';
+	import NavBar from '@/components/lundi-uiKit/NavBar';
+	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
+	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
+	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
 	export default {
 		name: 'Test',
 		components: {
 			Avatar,
 			AvatarStack,
 			Btn,
+			NavBar,
+			LSelect,
+			LInput,
+			LFile,
+			LCheckbox,
+		},
+		data() {
+			return {
+				navBarTest: true,
+				selectModel: '',
+				textModel: '',
+				passwordModel: '',
+				phoneModel: '',
+				fileModel: '',
+				checkBoxModel: true,
+			};
+		},
+		watch: {
+			textModel() {
+				console.log(this.selectModel);
+			},
 		},
 	};
 </script>

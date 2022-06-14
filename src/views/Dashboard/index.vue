@@ -4,7 +4,7 @@
 			<sidebar />
 		</div>
 		<div class="flex-1">
-			<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">main</main>
+			<router-view />
 		</div>
 	</div>
 </template>

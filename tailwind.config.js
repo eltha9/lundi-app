@@ -38,7 +38,7 @@ module.exports = {
 				positive: {
 					700: '#044D2B',
 					500: '#119055',
-					100: '#F0FBEF',
+					100: '#E2F8E0',
 				},
 				warning: {
 					700: '#642C04',

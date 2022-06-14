@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" class="text-greyscale-black bg-background-100">
 		<router-view></router-view>
 	</div>
 </template>
@@ -17,11 +17,15 @@
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
 		gap: 16px;
-
+		overflow: auto;
+		overflow-x: hidden;
 		&.dashboard {
+			overflow: hidden;
 			padding: 0 32px;
+			padding-top: 48px;
 			&.collapsed {
 				padding: 0 40px;
+				padding-top: 48px;
 			}
 		}
 	}

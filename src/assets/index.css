@@ -12,13 +12,34 @@
 
 html,
 body {
-	/* font-family: 'sato-v', monospace; */
-	font-family: 'salva', monospace;
+	font-family: 'sato-v', monospace;
+	/* font-family: 'salva', monospace; */
 }
 body {
 	height: 100vh;
 	width: 100vw;
 	margin: 0;
 	box-sizing: border-box;
-	overflow: hidden;
 }
+
+/* scrollbar customisation */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #4B4B4B;
+    /* display: none; */
+}
+/* ::-webkit-scrollbar-thumb:hover {
+    border-radius: 4px;
+    background: #2D2D2D;
+    display: block;
+} */
