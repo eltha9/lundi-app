@@ -1,7 +1,6 @@
 <template>
 	<div class="navBar flex salva-l-m">
-		<button @click="clickLeftBtn()" :class="state ? 'active' : ''" class="mr-2">{{ items[0] }}</button>
-		<button @click="clickRightBtn()" :class="state ? '' : 'active'">{{ items[1] }}</button>
+		<button v-for="item in items" :key="item" :class="state === item ? 'active' : ''" @click="clickOnNavElement(item)">{{ item }}</button>
 	</div>
 </template>
 <style lang="scss" scoped>
@@ -12,6 +11,7 @@
 		border: 1px solid;
 		width: fit-content;
 		height: fit-content;
+		gap: 8px;
 		button {
 			@apply text-greyscale-800;
 			padding: 8px 12px;
@@ -28,9 +28,9 @@
 		name: "NavBar",
 		props: {
 			value: {
-				type: Boolean,
+				type: String,
 				require: true,
-				default: true,
+				default: "",
 			},
 			items: {
 				type: Array,
@@ -40,22 +40,22 @@
 		},
 		data() {
 			return {
-				state: true,
+				state: "",
 			};
 		},
+		watch: {
+			state(value) {
+				this.$emit("input", value);
+			},
+		},
 		mounted() {
-			this.state = this.value;
+			if (this.value.trim() !== "") this.state = this.value;
+			else this.state = this.items[0];
 		},
 		methods: {
-			clickLeftBtn() {
-				if (this.state) return;
-				this.state = true;
-				this.$emit("input", this.state);
-			},
-			clickRightBtn() {
-				if (!this.state) return;
-				this.state = false;
-				this.$emit("input", this.state);
+			clickOnNavElement(name) {
+				if (this.state === name) return;
+				this.state = name;
 			},
 		},
 	};

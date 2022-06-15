@@ -22,7 +22,7 @@
 			<div class="sato-p-xs">test de text</div>
 
 			<span>navbar test</span>
-			<nav-bar v-model="navBarTest" :items="['gauche', 'droite']" />
+			<nav-bar v-model="navBarTest" :items="['gauche', 'droite', 'en bas', 'en haut']" />
 
 			<!-- test input -->
 			<div class="mt-8">
@@ -39,16 +39,16 @@
 </template>
 
 <script>
-	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
-	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
-	import Btn from '@/components/lundi-uiKit/Button';
-	import NavBar from '@/components/lundi-uiKit/NavBar';
-	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
-	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
-	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
-	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
+	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
+	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
+	import Btn from "@/components/lundi-uiKit/Button";
+	import NavBar from "@/components/lundi-uiKit/NavBar";
+	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
+	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
+	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
 	export default {
-		name: 'Test',
+		name: "Test",
 		components: {
 			Avatar,
 			AvatarStack,
@@ -61,12 +61,12 @@
 		},
 		data() {
 			return {
-				navBarTest: true,
-				selectModel: '',
-				textModel: '',
-				passwordModel: '',
-				phoneModel: '',
-				fileModel: '',
+				navBarTest: "",
+				selectModel: "",
+				textModel: "",
+				passwordModel: "",
+				phoneModel: "",
+				fileModel: "",
 				checkBoxModel: true,
 			};
 		},
