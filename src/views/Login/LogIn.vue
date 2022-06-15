@@ -56,7 +56,7 @@
 		methods: {
 			...mapMutations(["toggleLogin"]),
 			logIn() {
-				console.log("login");
+				this.$router.push({ name: "dashboard-home" });
 			},
 		},
 	};
