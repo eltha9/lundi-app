@@ -3,8 +3,9 @@
     <div class="top-card">
       <div class="info">
         <div class="status"></div>
-        <h4></h4>
+        <h4>{{ infos.name }}</h4>
       </div>
+      <btn icon ternary><i class="icon-options-vertical"></i></btn>
     </div>
   </div>
 </template>
@@ -15,7 +16,14 @@
 </style>
 
 <script>
+import Btn from "@/components/lundi-uiKit/Button.vue"
+import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack.vue"
+import {TEMPLATE_STATUS} from "@/lib/config.js"
 export default {
+	components:{
+		Btn,
+		AvatarStack
+	},
 	props:{
 		infos:{
 			require: true,
@@ -28,6 +36,9 @@ export default {
 				users:[]
 			}
 		}
+	},
+	mounted(){
+		this.$options.STATUS = TEMPLATE_STATUS
 	}
 };
 </script>
