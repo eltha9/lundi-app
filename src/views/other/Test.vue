@@ -34,6 +34,33 @@
 				<l-file class="mt-4" placeholder="votre photo" v-model="fileModel" />
 				<l-checkbox class="mt-4" v-model="checkBoxModel" />
 			</div>
+
+			<h2 class="salva-h2 text-greyscale-black mt-8">test card</h2>
+			<section class="mt-2">
+				<h3>employee card</h3>
+				<employee-card />
+
+				<h3>employee template card</h3>
+				<employee-template-card />
+
+				<h3>stat card</h3>
+				<stat-card />
+
+				<h3>team card</h3>
+				<team-card />
+
+				<h3>template card</h3>
+				<template-card />
+
+				<h3>contexted stat card</h3>
+				<contexted-stat-card />
+
+				<h3>graph card</h3>
+				<graph-card />
+
+				<h3>simple stat card</h3>
+				<simple-stat-card />
+			</section>
 		</div>
 	</div>
 </template>
@@ -47,6 +74,17 @@
 	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
 	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
 	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	//card test
+	import EmployeeCard from "@/views/Dashboard/components/Employee-card.vue";
+	import EmployeeTemplateCard from "@/views/Dashboard/components/Employee-template-card.vue";
+	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
+	import TeamCard from "@/views/Dashboard/components/Team-card.vue";
+	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
+
+	import ContextedStatCard from "@/views/Dashboard/components/Stats/Contexted-stat-card.vue";
+	import GraphCard from "@/views/Dashboard/components/Stats/Graph-card.vue";
+	import SimpleStatCard from "@/views/Dashboard/components/Stats/Simple-stat-card.vue";
+
 	export default {
 		name: "Test",
 		components: {
@@ -58,6 +96,16 @@
 			LInput,
 			LFile,
 			LCheckbox,
+			// cardTest
+			EmployeeCard,
+			EmployeeTemplateCard,
+			StatCard,
+			TeamCard,
+			TemplateCard,
+
+			ContextedStatCard,
+			GraphCard,
+			SimpleStatCard,
 		},
 		data() {
 			return {
