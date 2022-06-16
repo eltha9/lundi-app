@@ -14,5 +14,6 @@ export const ROLES = [
 ]
 export const SENIORITY = [
     "senior",
+    "stagiaire/apparanti",
     "junior"
 ]
