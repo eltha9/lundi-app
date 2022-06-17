@@ -72,8 +72,47 @@
 				</div>
 
 				<h3>team card</h3>
-				<div class="main-view">
-					<team-card />
+				<div class="main-view template-card-test">
+					<team-card
+						:team="{
+							id: 'geayrgor',
+							name: 'First Team',
+							isFav: true,
+							lastUpdate: '2022-05-23',
+							users: ['4', '5'],
+						}"
+						:position="1"
+					/>
+					<team-card
+						:team="{
+							id: 'geayrgor',
+							name: 'First Team',
+							isFav: true,
+							lastUpdate: '2022-05-23',
+							users: ['4', '5'],
+						}"
+						:position="2"
+					/>
+					<team-card
+						:team="{
+							id: 'geayrgor',
+							name: 'First Team',
+							isFav: false,
+							lastUpdate: '2022-05-23',
+							users: ['4', '5'],
+						}"
+						:position="3"
+					/>
+					<team-card
+						:team="{
+							id: 'geayrgor',
+							name: 'First Team',
+							isFav: true,
+							lastUpdate: '2022-05-23',
+							users: ['4', '5'],
+						}"
+						:position="4"
+					/>
 				</div>
 
 				<h3>template card</h3>
