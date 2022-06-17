@@ -48,8 +48,27 @@
 				</div>
 
 				<h3>stat card</h3>
-				<div class="main-view">
-					<stat-card />
+				<div class="flex">
+					<stat-card
+						:stat="{
+							name: 'arrové',
+							mainValue: 21,
+							mainUnit: '%',
+							secondaryValue: 78,
+							secondayUnit: 'nouveau',
+							link: 'dashboard-analytics',
+						}"
+					/>
+					<stat-card
+						:stat="{
+							name: 'arrové',
+							mainValue: -21,
+							mainUnit: '',
+							secondaryValue: -5,
+							secondayUnit: 'nouveau',
+							link: 'dashboard-analytics',
+						}"
+					/>
 				</div>
 
 				<h3>team card</h3>
