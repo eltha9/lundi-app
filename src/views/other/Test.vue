@@ -35,7 +35,7 @@
       <l-progress-bar :progress="100" />
       <!-- test input -->
       <div class="mt-8">
-        <h3>input test</h3>
+        <h3 class="salva-h2">input test</h3>
         <l-select
           v-model="selectModel"
           name="test"
@@ -60,12 +60,18 @@
 
       <h2 class="salva-h2 text-greyscale-black mt-8">test card</h2>
       <div class="mt-2">
-        <h3>employee card</h3>
+        <h3 class="salva-h2">employee card</h3>
         <div class="main-view">
-          <employee-card />
+          <employee-card user-id="plop" :position="1" />
+          <employee-card user-id="plop" :position="2" />
+          <employee-card user-id="plop" :position="3" />
+          <employee-card user-id="plop" :position="4" />
+          <employee-card user-id="plop" :position="5" />
+          <employee-card user-id="plop" :position="6" />
+          <employee-card user-id="plop" :position="7" />
         </div>
 
-        <h3>employee template card</h3>
+        <h3 class="salva-h2">employee template card</h3>
         <div class="main-view template-card-test">
           <employee-template-card
             :template="{
@@ -109,8 +115,8 @@
           />
         </div>
 
-        <h3>stat card</h3>
-        <div class="flex">
+        <h3 class="salva-h2">stat card</h3>
+        <div class="flex gap-6 px-3">
           <stat-card
             :stat="{
               name: 'arrové',
@@ -131,9 +137,29 @@
               link: 'dashboard-analytics',
             }"
           />
+          <stat-card
+            :stat="{
+              name: 'arrové',
+              mainValue: -21,
+              mainUnit: '',
+              secondaryValue: -5,
+              secondaryUnit: 'nouveau',
+              link: 'dashboard-analytics',
+            }"
+          />
+          <stat-card
+            :stat="{
+              name: 'arrové',
+              mainValue: -21,
+              mainUnit: '',
+              secondaryValue: -5,
+              secondaryUnit: 'nouveau',
+              link: 'dashboard-analytics',
+            }"
+          />
         </div>
 
-        <h3>team card</h3>
+        <h3 class="salva-h2">team card</h3>
         <div class="main-view template-card-test">
           <team-card
             :team="{
@@ -177,7 +203,7 @@
           />
         </div>
 
-        <h3>template card</h3>
+        <h3 class="salva-h2">template card</h3>
         <div class="main-view template-card-test">
           <template-card
             :infos="{
@@ -231,17 +257,17 @@
           />
         </div>
 
-        <h3>contexted stat card</h3>
+        <h3 class="salva-h2">contexted stat card</h3>
         <div class="main-view">
           <contexted-stat-card />
         </div>
 
-        <h3>graph card</h3>
+        <h3 class="salva-h2">graph card</h3>
         <div class="main-view">
           <graph-card />
         </div>
 
-        <h3>simple stat card</h3>
+        <h3 class="salva-h2">simple stat card</h3>
         <div class="main-view">
           <simple-stat-card />
         </div>
