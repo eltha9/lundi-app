@@ -1,6 +1,6 @@
 <template>
 	<div class="p-6">
-		<div class="text-semantic-positive-500">
+		<div class="text-semantic-positive-500 bg-background-100">
 			<span>test view</span>
 			<div>
 				<Avatar large />
@@ -36,34 +36,104 @@
 			</div>
 
 			<h2 class="salva-h2 text-greyscale-black mt-8">test card</h2>
-			<section class="mt-2">
+			<div class="mt-2">
 				<h3>employee card</h3>
-				<employee-card />
+				<div class="main-view">
+					<employee-card />
+				</div>
 
 				<h3>employee template card</h3>
-				<employee-template-card />
+				<div class="main-view">
+					<employee-template-card />
+				</div>
 
 				<h3>stat card</h3>
-				<stat-card />
+				<div class="main-view">
+					<stat-card />
+				</div>
 
 				<h3>team card</h3>
-				<team-card />
+				<div class="main-view">
+					<team-card />
+				</div>
 
 				<h3>template card</h3>
-				<template-card />
+				<div class="main-view template-card-test">
+					<template-card
+						:infos="{
+							name: 'template test',
+							status: 'toAssign',
+							lastUpdate: '2022-06-01',
+							tags: ['Tout', 'Junior'],
+							users: ['a', 'b', 'c'],
+						}"
+						:position="1"
+					/>
+					<template-card
+						:infos="{
+							name: 'template test',
+							status: 'toAssign',
+							lastUpdate: '2022-06-01',
+							tags: ['Tout', 'Junior'],
+							users: ['a', 'b', 'c'],
+						}"
+						:position="2"
+					/>
+					<template-card
+						:infos="{
+							name: 'template test',
+							status: 'toAssign',
+							lastUpdate: '2022-06-01',
+							tags: ['Tout', 'Junior'],
+							users: ['a', 'b', 'c'],
+						}"
+						:position="3"
+					/>
+					<template-card
+						:infos="{
+							name: 'template test',
+							status: 'toAssign',
+							lastUpdate: '2022-06-01',
+							tags: ['Tout', 'Junior'],
+							users: ['a', 'b', 'c'],
+						}"
+						:position="4"
+					/>
+					<template-card
+						:infos="{
+							name: 'template test',
+							status: 'toAssign',
+							lastUpdate: '2022-06-01',
+							tags: ['Tout', 'Junior'],
+							users: ['a', 'b', 'c'],
+						}"
+						:position="5"
+					/>
+				</div>
 
 				<h3>contexted stat card</h3>
-				<contexted-stat-card />
+				<div class="main-view">
+					<contexted-stat-card />
+				</div>
 
 				<h3>graph card</h3>
-				<graph-card />
+				<div class="main-view">
+					<graph-card />
+				</div>
 
 				<h3>simple stat card</h3>
-				<simple-stat-card />
-			</section>
+				<div class="main-view">
+					<simple-stat-card />
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
+<style lang="scss" scoped>
+	.template-card-test {
+		row-gap: 16px;
+	}
+</style>
 
 <script>
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
