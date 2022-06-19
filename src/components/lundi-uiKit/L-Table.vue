@@ -6,6 +6,7 @@
 				<th v-for="(hearder, i) in headers" :key="`${i}-${header}`">{{ header }}</th>
 			</thead>
 			<tbody>
+				<!-- <div class="tbody-container"></div> -->
 				<tr v-for="(item, i) in tableItems" :key="i">
 					<td>plop</td>
 				</tr>
@@ -19,7 +20,11 @@
 </style>
 
 <script>
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
 	export default {
+		components: {
+			LCheckbox,
+		},
 		props: {
 			/**
 			 * the header need to be an object with those elements ;

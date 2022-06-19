@@ -245,6 +245,9 @@
 					<simple-stat-card class="plop" name="arriver" subTitle="un sous titre" :value="2" valueUnit="jours" link="azeoaze" :currentChange="6" />
 				</div>
 			</div>
+
+            <h3>Table test</h3>
+            <l-table>
 		</div>
 	</div>
 </template>
@@ -277,6 +280,9 @@
 	import GraphCard from "@/views/Dashboard/components/Stats/Graph-card.vue";
 	import SimpleStatCard from "@/views/Dashboard/components/Stats/Simple-stat-card.vue";
 
+	// table test
+	import LTable from "@/components/lundi-uiKit/L-Table.vue";
+
 	export default {
 		name: "Test",
 		components: {
@@ -298,6 +304,7 @@
 
 			GraphCard,
 			SimpleStatCard,
+			LTable,
 		},
 		data() {
 			return {
