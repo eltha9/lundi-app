@@ -242,12 +242,78 @@
 				<h3 class="salva-h2">simple stat card</h3>
 				<div class="main-view">
 					<simple-stat-card class="plop" name="arriver" subTitle="un sous titre" :value="2" valueUnit="jours" :tendency="56" />
-					<simple-stat-card class="plop" name="arriver" subTitle="un sous titre" :value="2" valueUnit="jours" link="azeoaze" :currentChange="6" />
+					<simple-stat-card
+						class="plop"
+						name="arriver"
+						subTitle="un sous titre"
+						:value="2"
+						valueUnit="jours"
+						link="azeoaze"
+						:currentChange="6"
+					/>
 				</div>
 			</div>
 
-            <h3>Table test</h3>
-            <l-table>
+			<h3>Table test</h3>
+			<l-table
+				:headers="[
+					{
+						name: 'plop',
+						sorted: true,
+					},
+					{
+						name: 'plap',
+						sorted: true,
+					},
+					{
+						name: 'plep',
+						sorted: true,
+					},
+				]"
+				:items="[
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+					{
+						plop: '1',
+						plap: 'x2',
+						plep: '3',
+					},
+				]"
+				:showCheckBox="true"
+			></l-table>
 		</div>
 	</div>
 </template>
@@ -261,30 +327,30 @@
 </style>
 
 <script>
-	import Avatar from "@/components/lundi-uiKit/avatar/Avatar";
-	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack";
-	import Btn from "@/components/lundi-uiKit/Button";
-	import NavBar from "@/components/lundi-uiKit/NavBar";
-	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
-	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
-	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
-	import LProgressBar from "@/components/lundi-uiKit/L-porgressBar.vue";
+	import Avatar from '@/components/lundi-uiKit/avatar/Avatar';
+	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack';
+	import Btn from '@/components/lundi-uiKit/Button';
+	import NavBar from '@/components/lundi-uiKit/NavBar';
+	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
+	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
+	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
+	import LProgressBar from '@/components/lundi-uiKit/L-porgressBar.vue';
 	//card test
-	import EmployeeCard from "@/views/Dashboard/components/Employee-card.vue";
-	import EmployeeTemplateCard from "@/views/Dashboard/components/Employee-template-card.vue";
-	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
-	import TeamCard from "@/views/Dashboard/components/Team-card.vue";
-	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
+	import EmployeeCard from '@/views/Dashboard/components/Employee-card.vue';
+	import EmployeeTemplateCard from '@/views/Dashboard/components/Employee-template-card.vue';
+	import StatCard from '@/views/Dashboard/components/Stat-card.vue';
+	import TeamCard from '@/views/Dashboard/components/Team-card.vue';
+	import TemplateCard from '@/views/Dashboard/components/Template-card.vue';
 
-	import GraphCard from "@/views/Dashboard/components/Stats/Graph-card.vue";
-	import SimpleStatCard from "@/views/Dashboard/components/Stats/Simple-stat-card.vue";
+	import GraphCard from '@/views/Dashboard/components/Stats/Graph-card.vue';
+	import SimpleStatCard from '@/views/Dashboard/components/Stats/Simple-stat-card.vue';
 
 	// table test
-	import LTable from "@/components/lundi-uiKit/L-Table.vue";
+	import LTable from '@/components/lundi-uiKit/L-Table.vue';
 
 	export default {
-		name: "Test",
+		name: 'Test',
 		components: {
 			Avatar,
 			AvatarStack,
@@ -308,12 +374,12 @@
 		},
 		data() {
 			return {
-				navBarTest: "",
-				selectModel: "",
-				textModel: "",
-				passwordModel: "",
-				phoneModel: "",
-				fileModel: "",
+				navBarTest: '',
+				selectModel: '',
+				textModel: '',
+				passwordModel: '',
+				phoneModel: '',
+				fileModel: '',
 				checkBoxModel: true,
 			};
 		},

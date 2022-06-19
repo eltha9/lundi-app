@@ -1,14 +1,24 @@
 <template>
 	<div class="l-table">
 		<table>
-			<thead>
-				<th class="checker-head"></th>
-				<th v-for="(hearder, i) in headers" :key="`${i}-${header}`">{{ header }}</th>
+			<thead class="text-greyscale-800 font-bold">
+				<th v-if="showCheckBox" class="checker-head"></th>
+				<th v-for="(header, i) in headers" :key="`${i}-${header.name}`">
+					{{ header.name }}
+					<i class="icon-sort2 text-inherit sato-l-s ml-2"></i>
+				</th>
 			</thead>
+			<!-- <div class="tbody-container"></div> -->
 			<tbody>
-				<!-- <div class="tbody-container"></div> -->
 				<tr v-for="(item, i) in tableItems" :key="i">
-					<td>plop</td>
+					<td v-if="showCheckBox" class="checker-body">
+						<l-checkbox v-model="item.checked" :name="`table-${i}`" />
+					</td>
+					<td v-for="(header, i) in headers" :key="`${i}-${header.name}`">
+						<slot :name="`item.${header.name.replace(' ', '')}`" :item="item[header.name]">
+							{{ item[header.name] }}
+						</slot>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -16,11 +26,19 @@
 </template>
 <style lang="scss" scoped>
 	.l-table {
+		width: 100%;
+		table {
+			width: 100%;
+			thead {
+			}
+			tbody {
+			}
+		}
 	}
 </style>
 
 <script>
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
 	export default {
 		components: {
 			LCheckbox,
@@ -35,24 +53,24 @@
 			 * }
 			 */
 			headers: {
-				require: true,
+				required: true,
 				type: Array,
 				default: () => [],
 			},
 			items: {
-				require: true,
+				required: true,
 				type: Array,
 				default: () => [],
 			},
 			showCheckBox: {
-				require: false,
+				required: false,
 				type: Boolean,
 				default: false,
 			},
 		},
 		data() {
 			return {
-				states: [null, "up", "down"],
+				states: [null, 'up', 'down'],
 				sortBy: null, // this will be the name of colum we will sort
 				sortState: null,
 
@@ -62,6 +80,7 @@
 		},
 		mounted() {
 			this.tableItems = this.items;
+			this.tableItems.map((item) => ({...item, checked: false}));
 		},
 		methods: {
 			sort(name) {
@@ -72,8 +91,8 @@
 				} else if (this.sortBy === name) {
 					this.sortState++;
 					if (this.sortState + 1 <= this.states.length) {
-						if (this.sortState === 1) upSort(name);
-						if (this.sortState === 2) downSort(name);
+						if (this.sortState === 1) this.upSort(name);
+						if (this.sortState === 2) this.downSort(name);
 					} else {
 						this.sortBy = null;
 						this.sortState = null;
