@@ -17,6 +17,7 @@
 			padding: 8px 12px;
 			border-radius: 8px;
 			overflow: hidden;
+			text-transform: capitalize;
 		}
 		button.active {
 			@apply text-greyscale-200 bg-primary-900;
@@ -25,31 +26,31 @@
 </style>
 <script>
 	export default {
-		name: "NavBar",
+		name: 'NavBar',
 		props: {
 			value: {
 				type: String,
 				require: true,
-				default: "",
+				default: '',
 			},
 			items: {
 				type: Array,
 				require: true,
-				default: () => ["left", "right"],
+				default: () => ['left', 'right'],
 			},
 		},
 		data() {
 			return {
-				state: "",
+				state: '',
 			};
 		},
 		watch: {
 			state(value) {
-				this.$emit("input", value);
+				this.$emit('input', value);
 			},
 		},
 		mounted() {
-			if (this.value.trim() !== "") this.state = this.value;
+			if (this.value.trim() !== '') this.state = this.value;
 			else this.state = this.items[0];
 		},
 		methods: {

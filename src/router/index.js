@@ -2,10 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Test from '@/views/other/Test';
 import Dashboard from '@/views/Dashboard/index.vue';
-import Login from '@/views/Login/index.vue'
-import CreateAccount from "@/views/Login/CreateAccount/index.vue"
-import Invitation from "@/views/Invitation/index.vue"
-import InvitationCreate from "@/views/Invitation/CreateAccount/index.vue"
+import Login from '@/views/Login/index.vue';
+import CreateAccount from '@/views/Login/CreateAccount/index.vue';
+import Invitation from '@/views/Invitation/index.vue';
+import InvitationCreate from '@/views/Invitation/CreateAccount/index.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,12 +41,12 @@ const routes = [
 			{
 				path: '/dashboard',
 				name: 'dashboard-home',
-				component: () => import('../views/Dashboard/subViews/Home.vue'),
+				component: () => import('../views/Dashboard/subViews/Home/index.vue'),
 			},
 			{
 				path: '/dashboard/:id',
 				name: 'dashboard-home-team',
-				component: () => import('../views/Dashboard/subViews/Home.vue'),
+				component: () => import('../views/Dashboard/subViews/Home/Team.vue'),
 			},
 			{
 				path: '/dashboard/teams',
@@ -54,8 +54,13 @@ const routes = [
 				component: () => import('../views/Dashboard/subViews/Teams.vue'),
 			},
 			{
-				path: '/dashboard/templates',
+				path: '/dashboard/templates/:id',
 				name: 'dashboard-templates',
+				component: () => import('../views/Dashboard/subViews/Templates.vue'),
+			},
+			{
+				path: '/dashboard/templates/create',
+				name: 'dashboard-templates-create',
 				component: () => import('../views/Dashboard/subViews/Templates.vue'),
 			},
 			{
