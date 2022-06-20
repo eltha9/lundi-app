@@ -259,14 +259,17 @@
 				:headers="[
 					{
 						name: 'plop',
+						key: 'plop',
 						sorted: true,
 					},
 					{
 						name: 'plap',
+						key: 'plap',
 						sorted: true,
 					},
 					{
 						name: 'plep',
+						key: 'plep',
 						sorted: true,
 					},
 				]"
@@ -314,7 +317,7 @@
 				]"
 				:showCheckBox="true"
 			>
-				<template #item-plap="{item}"> je suis {{ item }} </template>
+				<template #item-plap="{item}"> je suis {{ item.palp }} </template>
 			</l-table>
 		</div>
 	</div>

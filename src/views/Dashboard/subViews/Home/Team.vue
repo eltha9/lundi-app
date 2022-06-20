@@ -53,7 +53,7 @@
 			</div>
 			<div class="sub-bar flex justify-between mt-10">
 				<nav-bar v-model="subView" :items="['templates', 'membres']" />
-				<btn ternary>
+				<btn v-if="subView === 'templates'" ternary>
 					Créer un template
 					<template #right>
 						<i class="icon-arrow-right"></i>
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				<div v-else-if="subView === 'membres'">
-					<l-table v-if="teamData.members.length > 0"></l-table>
+					<l-table v-if="teamData.members.length > 0" :headers="memberTableHeader" :items="teamData.members" :showCheckBox="true"></l-table>
 					<span v-else class="text-greyscale-700 sato-l-m font-bold">Aucun membre pour le moment.</span>
 				</div>
 			</div>
@@ -139,6 +139,7 @@
 	import StatCard from '@/views/Dashboard/components/Stat-card.vue';
 	import TemplateCard from '@/views/Dashboard/components/Template-card.vue';
 	import LTable from '@/components/lundi-uiKit/L-Table.vue';
+	import {getUserInformation} from '@/lib/utilis.js';
 	export default {
 		name: 'DashboardHome',
 		components: {
@@ -157,6 +158,28 @@
 				subView: '',
 				teamId: '',
 				teamData: {},
+				memberTableHeader: [
+					{
+						name: 'Nom & Prénom',
+						key: 'firstName',
+						sorted: true,
+					},
+					{
+						name: 'Permission',
+						key: 'role',
+						sorted: true,
+					},
+					{
+						name: 'Rôle',
+						key: 'role',
+						sorted: true,
+					},
+					{
+						name: 'Activité',
+						key: "Date d'arrivée",
+						sorted: true,
+					},
+				],
 			};
 		},
 		beforeMount() {
@@ -166,7 +189,7 @@
 				id: this.teamId,
 				name: 'ma super team',
 				isFav: false,
-				members: [],
+				members: [getUserInformation('ajzge'), getUserInformation('ajzgazee'), getUserInformation('ajzgecxvx')],
 				templates: [
 					{
 						id: 'plop',

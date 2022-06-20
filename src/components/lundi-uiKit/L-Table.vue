@@ -3,7 +3,7 @@
 		<table>
 			<thead class="font-bold">
 				<th class="checker-head text-greyscale-800"></th>
-				<th v-for="(header, i) in headers" :key="`${i}-${header.name}`" class="text-greyscale-800">
+				<th v-for="(header, i) in headers" :key="`${i}-${header.key}`" class="text-greyscale-800">
 					{{ header.name }}
 					<i class="icon-sort2 text-inherit sato-l-s ml-2"></i>
 				</th>
@@ -13,9 +13,9 @@
 					<td class="checker-body pl-6">
 						<l-checkbox v-if="showCheckBox" v-model="item.checked" :name="`table-${i}`" />
 					</td>
-					<td v-for="(header, i) in headers" :key="`${i}-${header.name}`">
-						<slot :name="`item-${header.name.replace(' ', '')}`" :item="item[header.name]">
-							{{ item[header.name] }}
+					<td v-for="(header, i) in headers" :key="`${i}-${header.key}`">
+						<slot :name="`item-${header.key}`" :item="item">
+							{{ item[header.key] }}
 						</slot>
 					</td>
 				</tr>
@@ -77,6 +77,7 @@
 			 * the header need to be an object with those elements ;
 			 * {
 			 *      name:String,
+			 * 		key: String
 			 *      sorted: Boolean
 			 *
 			 * }
