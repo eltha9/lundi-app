@@ -313,7 +313,9 @@
 					},
 				]"
 				:showCheckBox="true"
-			></l-table>
+			>
+				<template #item-plap="{item}"> je suis {{ item }} </template>
+			</l-table>
 		</div>
 	</div>
 </template>

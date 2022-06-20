@@ -1,21 +1,20 @@
 <template>
 	<div class="l-table">
 		<table>
-			<thead class="text-greyscale-800 font-bold">
-				<th v-if="showCheckBox" class="checker-head"></th>
-				<th v-for="(header, i) in headers" :key="`${i}-${header.name}`">
+			<thead class="font-bold">
+				<th class="checker-head text-greyscale-800"></th>
+				<th v-for="(header, i) in headers" :key="`${i}-${header.name}`" class="text-greyscale-800">
 					{{ header.name }}
 					<i class="icon-sort2 text-inherit sato-l-s ml-2"></i>
 				</th>
 			</thead>
-			<!-- <div class="tbody-container"></div> -->
 			<tbody>
 				<tr v-for="(item, i) in tableItems" :key="i">
-					<td v-if="showCheckBox" class="checker-body">
-						<l-checkbox v-model="item.checked" :name="`table-${i}`" />
+					<td class="checker-body pl-6">
+						<l-checkbox v-if="showCheckBox" v-model="item.checked" :name="`table-${i}`" />
 					</td>
 					<td v-for="(header, i) in headers" :key="`${i}-${header.name}`">
-						<slot :name="`item.${header.name.replace(' ', '')}`" :item="item[header.name]">
+						<slot :name="`item-${header.name.replace(' ', '')}`" :item="item[header.name]">
 							{{ item[header.name] }}
 						</slot>
 					</td>
@@ -27,11 +26,41 @@
 <style lang="scss" scoped>
 	.l-table {
 		width: 100%;
+		border-radius: 12px;
+		overflow: hidden;
 		table {
 			width: 100%;
 			thead {
+				@apply bg-greyscale-white text-greyscale-200;
+				th {
+					padding: 16px 0px;
+					text-align: left;
+				}
+				border-bottom: 1px solid;
 			}
 			tbody {
+				tr {
+					padding: 16px 24px;
+					height: 60px;
+					td {
+						height: 100%;
+						padding-right: 64px;
+						&:last-child {
+							padding-right: 0;
+						}
+						&:first-child {
+							padding-right: 16px;
+						}
+					}
+					@apply bg-greyscale-white;
+					&:nth-child(2n + 1) {
+						@apply bg-greyscale-200;
+					}
+				}
+			}
+			// .checker-head,
+			.checker-body {
+				width: 16px;
 			}
 		}
 	}
@@ -76,11 +105,18 @@
 
 				/// duplicate data
 				tableItems: [],
+				deepTableItemsCopy: [],
 			};
+		},
+		watch: {
+			tableItems(newValue) {
+				this.$emit('input', newValue);
+			},
 		},
 		mounted() {
 			this.tableItems = this.items;
 			this.tableItems.map((item) => ({...item, checked: false}));
+			this.deepTableItemsCopy = JSON.parse(JSON.stringify(this.tableItems));
 		},
 		methods: {
 			sort(name) {
