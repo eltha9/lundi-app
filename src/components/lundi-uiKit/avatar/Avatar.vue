@@ -14,7 +14,7 @@
 		justify-content: center;
 		align-items: center;
 		overflow: hidden;
-		border: 2px solid;
+		// border: 2px solid;
 
 		img {
 			width: 100%;
@@ -31,9 +31,9 @@
 </style>
 
 <script>
-	import {getAvatarLink} from '@/lib/utilis';
+	import { getAvatarLink } from "@/lib/utilis";
 	export default {
-		name: 'Avatar',
+		name: "Avatar",
 		props: {
 			small: {
 				require: false,
@@ -48,12 +48,12 @@
 			userId: {
 				type: String,
 				require: false,
-				default: '',
+				default: "",
 			},
 			url: {
 				type: String,
 				require: false,
-				default: '',
+				default: "",
 			},
 		},
 		data() {
@@ -61,14 +61,14 @@
 		},
 		methods: {
 			getClass() {
-				let classes = ['avatar', 'text-greyscale-white'];
-				if (this.large) classes.push('large');
-				if (this.small) classes.push('small');
+				let classes = ["avatar", "text-greyscale-white"];
+				if (this.large) classes.push("large");
+				if (this.small) classes.push("small");
 
-				return classes.join(' ');
+				return classes.join(" ");
 			},
 			avatarLink() {
-				if (this.url.trim() !== '') return this.url;
+				if (this.url.trim() !== "") return this.url;
 				return getAvatarLink(this.userId);
 			},
 		},

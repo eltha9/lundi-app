@@ -7,7 +7,7 @@
 			</div>
 			<i class="text-greyscale-black" :class="isOpen ? 'icon-chevron-up' : 'icon-chevron-down'"></i>
 		</div>
-		<div v-show="isOpen" class="options flex flex-col p-4 sato-l-l text-greyscale-300 bg-greyscale-white">
+		<div v-if="isOpen" class="options flex flex-col p-4 sato-l-l text-greyscale-300 bg-greyscale-white">
 			<div
 				v-for="item in options"
 				:value="item"
