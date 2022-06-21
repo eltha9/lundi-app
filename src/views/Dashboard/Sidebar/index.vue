@@ -2,52 +2,59 @@
 	<div class="sidebar bg-primary-900 text-greyscale-400 pt-8 flex flex-col justify-between" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top flex flex-col flex-1">
 			<div class="top-logo px-6 pb-6 flex flex-col">
-				<div class="flex justify-between items-center mb-1 text-greyscale-200">
-					<span>{{ isSidebarCollapsed ? compagnie.name[0] : compagnie.name }}</span>
-					<button class="collapser" @click="collapseBar()"><i class="icon-arrow-left"></i></button>
+				<div class="flex items-center mb-1 text-greyscale-200 corp-name" :class="isSidebarCollapsed ? 'justify-center' : 'justify-between'">
+					<span class="salva-h3">{{ isSidebarCollapsed ? compagnie.name[0] : compagnie.name }}</span>
+					<button class="collapser" @click="collapseBar()" v-show="!isSidebarCollapsed">
+						<i class="icon-chevron-double-left"></i>
+					</button>
+					<button v-if="isSidebarCollapsed" class="responsive-uncollapser bg-primary-700 text-greyscale-white" @click="collapseBar()">
+						<i class="icon-chevron-double-right"></i>
+					</button>
 				</div>
 				<span class="text-greyscale-400 sato-l-s">Lundi</span>
 			</div>
 			<div class="top-menu menu-list flex flex-col py-8 px-3 sato-l-l">
-				<router-link :to="{name: 'dashboard-home'}" class="link" title="home">
+				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
 					<span class="sato-l-l">Home</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-teams'}" class="link" title="Equipes">
+				<router-link :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
 					<i class="icon-grid"></i>
 					<span class="sato-l-l">Mon équipes</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-analytics'}" class="link" title="Dashboard">
+				<router-link :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
 					<i class="icon-layout"></i>
 					<span class="sato-l-l">Dashboard</span>
 				</router-link>
-				<router-link :to="{name: 'dashboard-collaborators'}" class="link" title="Collaborateurs">
+				<router-link :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
 					<i class="icon-users"></i>
 					<span class="sato-l-l">Collaborateurs</span>
 				</router-link>
 			</div>
 			<!-- favoris -->
 			<div class="top-fav py-6 px-3 flex-1 text-greyscale-700 flex flex-col">
-				<button class="fav-btn text-greyscale-500 flex items-center justify-between px-3" title="Favoris" @click="isFavOpen = !isFavOpen">
-					<i class="icon-favorite res-icon"></i>
-					<span class="sato-l-m">Favoris</span>
-					<i class="text-greyscale-400" :class="isFavOpen ? 'icon-caret-up ' : 'icon-caret-down '"></i>
-				</button>
-				<div v-show="isFavOpen" class="fav-menu flex-1">
-					<div class="fav-menu-container">
-						<router-link
-							v-for="(item, i) in me.settings.favs"
-							:key="`${i}-${item.title}`"
-							:to="item.link"
-							class="sub-link text-greyscale-400 px-6 py-2 mt-2 sato-l-s flex justify-between"
-						>
-							<span>
-								{{ item.title }}
-							</span>
-							<i class="icon-options-vertical"></i>
-						</router-link>
+				<template v-if="!isSidebarCollapsed">
+					<button class="fav-btn text-greyscale-500 flex items-center justify-between px-3" title="Favoris" @click="isFavOpen = !isFavOpen">
+						<i class="icon-favorite res-icon"></i>
+						<span class="sato-l-m">Favoris</span>
+						<i class="text-greyscale-400" :class="isFavOpen ? 'icon-caret-up ' : 'icon-caret-down '"></i>
+					</button>
+					<div v-show="isFavOpen" class="fav-menu flex-1">
+						<div class="fav-menu-container">
+							<router-link
+								v-for="(item, i) in me.settings.favs"
+								:key="`${i}-${item.title}`"
+								:to="item.link"
+								class="sub-link text-greyscale-400 px-6 py-2 mt-2 sato-l-s flex justify-between"
+							>
+								<span>
+									{{ item.title }}
+								</span>
+								<i class="icon-options-vertical"></i>
+							</router-link>
+						</div>
 					</div>
-				</div>
+				</template>
 			</div>
 		</div>
 
@@ -62,10 +69,10 @@
 					<span class="sato-l-l">Aide</span>
 				</router-link>
 			</div> -->
-			<div class="bottom-user flex justify-between items-center">
+			<div class="bottom-user">
 				<div class="flex items-center">
-					<avatar :url="me.picture" class="mr-4" />
-					<span class="sato-p-s text-greyscale-white">{{ getFullName }}</span>
+					<avatar :url="me.picture" :class="isSidebarCollapsed ? '' : 'mr-4'" small />
+					<span v-if="!isSidebarCollapsed" class="sato-p-s text-greyscale-white">{{ getFullName }}</span>
 				</div>
 				<button>
 					<i class="icon-caret-down text-greyscale-200"></i>
@@ -115,7 +122,7 @@
 		.top {
 			.top-fav {
 				box-sizing: border-box;
-				border-bottom: 1px solid;
+				// border-bottom: 1px solid;
 				@apply text-primary-700;
 
 				.fav-btn {
@@ -156,7 +163,6 @@
 			}
 			.top-logo {
 				box-sizing: border-box;
-				font-size: 28px;
 				@apply text-primary-700;
 				border-bottom: 1px solid;
 				.collapser {
@@ -179,10 +185,15 @@
 			}
 			.bottom-user {
 				padding: 40px 24px 36px 24px;
+
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 			}
 		}
 		// transition
-
+		will-change: width;
+		transition: width 0.3s ease;
 		// collapse
 		&.collapsed {
 			width: 72px;
@@ -193,16 +204,45 @@
 					display: none;
 				}
 			}
+			.bottom {
+				.bottom-user {
+					flex-direction: column;
+				}
+			}
+			.corp-name {
+				position: relative;
+				button.responsive-uncollapser {
+					position: absolute;
+					top: 0;
+					left: 0;
+					border-radius: 50%;
+					overflow: hidden;
+					display: none;
+					height: 28px;
+					width: 28px;
+					z-index: 20;
+					i {
+						font-size: 20px;
+					}
+				}
+				&:hover {
+					button.responsive-uncollapser {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+				}
+			}
 		}
 	}
 </style>
 
 <script>
-	import {mapGetters, mapMutations, mapState} from 'vuex';
-	import Avatar from '@/components/lundi-uiKit/avatar/Avatar.vue';
+	import { mapGetters, mapMutations, mapState } from "vuex";
+	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
 	// import Btn from '@/components/lundi-uiKit/Button.vue'
 	export default {
-		name: 'Sidebar',
+		name: "Sidebar",
 		components: {
 			Avatar,
 		},
@@ -212,13 +252,13 @@
 			};
 		},
 		computed: {
-			...mapState(['isSidebarCollapsed', 'me', 'compagnie']),
-			...mapGetters(['getFullName']),
+			...mapState(["isSidebarCollapsed", "me", "compagnie"]),
+			...mapGetters(["getFullName"]),
 		},
 		methods: {
-			...mapMutations(['setSidebarCollapsed']),
+			...mapMutations(["setSidebarCollapsed"]),
 			collapseBar() {
-				console.log('plp');
+				console.log("plp");
 				this.setSidebarCollapsed(!this.isSidebarCollapsed);
 			},
 		},

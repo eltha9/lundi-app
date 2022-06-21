@@ -49,27 +49,27 @@ const routes = [
 				component: () => import('../views/Dashboard/subViews/Home/Team.vue'),
 			},
 			{
-				path: '/dashboard/teams',
+				path: '/teams',
 				name: 'dashboard-teams',
 				component: () => import('../views/Dashboard/subViews/Teams.vue'),
 			},
 			{
-				path: '/dashboard/templates/:id',
+				path: '/templates/:id',
 				name: 'dashboard-templates',
 				component: () => import('../views/Dashboard/subViews/Templates.vue'),
 			},
 			{
-				path: '/dashboard/templates/create',
+				path: '/templates/create',
 				name: 'dashboard-templates-create',
 				component: () => import('../views/Dashboard/subViews/Templates.vue'),
 			},
 			{
-				path: '/dashboard/analytics',
+				path: '/analytics',
 				name: 'dashboard-analytics',
 				component: () => import('../views/Dashboard/subViews/Analytics.vue'),
 			},
 			{
-				path: '/dashboard/collaborators',
+				path: '/collaborators',
 				name: 'dashboard-collaborators',
 				component: () => import('../views/Dashboard/subViews/Collaborators.vue'),
 			},
