@@ -52,13 +52,17 @@
 	}
 </style>
 <script>
-	import { ROLES } from "@/lib/config.js";
 	export default {
 		props: {
 			value: {
 				required: true,
 				type: String,
 				default: "Editeur",
+			},
+			items: {
+				required: true,
+				type: Array,
+				default: () => [],
 			},
 			bgColor: {
 				required: false,
@@ -78,7 +82,7 @@
 		},
 		data() {
 			return {
-				selection: ROLES,
+				selection: [],
 				selected: "",
 				isOpen: false,
 			};
@@ -97,7 +101,9 @@
 			},
 		},
 		mounted() {
-			this.selected = this.value;
+			this.selection = this.items;
+			if (this.value === "") this.selected = this.items[0];
+			else this.selected = this.value;
 		},
 		methods: {
 			selectChoice(value) {
