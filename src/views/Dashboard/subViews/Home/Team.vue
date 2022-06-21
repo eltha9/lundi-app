@@ -65,7 +65,7 @@
 					<div class="template-wrapper pb-4">
 						<template-card v-for="(template, i) in teamData.templates" :key="template.id" :infos="template" :position="i + 1" />
 						<router-link
-							:to="{name: 'dashboard-templates-create'}"
+							:to="{ name: 'dashboard-templates-create' }"
 							v-if="teamData.templates.length === 0"
 							class="no-template-data flex justify-center items-center bg-primary-100 text-primary-300"
 						>
@@ -74,7 +74,48 @@
 					</div>
 				</div>
 				<div v-else-if="subView === 'membres'">
-					<l-table v-if="teamData.members.length > 0" :headers="memberTableHeader" :items="teamData.members" :showCheckBox="true"></l-table>
+					<l-table v-if="teamData.members.length > 0" :headers="memberTableHeader" :items="teamData.members" :showCheckBox="true" options>
+						<template #item-name="{ item }">
+							<div class="flex">
+								<avatar :url="item.profilePic" />
+								<div class="flex flex-col justify-between ml-4">
+									<span class="sato-l-m text-greyscale-black">{{ item.firstName }} {{ item.lastName }}</span>
+									<div class="flex jsutify-between items-center text-greyscale-500 cursor-pointer" @click="copyEmail(item.email)">
+										<span class="truncate flex-1 sato-l-s">{{ item.email }}</span>
+										<i class="icon-copy text-base ml-2"></i>
+									</div>
+								</div>
+							</div>
+						</template>
+						<template #item-userPerm="{ item }">
+							<role-selection v-model="item.userPerm" />
+						</template>
+						<template #item-role="{ item }">
+							<div class="text-greyscale-500 flex items-center">
+								<i class="icon-work mr-1 text-base"></i>
+								<span class="sato-l-s font-bold">{{ item.role }}</span>
+							</div>
+						</template>
+						<template #item-lastActivity="{ item }">
+							<div class="text-greyscale-500 flex items-center">
+								<i class="icon-update mr-1 text-base"></i>
+								<span class="sato-l-s font-bold">{{ formatLastActivity(item.lastActivity) }} Jours</span>
+							</div>
+						</template>
+						<template #item-createdDate="{ item }">
+							<div class="text-greyscale-500 flex items-center">
+								<i class="icon-calendar mr-1 text-base"></i>
+								<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
+							</div>
+						</template>
+						<template #options="{ item }">
+							<router-link :to="{ name: 'dashboard-analytics' }">
+								<btn ternary icon>
+									<i class="icon-arrow-right"></i>
+								</btn>
+							</router-link>
+						</template>
+					</l-table>
 					<span v-else class="text-greyscale-700 sato-l-m font-bold">Aucun membre pour le moment.</span>
 				</div>
 			</div>
@@ -132,16 +173,18 @@
 </style>
 
 <script>
-	import {mapState} from 'vuex';
-	import NavHeader from '@/views/Dashboard/Header';
-	import NavBar from '@/components/lundi-uiKit/NavBar';
-	import Btn from '@/components/lundi-uiKit/Button';
-	import StatCard from '@/views/Dashboard/components/Stat-card.vue';
-	import TemplateCard from '@/views/Dashboard/components/Template-card.vue';
-	import LTable from '@/components/lundi-uiKit/L-Table.vue';
-	import {getUserInformation} from '@/lib/utilis.js';
+	import { mapState } from "vuex";
+	import NavHeader from "@/views/Dashboard/Header";
+	import NavBar from "@/components/lundi-uiKit/NavBar";
+	import Btn from "@/components/lundi-uiKit/Button";
+	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
+	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
+	import LTable from "@/components/lundi-uiKit/L-Table.vue";
+	import { getUserInformation } from "@/lib/utilis.js";
+	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
+	import RoleSelection from "@/views/Dashboard/components/Role-selection.vue";
 	export default {
-		name: 'DashboardHome',
+		name: "DashboardHome",
 		components: {
 			NavHeader,
 			NavBar,
@@ -149,34 +192,41 @@
 			StatCard,
 			TemplateCard,
 			LTable,
+			Avatar,
+			RoleSelection,
 		},
 		computed: {
-			...mapState(['isSidebarCollapsed', 'compagnie']),
+			...mapState(["isSidebarCollapsed", "compagnie"]),
 		},
 		data() {
 			return {
-				subView: '',
-				teamId: '',
+				subView: "",
+				teamId: "",
 				teamData: {},
 				memberTableHeader: [
 					{
-						name: 'Nom & Prénom',
-						key: 'firstName',
+						name: "Nom & Prénom",
+						key: "name",
 						sorted: true,
 					},
 					{
-						name: 'Permission',
-						key: 'role',
+						name: "Permission",
+						key: "userPerm",
 						sorted: true,
 					},
 					{
-						name: 'Rôle',
-						key: 'role',
+						name: "Rôle",
+						key: "role",
 						sorted: true,
 					},
 					{
-						name: 'Activité',
-						key: "Date d'arrivée",
+						name: "Activité",
+						key: "lastActivity",
+						sorted: true,
+					},
+					{
+						name: "Date d'arrivée",
+						key: "createdDate",
 						sorted: true,
 					},
 				],
@@ -187,100 +237,125 @@
 
 			this.teamData = {
 				id: this.teamId,
-				name: 'ma super team',
+				name: "ma super team",
 				isFav: false,
-				members: [getUserInformation('ajzge'), getUserInformation('ajzgazee'), getUserInformation('ajzgecxvx')],
+				members: [getUserInformation("ajzge"), getUserInformation("ajzgazee"), getUserInformation("ajzgecxvx")],
 				templates: [
 					{
-						id: 'plop',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "plop",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'pldqsdop',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "pldqsdop",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilop',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilop",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqsdd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqsdd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs0dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs0dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs7dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs7dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs4dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs4dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs3dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs3dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs2dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs2dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 					{
-						id: 'popipoilopsqs1dd',
-						name: 'template test',
-						status: 'toAssign',
-						lastUpdate: '2022-06-01',
-						tags: ['Tout', 'Junior'],
-						users: ['a', 'b', 'c'],
+						id: "popipoilopsqs1dd",
+						name: "template test",
+						status: "toAssign",
+						lastUpdate: "2022-06-01",
+						tags: ["Tout", "Junior"],
+						users: ["a", "b", "c"],
 					},
 				],
 			};
+		},
+		methods: {
+			formatArrivalDate(date) {
+				const toDate = new Date(date);
+				let day = toDate.getDate();
+				let month = toDate.getMonth();
+				let year = toDate.getFullYear().toString().slice(2, 4);
+
+				if (day < 10) day = `0${day}`;
+				if (month < 10) month = `0${month}`;
+
+				return `${day}/${month}/${year}`;
+			},
+			formatLastActivity(date) {
+				const todayStamp = parseInt(Date.now() / 1000);
+				const templateStamp = parseInt(new Date(date).getTime() / 1000);
+				return Math.max(parseInt((todayStamp - templateStamp) / 60 / 60 / 24), 1) || "X";
+			},
+			copyEmail(email) {
+				navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+					if (result.state == "granted" || result.state == "prompt") {
+						navigator.clipboard.writeText(email);
+					}
+				});
+			},
 		},
 	};
 </script>

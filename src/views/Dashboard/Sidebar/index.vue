@@ -193,7 +193,7 @@
 		}
 		// transition
 		will-change: width;
-		transition: width 0.3s ease;
+		transition: width 0.45s ease;
 		// collapse
 		&.collapsed {
 			width: 72px;
