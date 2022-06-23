@@ -34,7 +34,7 @@
 			</div>
 			<div class="sub-view-drawer flex-1 mt-6">
 				<div v-if="subView === 'employés'" class="template-container">
-					<l-table v-if="teamData.members.length > 0" :headers="memberTableHeader" :items="teamData.members" :showCheckBox="true" options>
+					<l-table v-if="teamData.members.length > 0" :headers="memberTableHeader" :items="teamData.members" :showCheckBox="true">
 						<template #item-name="{item}">
 							<div class="flex">
 								<avatar :url="item.profilePic" />
@@ -67,13 +67,6 @@
 								<i class="icon-calendar mr-1 text-base"></i>
 								<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
 							</div>
-						</template>
-						<template #options="{item}">
-							<router-link :to="{name: 'dashboard-analytics'}">
-								<btn ternary icon>
-									<i class="icon-arrow-right"></i>
-								</btn>
-							</router-link>
 						</template>
 					</l-table>
 					<span v-else class="text-greyscale-700 sato-l-m font-bold">Aucun membre pour le moment.</span>
@@ -249,7 +242,56 @@
 				id: this.teamId,
 				name: 'ma super team',
 				isFav: false,
-				members: [getUserInformation('ajzge'), getUserInformation('ajzgazee'), getUserInformation('ajzgecxvx')],
+				members: [
+					{
+						firstName: 'A',
+						lastName: 'Dos santos',
+						profilePic: '/assets/test/avatar.jpeg',
+						email: 'd@gmail.com',
+						role: 'Lead a',
+						userPerm: 'admin',
+						lastActivity: '2022-05-20',
+						createdDate: '2022-03-02',
+						progress: 50,
+						id: 'hkj',
+					},
+					{
+						firstName: 'B',
+						lastName: 'Dos santos',
+						profilePic: '/assets/test/avatar.jpeg',
+						email: 'e@gmail.com',
+						role: 'Lead b',
+						userPerm: 'admin',
+						lastActivity: '2022-06-20',
+						createdDate: '2022-03-02',
+						progress: 50,
+						id: ',;n,;',
+					},
+					{
+						firstName: 'C',
+						lastName: 'Dos santos',
+						profilePic: '/assets/test/avatar.jpeg',
+						email: 'f@gmail.com',
+						role: 'Lead c',
+						userPerm: 'admin',
+						lastActivity: '2022-03-20',
+						createdDate: '2022-03-02',
+						progress: 50,
+						id: 'oiuytrezertyui',
+					},
+					{
+						firstName: 'J',
+						lastName: 'Dos santos',
+						profilePic: '/assets/test/avatar.jpeg',
+						email: 'f@gmail.com',
+						role: 'Lead O',
+						userPerm: 'admin',
+						lastActivity: '2022-03-20',
+						createdDate: '2022-03-02',
+						progress: 50,
+						id: 'oiuytrezertyui',
+					},
+				],
 				templates: [
 					{
 						id: 'plop',
