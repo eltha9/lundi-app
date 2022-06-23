@@ -5,7 +5,7 @@
 				<th class="checker-head text-greyscale-800"></th>
 				<th v-for="(header, i) in headers" :key="`${i}-${header.key}`" class="text-greyscale-800">
 					{{ header.name }}
-					<i class="icon-sort2 text-inherit sato-l-s ml-2"></i>
+					<i v-if="header.sorted" class="icon-sort2 text-inherit sato-l-s ml-2"></i>
 				</th>
 				<th v-if="options"></th>
 			</thead>
@@ -75,8 +75,8 @@
 </style>
 
 <script>
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
-	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
+	import Btn from '@/components/lundi-uiKit/Button.vue';
 	export default {
 		components: {
 			LCheckbox,
@@ -115,7 +115,7 @@
 		},
 		data() {
 			return {
-				states: [null, "up", "down"],
+				states: [null, 'up', 'down'],
 				sortBy: null, // this will be the name of colum we will sort
 				sortState: null,
 
@@ -126,12 +126,12 @@
 		},
 		watch: {
 			tableItems(newValue) {
-				this.$emit("input", newValue);
+				this.$emit('input', newValue);
 			},
 		},
 		mounted() {
 			this.tableItems = this.items;
-			this.tableItems.map((item) => ({ ...item, checked: false }));
+			this.tableItems.map((item) => ({...item, checked: false}));
 			this.deepTableItemsCopy = JSON.parse(JSON.stringify(this.tableItems));
 		},
 		methods: {

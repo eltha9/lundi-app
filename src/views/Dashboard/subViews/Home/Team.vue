@@ -212,7 +212,7 @@
 					{
 						name: "Permission",
 						key: "userPerm",
-						sorted: true,
+						sorted: false,
 					},
 					{
 						name: "Rôle",
