@@ -144,6 +144,17 @@ export default new Vuex.Store({
 		me: full.me,
 		createAccount: false,
 		timeLineStep: 1,
+        isDialogOpen : false,
+        /**
+         * Possible dialogType
+         *      createTeam
+         *      deleteTemplate
+         *      saveTemplate
+         *      PublishTempalte
+         * 
+         */
+        dialogType: null,
+        dialogData: {}
 	},
 	getters: {
 		getFullName(state) {
@@ -162,7 +173,41 @@ export default new Vuex.Store({
 
 			state.createAccount = !state.createAccount;
 		},
+        setIsDialogOpen(state, status){
+            state.isDialogOpen = status
+        },
+        setDialogType(state, dialogType){
+            state.dialogType = dialogType
+        },
+        setDialogData(state, data){
+            state.dialogData = data
+        }
+
 	},
-	actions: {},
+	actions: {
+        openDialog(context, {type,data}){
+            context.commit("setIsDialogOpen", true)
+            context.commit("setDialogType", type)
+            if(data)context.commit("setDialogData", data)
+        },
+        closeDialog(context){
+            
+            context.commit("setIsDialogOpen", false)
+            context.commit("setDialogType", null)
+            context.commit("setDialogData", {})
+        },
+        // delete tempalte
+        deleteTemplate(context){
+
+        },
+        // create Team
+        createTeam(context, teamName){
+
+        },
+        // save templatre
+        saveTemplate(context){
+
+        },
+    },
 	modules: {},
 });
