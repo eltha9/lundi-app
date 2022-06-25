@@ -3,7 +3,7 @@
 		<div @click="toggleMenu()" ref="activator">
 			<slot>activator</slot>
 		</div>
-		<div class="l-menu-container bg-greyscale-white p-6" ref="menu" :style="style">
+		<div class="l-menu-container bg-greyscale-white p-6" ref="menu" style="box-shadow: 0px 4px 24px rgba(25, 25, 25, 0.1)" :style="style">
 			<slot v-if="showMenu" name="menu">menu</slot>
 		</div>
 	</div>
@@ -57,7 +57,6 @@
 				return "50%";
 			},
 			position() {
-				console.log(this.activatorPosition);
 				return {
 					top: `${this.activatorPosition.y + this.activatorPosition.height}px`,
 					left: `${this.activatorPosition.x}px`,
@@ -81,7 +80,6 @@
 		},
 		mounted() {
 			this.activatorPosition = this.$refs.activator.getBoundingClientRect();
-			console.log(this.activatorPosition);
 			this.APP = document.querySelector("#app");
 			this.menuNode = this.$refs.menu;
 			this.$refs.menu.remove();

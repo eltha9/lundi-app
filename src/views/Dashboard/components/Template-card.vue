@@ -12,7 +12,31 @@
 					<span>{{ lastUpdate }} jours</span>
 				</div>
 			</div>
-			<btn icon ternary class="option-btn"><i class="icon-options-vertical"></i></btn>
+			<l-menu>
+				<btn icon ternary class="option-btn"><i class="icon-options-vertical"></i></btn>
+				<template #menu>
+					<div class="flex flex-col text-greyscale-black sato-l-l">
+						<div class="mb-6">
+							<h6 class="uppercase sato-l-s text-greyscale-600 mb-2">option</h6>
+							<div class="py-2 px-3 cursor-pointer"><i class="icon-edit-alt mr-2"></i> Modifier</div>
+							<div class="py-2 px-3 cursor-pointer"><i class="icon-copy mr-2"></i> Duppliquer</div>
+							<div class="py-2 px-3 cursor-pointer"><i class="icon-delete mr-2"></i> Supprimer</div>
+						</div>
+						<div>
+							<h6 class="uppercase sato-l-s text-greyscale-600 mb-2">status</h6>
+							<div
+								v-for="item in $options.status"
+								:key="item.keys"
+								class="mb-1 flex items-center rounded py-2 px-3 cursor-pointer"
+								:class="item.keys === infos.status ? item.bgColor + ' ' + item.textColor : item.textColor"
+							>
+								<div class="dot mr-1" :class="item.pseudoBgColor"></div>
+								{{ item.name }}
+							</div>
+						</div>
+					</div>
+				</template>
+			</l-menu>
 		</div>
 		<div class="bottom-card flex justify-between">
 			<avatar-stack :users="infos.users" />
@@ -26,20 +50,16 @@
 </template>
 
 <style lang="scss" scoped>
+	.dot {
+		border-radius: 50%;
+		width: 6px;
+		height: 6px;
+	}
 	.template-card {
 		border: 1px solid;
 		border-radius: 8px;
 		grid-column: 1/5;
 		.top-card {
-			.info {
-				.status {
-					.dot {
-						border-radius: 50%;
-						width: 6px;
-						height: 6px;
-					}
-				}
-			}
 			.option-btn {
 				font-size: 20px;
 			}
@@ -59,10 +79,12 @@
 	import Btn from "@/components/lundi-uiKit/Button.vue";
 	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack.vue";
 	import { TEMPLATE_STATUS } from "@/lib/config.js";
+	import LMenu from "@/components/lundi-uiKit/L-Menu.vue";
 	export default {
 		components: {
 			Btn,
 			AvatarStack,
+			LMenu,
 		},
 		props: {
 			infos: {
@@ -104,6 +126,9 @@
 						return { start: 1, end: 5 };
 				}
 			},
+		},
+		mounted() {
+			this.$options.status = Object.entries(TEMPLATE_STATUS).map(([a, b]) => ({ keys: a, ...b }));
 		},
 		methods: {
 			getTagColor(tagName) {
