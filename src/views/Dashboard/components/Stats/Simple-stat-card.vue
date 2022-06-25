@@ -6,17 +6,18 @@
 				<div class="sato-l-m font-bold text-greyscale-600">{{ subTitle }}</div>
 			</div>
 			<div class="top-right sato-l-l text-semantic-info-500">
-				<span v-if="factoredCurrentChange !== null">
+				<span v-if="value !== null && factoredCurrentChange !== null">
 					{{ factoredCurrentChange }}
 				</span>
 			</div>
 		</div>
 		<div class="bottom flex justify-between items-center">
 			<div class="bottom-left sato-l-m text-greyscale-600">
-				<span class="salva-h3 text-greyscale-700 mr-1">{{ value }}</span
+				<span v-if="value === null">Pas encore de données</span>
+				<span v-else class="salva-h3 text-greyscale-700 mr-1">{{ value }}</span
 				>{{ valueUnit }}
 			</div>
-			<div class="bottom-right">
+			<div v-if="value !== null" class="bottom-right">
 				<router-link v-if="link !== null" :to="{ name: link }">
 					<i class="icon-arrow-right text-greyscale-black"></i>
 				</router-link>
@@ -65,12 +66,12 @@
 				default: "",
 			},
 			value: {
-				required: true,
+				required: false,
 				type: Number,
 				default: null,
 			},
 			valueUnit: {
-				required: true,
+				required: false,
 				type: String,
 				default: "",
 			},

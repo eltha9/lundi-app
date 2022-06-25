@@ -208,6 +208,10 @@ export default new Vuex.Store({
         saveTemplate(context){
 
         },
+        // publish template
+        publishTemplate(context, {seniority="",forWho=""}){
+
+        }
     },
 	modules: {},
 });
