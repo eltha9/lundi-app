@@ -3,6 +3,12 @@
 		<div class="text-semantic-positive-500 bg-background-100">
 			<span>test view</span>
 			<div>
+				<l-menu style="width: fit-content">
+					je suis l'activateur'
+					<template #menu> le contenue du menu est assez jolie </template>
+				</l-menu>
+			</div>
+			<div>
 				<Avatar large />
 				<AvatarStack :users="['a', 'z', 'e', 'r', 't', 'y']" />
 				<Btn color="semantic-info" icon secondary> <i class="icon-call"></i></Btn>
@@ -346,6 +352,9 @@
 	// table test
 	import LTable from "@/components/lundi-uiKit/L-Table.vue";
 
+	// menu test
+	import LMenu from "@/components/lundi-uiKit/L-Menu.vue";
+
 	export default {
 		name: "Test",
 		components: {
@@ -368,6 +377,7 @@
 			GraphCard,
 			SimpleStatCard,
 			LTable,
+			LMenu,
 		},
 		data() {
 			return {

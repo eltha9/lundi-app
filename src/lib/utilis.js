@@ -8,10 +8,10 @@ export const getAvatarLink = (userId) => {
 
 export const getUserInformation = (userId) => {
 	return {
-		firstName: 'Théa',
-		lastName: 'Dos santos',
+		firstName: 'Elmo',
+		lastName: '',
 		profilePic: '/assets/test/avatar.jpeg',
-		email: 'theadsoto@gmail.com',
+		email: 'elmo@sesame.street',
 		role: 'Lead dev',
         userPerm:'admin',
         lastActivity:"2022-06-20",
