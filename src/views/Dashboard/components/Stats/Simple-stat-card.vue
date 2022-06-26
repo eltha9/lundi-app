@@ -14,8 +14,10 @@
 		<div class="bottom flex justify-between items-center">
 			<div class="bottom-left sato-l-m text-greyscale-600">
 				<span v-if="value === null">Pas encore de données</span>
-				<span v-else class="salva-h3 text-greyscale-700 mr-1">{{ value }}</span
-				>{{ valueUnit }}
+				<template v-else>
+					<span class="salva-h3 text-greyscale-700 mr-1">{{ value }}</span
+					>{{ valueUnit }}
+				</template>
 			</div>
 			<div v-if="value !== null" class="bottom-right">
 				<router-link v-if="link !== null" :to="{ name: link }">
