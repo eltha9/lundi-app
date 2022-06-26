@@ -318,6 +318,8 @@
 				<template #item-plap="{ item }"> je suis {{ item.palp }} </template>
 			</l-table>
 		</div>
+		<input type="date" name="testdate" id="testdate" />
+		<label for="testdate"> plop </label>
 	</div>
 </template>
 <style lang="scss" scoped>

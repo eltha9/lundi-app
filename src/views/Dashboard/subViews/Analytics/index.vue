@@ -11,7 +11,22 @@
 			/>
 			<div class="sub-bar flex justify-between mt-10">
 				<nav-bar v-model="subView" :items="['Vue d\'ensemble', 'Vue par équipe']" />
-				<div></div>
+				<div class="date-picker text-ternary-700 flex px-3 py-2.5 satol-m font-bold">
+					<i class="icon-calendar mr-3"></i>
+					<div class="fake-label">
+						<input v-model="startDate" type="date" name="datePickerStart" id="datePickerStart" onfocus="this.showPicker()" />
+						<label for="datePickerStart">
+							<span>{{ formatDate(startDate) }}</span>
+						</label>
+					</div>
+					<i class="icon-arrow-right mx-1"></i>
+					<div class="fake-label">
+						<input v-model="endDate" type="date" name="datePickerEnd" id="datePickerEnd" onfocus="this.showPicker()" />
+						<label for="datePickerEnd">
+							<span>{{ formatDate(endDate) }}</span>
+						</label>
+					</div>
+				</div>
 			</div>
 			<div class="sub-view-drawer flex-1 mt-6">
 				<div v-if="subView === 'Vue par équipe'" class="flex flex-col">
@@ -93,7 +108,7 @@
 								</div>
 							</template>
 							<template #options="{ item }">
-								<router-link :to="{ name: 'dashboard-analytics' }">
+								<router-link :to="{ name: 'dashboard-analytics-team-member', params: { id: item.id, teamId: 'plop' } }">
 									<btn ternary icon>
 										<i class="icon-arrow-right"></i>
 									</btn>
@@ -228,7 +243,7 @@
 								</div>
 							</template>
 							<template #options="{ item }">
-								<router-link :to="{ name: 'dashboard-analytics' }">
+								<router-link :to="{ name: 'dashboard-analytics-team-member', params: { id: item.id, teamId: 'plop' } }">
 									<btn ternary icon>
 										<i class="icon-arrow-right"></i>
 									</btn>
@@ -306,6 +321,22 @@
 			}
 		}
 	}
+	.date-picker {
+		.fake-label {
+			position: relative;
+			input {
+				opacity: 0;
+				z-index: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 10px;
+			}
+			label {
+				z-index: 30;
+			}
+		}
+	}
 </style>
 
 <script>
@@ -346,6 +377,8 @@
 				teamId: "",
 				teamData: {},
 				onboardingSwitch: "enCours",
+				startDate: "2022-01-01",
+				endDate: "2022-12-31",
 				onboardeeTableHeader: [
 					{
 						name: "Nom & Prénom",
@@ -502,6 +535,10 @@
 			},
 			onboardingSwitchClick(value) {
 				this.onboardingSwitch = value;
+			},
+			formatDate(date) {
+				const dateSplit = date.split("-");
+				return `${dateSplit[2]}-${dateSplit[1]}-${dateSplit[0]}`;
 			},
 		},
 	};
