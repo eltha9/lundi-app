@@ -1,12 +1,14 @@
 <template>
 	<div id="app" class="text-greyscale-black bg-background-100">
 		<router-view></router-view>
+		<dialogs />
 	</div>
 </template>
 
 <style lang="scss">
 	#app {
-		height: 100%;
+		position: relative;
+		height: 100vh;
 		width: 100%;
 	}
 	div.main-view,
@@ -17,6 +19,7 @@
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
 		gap: 16px;
+		row-gap: 0;
 		overflow: auto;
 		overflow-x: hidden;
 		&.dashboard {
@@ -32,7 +35,10 @@
 </style>
 
 <script>
+	import Dialogs from "@/views/Dialogs/index.vue";
 	export default {
-		components: {},
+		components: {
+			Dialogs,
+		},
 	};
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<button class="btn salva-l-l" :class="buttonClasses" :style="variables" :disabled="disabled">
+	<button class="btn salva-l-l" :class="buttonClasses" :style="variables" :disabled="disabled" @click="click()">
 		<slot v-if="!icon" name="left" class="bt-icon"> </slot>
 		<slot> Btn text </slot>
 		<slot v-if="!icon" name="right" class="bt-icon"> </slot>
@@ -122,9 +122,9 @@
 </style>
 
 <script>
-	import tailwindConfig from '@/../tailwind.config';
+	import tailwindConfig from "@/../tailwind.config";
 	export default {
-		name: 'Btn',
+		name: "Btn",
 		props: {
 			icon: {
 				type: Boolean,
@@ -149,7 +149,7 @@
 			color: {
 				type: String,
 				require: false,
-				default: 'primary',
+				default: "primary",
 			},
 			disabled: {
 				type: Boolean,
@@ -159,7 +159,7 @@
 		},
 		computed: {
 			variables() {
-				const colorData = this.color.split('-');
+				const colorData = this.color.split("-");
 				let color = tailwindConfig.theme.colors;
 				for (const colorPart of colorData) {
 					color = color[colorPart];
@@ -167,88 +167,93 @@
 				if (this.secondary) {
 					return {
 						// default
-						'--bg': tailwindConfig.theme.colors.greyscale.white,
-						'--border': color['500'],
-						'--text': color['700'],
+						"--bg": "",
+						"--border": color["500"],
+						"--text": color["700"],
 						//on hover
-						'--bg-hover': tailwindConfig.theme.colors.greyscale.white,
-						'--border-hover': color['700'],
-						'--text-hover': color['700'],
+						"--bg-hover": tailwindConfig.theme.colors.primary[100],
+						"--border-hover": color["700"],
+						"--text-hover": color["700"],
 						// on press
-						'--bg-pressed': tailwindConfig.theme.colors.greyscale.white,
-						'--border-pressed': color['500'],
-						'--text-pressed': color['700'],
+						"--bg-pressed": tailwindConfig.theme.colors.greyscale.white,
+						"--border-pressed": color["500"],
+						"--text-pressed": color["700"],
 						// on focus
-						'--bg-focus': tailwindConfig.theme.colors.greyscale.white,
-						'--border-focus': color['500'],
-						'--text-focus': color['700'],
+						"--bg-focus": tailwindConfig.theme.colors.greyscale.white,
+						"--border-focus": color["500"],
+						"--text-focus": color["700"],
 						// disable
-						'--bg-disable': tailwindConfig.theme.colors.greyscale.white,
-						'--border-disable': tailwindConfig.theme.colors.greyscale['400'],
-						'--text-disable': tailwindConfig.theme.colors.greyscale['500'],
+						"--bg-disable": tailwindConfig.theme.colors.greyscale.white,
+						"--border-disable": tailwindConfig.theme.colors.greyscale["400"],
+						"--text-disable": tailwindConfig.theme.colors.greyscale["500"],
 					};
 				}
 				if (this.ternary) {
 					return {
 						// default
-						'--bg': tailwindConfig.theme.colors.greyscale.white,
-						'--border': tailwindConfig.theme.colors.greyscale.white,
-						'--text': this.icon ? tailwindConfig.theme.colors.greyscale.black : color['700'],
+						"--bg": "",
+						"--border": tailwindConfig.theme.colors.greyscale.white,
+						"--text": this.icon ? tailwindConfig.theme.colors.greyscale.black : color["700"],
 						//on hover
-						'--bg-hover': this.icon ? color['100'] : tailwindConfig.theme.colors.greyscale.white,
-						'--border-hover': this.icon ? tailwindConfig.theme.colors.greyscale.white : color['500'],
-						'--text-hover': this.icon ? tailwindConfig.theme.colors.greyscale.black : color['500'],
+						"--bg-hover": this.icon ? color["100"] : tailwindConfig.theme.colors.greyscale.white,
+						"--border-hover": this.icon ? tailwindConfig.theme.colors.greyscale.white : color["500"],
+						"--text-hover": this.icon ? tailwindConfig.theme.colors.greyscale.black : color["500"],
 						// on press
-						'--bg-pressed': this.icon ? color['300'] : tailwindConfig.theme.colors.greyscale.white,
-						'--border-pressed': this.icon ? tailwindConfig.theme.colors.greyscale.white : color['700'],
-						'--text-pressed': this.icon ? tailwindConfig.theme.colors.greyscale.white : color['700'],
+						"--bg-pressed": this.icon ? color["300"] : tailwindConfig.theme.colors.greyscale.white,
+						"--border-pressed": this.icon ? tailwindConfig.theme.colors.greyscale.white : color["700"],
+						"--text-pressed": this.icon ? tailwindConfig.theme.colors.greyscale.white : color["700"],
 						// on focus
-						'--bg-focus': this.icon ? color['100'] : tailwindConfig.theme.colors.greyscale.white,
-						'--border-focus': tailwindConfig.theme.colors.greyscale.white,
-						'--text-focus': this.icon ? tailwindConfig.theme.colors.greyscale.black : color['700'],
+						"--bg-focus": this.icon ? color["100"] : tailwindConfig.theme.colors.greyscale.white,
+						"--border-focus": tailwindConfig.theme.colors.greyscale.white,
+						"--text-focus": this.icon ? tailwindConfig.theme.colors.greyscale.black : color["700"],
 						// disable
-						'--bg-disable': tailwindConfig.theme.colors.greyscale.white,
-						'--border-disable': tailwindConfig.theme.colors.greyscale.white,
-						'--text-disable': tailwindConfig.theme.colors.greyscale['500'],
+						"--bg-disable": tailwindConfig.theme.colors.greyscale.white,
+						"--border-disable": tailwindConfig.theme.colors.greyscale.white,
+						"--text-disable": tailwindConfig.theme.colors.greyscale["500"],
 					};
 				}
 				return {
 					// default
-					'--bg': color['500'],
-					'--border': color['500'],
-					'--text': tailwindConfig.theme.colors.greyscale.white,
+					"--bg": color["500"],
+					"--border": color["500"],
+					"--text": tailwindConfig.theme.colors.greyscale.white,
 					//on hover
-					'--bg-hover': color['700'],
-					'--border-hover': color['700'],
-					'--text-hover': tailwindConfig.theme.colors.greyscale.white,
+					"--bg-hover": color["700"],
+					"--border-hover": color["700"],
+					"--text-hover": tailwindConfig.theme.colors.greyscale.white,
 					// on press
-					'--bg-pressed': color['500'],
-					'--border-pressed': color['500'],
-					'--text-pressed': tailwindConfig.theme.colors.greyscale.white,
+					"--bg-pressed": color["500"],
+					"--border-pressed": color["500"],
+					"--text-pressed": tailwindConfig.theme.colors.greyscale.white,
 					// on focus
-					'--bg-focus': color['500'],
-					'--border-focus': color['300'],
-					'--text-focus': tailwindConfig.theme.colors.greyscale.white,
+					"--bg-focus": color["500"],
+					"--border-focus": color["300"],
+					"--text-focus": tailwindConfig.theme.colors.greyscale.white,
 					// disable
-					'--bg-disable': tailwindConfig.theme.colors.greyscale['200'],
-					'--border-disable': tailwindConfig.theme.colors.greyscale['400'],
-					'--text-disable': tailwindConfig.theme.colors.greyscale['400'],
+					"--bg-disable": tailwindConfig.theme.colors.greyscale["200"],
+					"--border-disable": tailwindConfig.theme.colors.greyscale["400"],
+					"--text-disable": tailwindConfig.theme.colors.greyscale["400"],
 				};
 			},
 			buttonClasses() {
 				let classes = [];
-				if (this.icon) classes.push('icon');
+				if (this.icon) classes.push("icon");
 				if (this.secondary) {
-					classes.push('secondary');
-					return classes.join(' ');
+					classes.push("secondary");
+					return classes.join(" ");
 				}
 				if (this.ternary) {
-					classes.push('ternary');
-					return classes.join(' ');
+					classes.push("ternary");
+					return classes.join(" ");
 				}
-				if (this.primary) classes.push('primary');
+				if (this.primary) classes.push("primary");
 
-				return classes.join(' ');
+				return classes.join(" ");
+			},
+		},
+		methods: {
+			click() {
+				this.$emit("click", "");
 			},
 		},
 	};

@@ -1,5 +1,5 @@
 <template>
-	<div class="l-select">
+	<div class="l-select" v-click-outside="hideSelectOption">
 		<div class="select-container flex justify-between items-center px-4 bg-greyscale-white" @click.prevent="isOpen = !isOpen" :class="getInputClass">
 			<div class="label-container flex flex-col">
 				<span class="container text-greyscale-500" :class="getLabelClass">{{ placeholder.trim() === "" ? name : placeholder }}</span>
@@ -7,7 +7,7 @@
 			</div>
 			<i class="text-greyscale-black" :class="isOpen ? 'icon-chevron-up' : 'icon-chevron-down'"></i>
 		</div>
-		<div v-show="isOpen" class="options flex flex-col p-4 sato-l-l text-greyscale-300 bg-greyscale-white">
+		<div v-if="isOpen" class="options flex flex-col p-4 sato-l-l text-greyscale-300 bg-greyscale-white">
 			<div
 				v-for="item in options"
 				:value="item"
@@ -135,6 +135,9 @@
 				} else {
 					this.selected = item;
 				}
+			},
+			hideSelectOption() {
+				this.isOpen = false;
 			},
 		},
 	};

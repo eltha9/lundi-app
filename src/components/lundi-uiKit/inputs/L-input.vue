@@ -40,8 +40,8 @@
 				v-if="type === 'password'"
 				class="text-greyscale-black input-icon"
 				:class="showPassword ? 'icon-eye-off' : 'icon-eye'"
-				@mousedown="showPassword = true"
-				@mouseup="showPassword = false"
+				@mousedown.stop="showPassword = true"
+				@mouseup.stop="showPassword = false"
 			></i>
 		</div>
 		<div v-if="asError" class="error-text text-semantic-negative-500 sato-l-s pt-2">Sorry an error occuried</div>
@@ -65,9 +65,11 @@
 			width: 100%;
 			height: 100%;
 			border-radius: 8px;
+			will-change: all;
+			transition: all 0.3s ease;
 			&.active,
 			&.error {
-				border: 2px solid;
+				border: 1px solid;
 			}
 			&:hover {
 				@apply text-greyscale-black;
@@ -127,8 +129,11 @@
 			},
 			getLabelClass() {
 				const classes = [];
-				if (this.showInput) !this.showInput ? classes.push("sato-p-s") : classes.push("sato-l-l");
-				else this.inputValue.trim() !== "" ? classes.push("sato-p-s") : classes.push("sato-l-l");
+				// if (this.showInput) !this.showInput ? classes.push("sato-p-s") : classes.push("sato-l-l");
+				// else this.inputValue.trim() !== "" ? classes.push("sato-p-s") : classes.push("sato-l-l");
+
+				if (this.inputValue.trim() !== "") classes.push("sato-p-s");
+				else this.showInput ? classes.push("sato-p-s") : classes.push("sato-l-l");
 				this.asError ? classes.push("text-semantic-negative-500") : classes.push("text-greyscale-500");
 
 				return classes.join(" ");
