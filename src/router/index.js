@@ -59,7 +59,7 @@ const routes = [
         component: () => import("../views/Dashboard/subViews/Templates.vue"),
       },
       {
-        path: "/templates/create",
+        path: "/templates/create/:teamId",
         name: "dashboard-templates-create",
         component: () => import("../views/Dashboard/subViews/Templates.vue"),
       },

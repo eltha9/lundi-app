@@ -167,11 +167,11 @@
 				if (this.secondary) {
 					return {
 						// default
-						"--bg": tailwindConfig.theme.colors.greyscale.white,
+						"--bg": "",
 						"--border": color["500"],
 						"--text": color["700"],
 						//on hover
-						"--bg-hover": tailwindConfig.theme.colors.greyscale.white,
+						"--bg-hover": tailwindConfig.theme.colors.primary[100],
 						"--border-hover": color["700"],
 						"--text-hover": color["700"],
 						// on press
@@ -191,7 +191,7 @@
 				if (this.ternary) {
 					return {
 						// default
-						"--bg": tailwindConfig.theme.colors.greyscale.white,
+						"--bg": "",
 						"--border": tailwindConfig.theme.colors.greyscale.white,
 						"--text": this.icon ? tailwindConfig.theme.colors.greyscale.black : color["700"],
 						//on hover
