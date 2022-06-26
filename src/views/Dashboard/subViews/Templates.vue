@@ -100,10 +100,16 @@
 <script>
 	import { mapState } from "vuex";
 	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
+	import LMenu from "@/components/lundi-uiKit/L-Menu.vue";
 	export default {
 		name: "DashboardTemplates",
 		components: {
 			Btn,
+			LCheckbox,
+			LFile,
+			LMenu,
 		},
 		computed: {
 			...mapState(["isSidebarCollapsed"]),
