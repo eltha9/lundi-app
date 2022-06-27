@@ -11,6 +11,7 @@
         :as-team-option="true"
         :users="['aze', 'sdf', 'zeeree']"
         right-cta-title="Créer une équipe"
+        :as-setting="false"
       />
 
       <div class="sub-bar flex justify-between mt-10">

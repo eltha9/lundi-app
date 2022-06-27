@@ -46,7 +46,7 @@
           title="Equipes"
         >
           <i class="icon-grid"></i>
-          <span class="sato-l-l">Mon équipes</span>
+          <span class="sato-l-l">Mon équipe</span>
         </router-link>
         <router-link
           :to="{ name: 'dashboard-analytics' }"
