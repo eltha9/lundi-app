@@ -59,7 +59,7 @@ const routes = [
 				name: 'dashboard-home',
 				component: () => import('../views/Dashboard/subViews/Home/index.vue'),
                 meta:{
-                    role:[""]
+                    role:[]
                 }
 			},
 			{
@@ -141,12 +141,12 @@ router.beforeEach((to, from, next) => {
     // explicitly return false to cancel the navigation
     const JWT = window.localStorage.getItem("jwt")
     if(JWT && JWT.trim() !== ""){
-            const data = store.dispatch("amIConnected",JWT)
-            if(data === false) return next({name:"login"})
-
-            if(to.meta.role.length === 0) return next()
-            if(to.meta.role.includes(data)) return next
-            else return next({name:"login"})
+        const data = store.dispatch("amIConnected",JWT)
+        if(data === false) return next({name:"login"})
+        console.log(to.meta)
+        if(to.meta.role.length === 0) return next()
+        if(to.meta.role.includes(data)) return next()
+        else return next({name:"login"})
         return next({name:"login"})
     }
     return next({name:"login"})
