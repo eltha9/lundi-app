@@ -55,7 +55,9 @@
 		},
 		methods: {
 			...mapMutations(["toggleLogin"]),
+			...mapActions(["logMe"]),
 			logIn() {
+				const res = this.logMe({ psw: this.passwordModel, email: this.emailModel });
 				this.$router.push({ name: "dashboard-home" });
 			},
 		},

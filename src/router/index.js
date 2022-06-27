@@ -6,6 +6,7 @@ import Login from '@/views/Login/index.vue';
 import CreateAccount from '@/views/Login/CreateAccount/index.vue';
 import Invitation from '@/views/Invitation/index.vue';
 import InvitationCreate from '@/views/Invitation/CreateAccount/index.vue';
+import store from "@/store/index.js"
 Vue.use(VueRouter);
 
 const routes = [
@@ -87,5 +88,25 @@ const router = new VueRouter({
 	base: process.env.BASE_URL,
 	routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if(
+        to.name.includes("test") || 
+        to.name.includes("login") || 
+        to.name.includes("invitation") || 
+        to.name.includes("create-account") 
+    ){
+        return next()
+    }
+
+    // explicitly return false to cancel the navigation
+    const JWT = window.localStorage.getItem("jwt")
+    if(JWT && JWT.trim() !== ""){
+            const data = store.dispatch("amIConnected",JWT)
+            if(data) return next()
+        return next({name:"login"})
+    }
+    return next({name:"login"})
+  })
 
 export default router;
