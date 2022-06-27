@@ -14,26 +14,41 @@ const routes = [
 		path: '/',
 		name: 'login',
 		component: Login,
+        meta:{
+            role:[]
+        }
 	},
 	{
 		path: '/create-account',
 		name: 'create-account',
 		component: CreateAccount,
+        meta:{
+            role:[]
+        }
 	},
 	{
 		path: '/invitation/:id',
 		name: 'invitation',
 		component: Invitation,
+        meta:{
+            role:[]
+        }
 	},
 	{
 		path: '/invitation/create',
 		name: 'invitation-create',
 		component: InvitationCreate,
+        meta:{
+            role:[]
+        }
 	},
 	{
 		path: '/test',
 		name: 'test-page',
 		component: Test,
+        meta:{
+            role:[]
+        }
 	},
 	{
 		path: '/dashboard',
@@ -43,41 +58,65 @@ const routes = [
 				path: '/dashboard',
 				name: 'dashboard-home',
 				component: () => import('../views/Dashboard/subViews/Home/index.vue'),
+                meta:{
+                    role:[""]
+                }
 			},
 			{
 				path: '/dashboard/:id',
 				name: 'dashboard-home-team',
 				component: () => import('../views/Dashboard/subViews/Home/Team.vue'),
+                meta:{
+                    role:["editor","admin"]
+                }
 			},
 			{
 				path: '/teams',
 				name: 'dashboard-teams',
 				component: () => import('../views/Dashboard/subViews/Teams.vue'),
+                meta:{
+                    role:["editor","admin"]
+                }
 			},
 			{
 				path: '/templates/:id',
 				name: 'dashboard-templates',
 				component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
+                meta:{
+                    role:[]
+                }
 			},
 			{
 				path: '/templates/create/:teamId',
 				name: 'dashboard-templates-create',
 				component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
+                meta:{
+                    role:["editor","admin"]
+                }
 			},
 			{
 				path: '/analytics',
 				name: 'dashboard-analytics',
 				component: () => import('../views/Dashboard/subViews/Analytics/index.vue'),
+                meta:{
+                    role:["editor","admin"]
+                }
 			},
 			{
 				path: '/analytics/:teamId/:id',
 				name: 'dashboard-analytics-team-member',
 				component: () => import('../views/Dashboard/subViews/Analytics/Member.vue'),
+                meta:{
+                    role:[]
+                }
 			},
 			{
 				path: '/collaborators',
 				name: 'dashboard-collaborators',
 				component: () => import('../views/Dashboard/subViews/Collaborators.vue'),
+                meta:{
+                    role:["editor","admin"]
+                }
 			},
 		],
 	},
@@ -103,7 +142,11 @@ router.beforeEach((to, from, next) => {
     const JWT = window.localStorage.getItem("jwt")
     if(JWT && JWT.trim() !== ""){
             const data = store.dispatch("amIConnected",JWT)
-            if(data) return next()
+            if(data === false) return next({name:"login"})
+
+            if(to.meta.role.length === 0) return next()
+            if(to.meta.role.includes(data)) return next
+            else return next({name:"login"})
         return next({name:"login"})
     }
     return next({name:"login"})

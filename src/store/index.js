@@ -96,7 +96,7 @@ export default new Vuex.Store({
             context.commit("setMe", data)
             const compagnieData = getCompagnieInformation(jwt)
             context.commit("setCompagnie", compagnieData.compagnie)
-            return true
+            return data.userPerm
         }
         return false
     },
