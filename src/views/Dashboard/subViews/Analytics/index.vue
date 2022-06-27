@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="sub-view-drawer flex-1 mt-6">
-        <div v-if="subView === 'Vue par équipe'" class="flex flex-col">
+        <div v-if="subView === 'Vue par équipe'" class="flex flex-col h-full">
           <div class="template-container flex justify-between mb-10">
             <graph-card class="flex-1" />
             <div class="stat-container flex-1">
@@ -86,7 +86,7 @@
               />
             </div>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 flex flex-col">
             <div class="onboardee-bar flex justify-between items-center mb-6">
               <div class="onboardee-bar-left flex items-center">
                 <h3 class="salva-h3 text-greyscale-black mr-8">Onboardings</h3>
@@ -124,69 +124,74 @@
                 </router-link>
               </div>
             </div>
-            <l-table
-              v-if="teamData.members.length > 0"
-              :headers="onboardeeTableHeader"
-              :items="teamData.members"
-              :showCheckBox="true"
-              options
-              class="table-wrapper"
-            >
-              <template #item-name="{ item }">
-                <div class="flex">
-                  <avatar :url="item.profilePic" />
-                  <div class="flex flex-col justify-between ml-4">
-                    <span class="sato-l-m text-greyscale-black"
-                      >{{ item.firstName }} {{ item.lastName }}</span
-                    >
-                    <div
-                      class="flex jsutify-between items-center text-greyscale-500 cursor-pointer"
-                      @click="copyEmail(item.email)"
-                    >
-                      <span class="truncate flex-1 sato-l-s">{{
-                        item.email
-                      }}</span>
-                      <i class="icon-copy text-base ml-2"></i>
+            <div class="flex-1 table-drawer">
+              <l-table
+                v-if="teamData.members.length > 0"
+                :headers="onboardeeTableHeader"
+                :items="teamData.members"
+                :showCheckBox="true"
+                options
+                class="table-wrapper w-full"
+              >
+                <template #item-name="{ item }">
+                  <div class="flex">
+                    <avatar :url="item.profilePic" />
+                    <div class="flex flex-col justify-between ml-4">
+                      <span class="sato-l-m text-greyscale-black"
+                        >{{ item.firstName }} {{ item.lastName }}</span
+                      >
+                      <div
+                        class="flex jsutify-between items-center text-greyscale-500 cursor-pointer"
+                        @click="copyEmail(item.email)"
+                      >
+                        <span class="truncate flex-1 sato-l-s">{{
+                          item.email
+                        }}</span>
+                        <i class="icon-copy text-base ml-2"></i>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </template>
-              <template #item-userPerm="{ item }">
-                <role-selection v-model="item.userPerm" />
-              </template>
-              <template #item-role="{ item }">
-                <div class="text-greyscale-500 flex items-center">
-                  <i class="icon-work mr-1 text-base"></i>
-                  <span class="sato-l-s font-bold">{{ item.role }}</span>
-                </div>
-              </template>
-              <template #item-progress="{ item }">
-                <l-progress-bar class="w-32" :progress="item.progress" />
-              </template>
-              <template #item-createdDate="{ item }">
-                <div class="text-greyscale-500 flex items-center">
-                  <i class="icon-calendar mr-1 text-base"></i>
-                  <span class="sato-l-s font-bold">{{
-                    formatArrivalDate(item.createdDate)
-                  }}</span>
-                </div>
-              </template>
-              <template #options="{ item }">
-                <router-link
-                  :to="{
-                    name: 'dashboard-analytics-team-member',
-                    params: { id: item.id, teamId: 'plop' },
-                  }"
-                >
-                  <btn ternary icon>
-                    <i class="icon-arrow-right"></i>
-                  </btn>
-                </router-link>
-              </template>
-            </l-table>
+                </template>
+                <template #item-userPerm="{ item }">
+                  <role-selection v-model="item.userPerm" />
+                </template>
+                <template #item-role="{ item }">
+                  <div class="text-greyscale-500 flex items-center">
+                    <i class="icon-work mr-1 text-base"></i>
+                    <span class="sato-l-s font-bold">{{ item.role }}</span>
+                  </div>
+                </template>
+                <template #item-progress="{ item }">
+                  <l-progress-bar class="w-32" :progress="item.progress" />
+                </template>
+                <template #item-createdDate="{ item }">
+                  <div class="text-greyscale-500 flex items-center">
+                    <i class="icon-calendar mr-1 text-base"></i>
+                    <span class="sato-l-s font-bold">{{
+                      formatArrivalDate(item.createdDate)
+                    }}</span>
+                  </div>
+                </template>
+                <template #options="{ item }">
+                  <router-link
+                    :to="{
+                      name: 'dashboard-analytics-team-member',
+                      params: { id: item.id, teamId: 'plop' },
+                    }"
+                  >
+                    <btn ternary icon>
+                      <i class="icon-arrow-right"></i>
+                    </btn>
+                  </router-link>
+                </template>
+              </l-table>
+            </div>
           </div>
         </div>
-        <div v-else-if="subView === 'Vue d\'ensemble'" class="flex flex-col">
+        <div
+          v-else-if="subView === 'Vue d\'ensemble'"
+          class="flex flex-col h-full"
+        >
           <div class="template-container flex justify-between mb-10">
             <graph-card class="flex-1" />
             <div class="flex-1 flex" style="gap: 16px">
@@ -260,7 +265,7 @@
               </div>
             </div>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 flex flex-col">
             <div class="onboardee-bar flex justify-between items-center mb-6">
               <div class="onboardee-bar-left flex items-center">
                 <h3 class="salva-h3 text-greyscale-black mr-8">Onboardings</h3>
@@ -298,66 +303,68 @@
                 </router-link>
               </div>
             </div>
-            <l-table
-              v-if="teamData.members.length > 0"
-              :headers="onboardeeTableHeader"
-              :items="teamData.members"
-              :showCheckBox="true"
-              options
-              class="table-wrapper"
-            >
-              <template #item-name="{ item }">
-                <div class="flex">
-                  <avatar :url="item.profilePic" />
-                  <div class="flex flex-col justify-between ml-4">
-                    <span class="sato-l-m text-greyscale-black"
-                      >{{ item.firstName }} {{ item.lastName }}</span
-                    >
-                    <div
-                      class="flex jsutify-between items-center text-greyscale-500 cursor-pointer"
-                      @click="copyEmail(item.email)"
-                    >
-                      <span class="truncate flex-1 sato-l-s">{{
-                        item.email
-                      }}</span>
-                      <i class="icon-copy text-base ml-2"></i>
+            <div class="table-drawer flex-1">
+              <l-table
+                v-if="teamData.members.length > 0"
+                :headers="onboardeeTableHeader"
+                :items="teamData.members"
+                :showCheckBox="true"
+                options
+                class="table-wrapper w-full"
+              >
+                <template #item-name="{ item }">
+                  <div class="flex">
+                    <avatar :url="item.profilePic" />
+                    <div class="flex flex-col justify-between ml-4">
+                      <span class="sato-l-m text-greyscale-black"
+                        >{{ item.firstName }} {{ item.lastName }}</span
+                      >
+                      <div
+                        class="flex jsutify-between items-center text-greyscale-500 cursor-pointer"
+                        @click="copyEmail(item.email)"
+                      >
+                        <span class="truncate flex-1 sato-l-s">{{
+                          item.email
+                        }}</span>
+                        <i class="icon-copy text-base ml-2"></i>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </template>
-              <template #item-userPerm="{ item }">
-                <role-selection v-model="item.userPerm" />
-              </template>
-              <template #item-role="{ item }">
-                <div class="text-greyscale-500 flex items-center">
-                  <i class="icon-work mr-1 text-base"></i>
-                  <span class="sato-l-s font-bold">{{ item.role }}</span>
-                </div>
-              </template>
-              <template #item-progress="{ item }">
-                <l-progress-bar class="w-32" :progress="item.progress" />
-              </template>
-              <template #item-createdDate="{ item }">
-                <div class="text-greyscale-500 flex items-center">
-                  <i class="icon-calendar mr-1 text-base"></i>
-                  <span class="sato-l-s font-bold">{{
-                    formatArrivalDate(item.createdDate)
-                  }}</span>
-                </div>
-              </template>
-              <template #options="{ item }">
-                <router-link
-                  :to="{
-                    name: 'dashboard-analytics-team-member',
-                    params: { id: item.id, teamId: 'plop' },
-                  }"
-                >
-                  <btn ternary icon>
-                    <i class="icon-arrow-right"></i>
-                  </btn>
-                </router-link>
-              </template>
-            </l-table>
+                </template>
+                <template #item-userPerm="{ item }">
+                  <role-selection v-model="item.userPerm" />
+                </template>
+                <template #item-role="{ item }">
+                  <div class="text-greyscale-500 flex items-center">
+                    <i class="icon-work mr-1 text-base"></i>
+                    <span class="sato-l-s font-bold">{{ item.role }}</span>
+                  </div>
+                </template>
+                <template #item-progress="{ item }">
+                  <l-progress-bar class="w-32" :progress="item.progress" />
+                </template>
+                <template #item-createdDate="{ item }">
+                  <div class="text-greyscale-500 flex items-center">
+                    <i class="icon-calendar mr-1 text-base"></i>
+                    <span class="sato-l-s font-bold">{{
+                      formatArrivalDate(item.createdDate)
+                    }}</span>
+                  </div>
+                </template>
+                <template #options="{ item }">
+                  <router-link
+                    :to="{
+                      name: 'dashboard-analytics-team-member',
+                      params: { id: item.id, teamId: 'plop' },
+                    }"
+                  >
+                    <btn ternary icon>
+                      <i class="icon-arrow-right"></i>
+                    </btn>
+                  </router-link>
+                </template>
+              </l-table>
+            </div>
           </div>
         </div>
       </div>
@@ -443,6 +450,16 @@
     label {
       z-index: 30;
     }
+  }
+}
+.table-drawer {
+  position: relative;
+  overflow-y: auto;
+  .table-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-bottom: 16px;
   }
 }
 </style>
