@@ -67,7 +67,7 @@ const routes = [
 				name: 'dashboard-home-team',
 				component: () => import('../views/Dashboard/subViews/Home/Team.vue'),
                 meta:{
-                    role:["editor","admin"]
+                    role:[]
                 }
 			},
 			{
@@ -76,6 +76,14 @@ const routes = [
 				component: () => import('../views/Dashboard/subViews/Teams.vue'),
                 meta:{
                     role:["editor","admin"]
+                }
+			},
+			{
+				path: '/my-team',
+				name: 'dashboard-my-team',
+				component: () => import('../views/Dashboard/subViews/My-Team.vue'),
+                meta:{
+                    role:["onboardee"]
                 }
 			},
 			{
@@ -103,11 +111,19 @@ const routes = [
                 }
 			},
 			{
+				path: '/analytics/me',
+				name: 'dashboard-analytics-me',
+				component: () => import('../views/Dashboard/subViews/Analytics/My-Onboarding.vue'),
+                meta:{
+                    role:["onboardee"]
+                }
+			},
+			{
 				path: '/analytics/:teamId/:id',
 				name: 'dashboard-analytics-team-member',
 				component: () => import('../views/Dashboard/subViews/Analytics/Member.vue'),
                 meta:{
-                    role:[]
+                    role:["editor","admin"]
                 }
 			},
 			{
@@ -128,27 +144,26 @@ const router = new VueRouter({
 	routes,
 });
 
-router.beforeEach((to, from, next) => {
+ router.beforeEach(async(to, from, next) => {
+    // those routes can be access wihtout login
     if(
         to.name.includes("test") || 
         to.name.includes("login") || 
         to.name.includes("invitation") || 
-        to.name.includes("create-account") 
+        to.name.includes("create-account")
     ){
         return next()
     }
-
-    // explicitly return false to cancel the navigation
+    // role checker
     const JWT = window.localStorage.getItem("jwt")
     if(JWT && JWT.trim() !== ""){
-        const data = store.dispatch("amIConnected",JWT)
+        const data = await store.dispatch("amIConnected",JWT)
         if(data === false) return next({name:"login"})
-        console.log(to.meta)
         if(to.meta.role.length === 0) return next()
         if(to.meta.role.includes(data)) return next()
         else return next({name:"login"})
-        return next({name:"login"})
     }
+    // default palce when you're not log in
     return next({name:"login"})
   })
 

@@ -1,5 +1,6 @@
 <template>
-	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
+	<my-space v-if="role === 'onboardee'" />
+	<main v-else class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
 			<nav-header
 				:title="compagnie.name"
@@ -103,6 +104,7 @@
 	import Btn from "@/components/lundi-uiKit/Button";
 	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
 	import TeamCard from "@/views/Dashboard/components/Team-card.vue";
+	import MySpace from "./My-Space.vue";
 	export default {
 		name: "DashboardHome",
 		components: {
@@ -111,9 +113,10 @@
 			Btn,
 			StatCard,
 			TeamCard,
+			MySpace,
 		},
 		computed: {
-			...mapState(["isSidebarCollapsed", "compagnie"]),
+			...mapState(["isSidebarCollapsed", "compagnie", "role"]),
 		},
 		data() {
 			return {

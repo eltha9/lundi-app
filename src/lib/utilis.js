@@ -13,7 +13,7 @@ export const getUserInformation = (userId) => {
 		profilePic: '/assets/test/avatar.jpeg',
 		email: 'elmo@sesame.street',
 		role: 'Lead dev',
-        userPerm:'admin',
+        userPerm:'onboardee',
         lastActivity:"2022-06-20",
         createdDate:"2022-03-02",
         progress:50,
@@ -74,7 +74,7 @@ export const login =(psw,email)=>{
             profilePic: '/assets/test/avatar.jpeg',
             email: 'elmo@sesame.street',
             role: 'Lead dev',
-            userPerm:'admin',
+            userPerm:'onboardee',
             lastActivity:"2022-06-20",
             createdDate:"2022-03-02",
             progress:50,
@@ -85,6 +85,7 @@ export const login =(psw,email)=>{
                     name:"nom de template",
                     teamName:"team plop",
                     progress: 45,
+                    lastUpdate: '2022-03-02',
                     docs:[
                         "doc id"
                     ]
@@ -93,7 +94,18 @@ export const login =(psw,email)=>{
                     id: "upyzer",
                     name:"nom de template",
                     teamName:"team plop",
+                    progress: 45,
+                    lastUpdate: '2022-03-02',
+                    docs:[
+                        "doc id"
+                    ]
+                },
+                {
+                    id: "upyzer",
+                    name:"nom de template",
+                    teamName:"team plap",
                     progress: 95,
+                    lastUpdate: '2022-03-02',
                     docs:[
                         "doc id"
                     ]
@@ -178,7 +190,7 @@ export const getMe = (jwt)=>{
             profilePic: '/assets/test/avatar.jpeg',
             email: 'elmo@sesame.street',
             role: 'Lead dev',
-            userPerm:'admin',
+            userPerm:'onboardee',
             lastActivity:"2022-06-20",
             createdDate:"2022-03-02",
             progress:50,
@@ -189,6 +201,7 @@ export const getMe = (jwt)=>{
                     name:"nom de template",
                     teamName:"team plop",
                     progress: 45,
+                    lastUpdate: '2022-03-02',
                     docs:[
                         "doc id"
                     ]
@@ -197,7 +210,18 @@ export const getMe = (jwt)=>{
                     id: "upyzer",
                     name:"nom de template",
                     teamName:"team plop",
+                    progress: 45,
+                    lastUpdate: '2022-03-02',
+                    docs:[
+                        "doc id"
+                    ]
+                },
+                {
+                    id: "upyzer",
+                    name:"nom de template",
+                    teamName:"team plap",
                     progress: 95,
+                    lastUpdate: '2022-03-02',
                     docs:[
                         "doc id"
                     ]
@@ -359,6 +383,80 @@ export const getCompagnieInformation= (jwt)=>{
               },
             ],
           },
+    }
+    const data = httpRequest({url: ``});
+	return data;
+}
+export const getMyTeam = (jwt)=>{
+    return {
+        name:"Team design",
+        id:"auzgeiugaze",
+        members:[
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+            {
+                firstName: 'Elmo',
+                lastName: '',
+                profilePic: '/assets/test/avatar.jpeg',
+                email: 'elmo@sesame.street',
+                role: 'Lead dev',
+                id:"yuerouryt"
+            },
+        ]
     }
     const data = httpRequest({url: ``});
 	return data;
