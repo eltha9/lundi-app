@@ -152,6 +152,7 @@ export default new Vuex.Store({
      *      deleteTemplate
      *      saveTemplate
      *      PublishTempalte
+     *      invitation
      *
      */
     dialogType: null,
@@ -186,23 +187,39 @@ export default new Vuex.Store({
   },
   actions: {
     openDialog(context, { type, data }) {
-      context.commit("setIsDialogOpen", true);
-      context.commit("setDialogType", type);
-      if (data) context.commit("setDialogData", data);
+        context.commit("setDialogType", type);
+        context.commit("setIsDialogOpen", true);
+        if (data) context.commit("setDialogData", data);
     },
     closeDialog(context) {
-      context.commit("setIsDialogOpen", false);
-      context.commit("setDialogType", null);
-      context.commit("setDialogData", {});
+        context.commit("setIsDialogOpen", false);
+        context.commit("setDialogType", null);
+        context.commit("setDialogData", {});
     },
     // delete tempalte
-    deleteTemplate(context) {},
+    deleteTemplate(context) {
+        context.dispatch("closeDialog")
+    },
     // create Team
-    createTeam(context, teamName) {},
+    createTeam(context, teamName) {
+        context.dispatch("closeDialog")
+        
+    },
     // save templatre
-    saveTemplate(context) {},
+    saveTemplate(context) {
+        context.dispatch("closeDialog")
+        
+    },
     // publish template
-    publishTemplate(context, { seniority = "", forWho = "" }) {},
+    publishTemplate(context, { seniority = "", forWho = "" }) {
+        context.dispatch("closeDialog")
+        
+    },
+    // invitation
+    invitation(context, mails){
+        context.dispatch("closeDialog")
+
+    },
   },
   modules: {},
 });

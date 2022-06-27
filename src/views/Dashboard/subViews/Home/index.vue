@@ -1,7 +1,14 @@
 <template>
 	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
-			<nav-header :title="compagnie.name" :can-fav="false" :as-team-option="false" right-cta-title="Inviter" />
+			<nav-header
+				:title="compagnie.name"
+				:can-fav="false"
+				:as-team-option="false"
+				right-cta-title="Créer une équipe"
+				:asSetting="false"
+				@cta="openDialog({ type: 'createTeam' })"
+			/>
 			<div class="stat-bar mt-6 flex">
 				<stat-card
 					:stat="{
@@ -90,14 +97,14 @@
 </style>
 
 <script>
-	import {mapState} from 'vuex';
-	import NavHeader from '@/views/Dashboard/Header';
-	import NavBar from '@/components/lundi-uiKit/NavBar';
-	import Btn from '@/components/lundi-uiKit/Button';
-	import StatCard from '@/views/Dashboard/components/Stat-card.vue';
-	import TeamCard from '@/views/Dashboard/components/Team-card.vue';
+	import { mapActions, mapState } from "vuex";
+	import NavHeader from "@/views/Dashboard/Header";
+	import NavBar from "@/components/lundi-uiKit/NavBar";
+	import Btn from "@/components/lundi-uiKit/Button";
+	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
+	import TeamCard from "@/views/Dashboard/components/Team-card.vue";
 	export default {
-		name: 'DashboardHome',
+		name: "DashboardHome",
 		components: {
 			NavHeader,
 			NavBar,
@@ -106,12 +113,15 @@
 			TeamCard,
 		},
 		computed: {
-			...mapState(['isSidebarCollapsed', 'compagnie']),
+			...mapState(["isSidebarCollapsed", "compagnie"]),
 		},
 		data() {
 			return {
-				subView: '',
+				subView: "",
 			};
+		},
+		methods: {
+			...mapActions(["openDialog"]),
 		},
 	};
 </script>

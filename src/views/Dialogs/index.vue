@@ -9,6 +9,7 @@
 				<save-template v-if="dialogType === 'saveTemplate'" />
 				<publish-template v-if="dialogType === 'publishTemplate'" />
 				<create-team v-if="dialogType === 'createTeam'" />
+				<invitation v-if="dialogType === 'invitation'" />
 			</div>
 		</div>
 	</div>
@@ -38,6 +39,7 @@
 	import SaveTemplate from "./Types/Save-Template.vue";
 	import PublishTemplate from "./Types/Publish-Template.vue";
 	import CreateTeam from "./Types/Create-Team.vue";
+	import Invitation from "./Types/Invitation.vue";
 
 	export default {
 		components: {
@@ -46,6 +48,7 @@
 			SaveTemplate,
 			PublishTemplate,
 			CreateTeam,
+			Invitation,
 		},
 		computed: {
 			...mapState(["isDialogOpen", "dialogType"]),

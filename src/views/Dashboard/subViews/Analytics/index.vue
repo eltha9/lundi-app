@@ -14,6 +14,7 @@
         :users="['aze', 'sdf', 'zeeree']"
         right-cta-title="Inviter"
         :as-setting="false"
+        @cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
       />
       <div class="sub-bar flex justify-between mt-10">
         <nav-bar
