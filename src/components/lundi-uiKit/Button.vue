@@ -179,7 +179,7 @@
 						"--border-pressed": color["500"],
 						"--text-pressed": color["700"],
 						// on focus
-						"--bg-focus": tailwindConfig.theme.colors.greyscale.white,
+						"--bg-focus": "",
 						"--border-focus": color["500"],
 						"--text-focus": color["700"],
 						// disable

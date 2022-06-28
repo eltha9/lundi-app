@@ -87,22 +87,6 @@ const routes = [
                 }
 			},
 			{
-				path: '/templates/:id',
-				name: 'dashboard-templates',
-				component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
-                meta:{
-                    role:[]
-                }
-			},
-			{
-				path: '/templates/create/:teamId',
-				name: 'dashboard-templates-create',
-				component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
-                meta:{
-                    role:["editor","admin"]
-                }
-			},
-			{
 				path: '/analytics',
 				name: 'dashboard-analytics',
 				component: () => import('../views/Dashboard/subViews/Analytics/index.vue'),
@@ -136,6 +120,22 @@ const routes = [
 			},
 		],
 	},
+    {
+        path: '/templates/:id',
+        name: 'dashboard-templates',
+        component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
+        meta:{
+            role:[]
+        }
+    },
+    {
+        path: '/templates/create/:teamId',
+        name: 'dashboard-templates-create',
+        component: () => import('../views/Dashboard/subViews/Templates/index.vue'),
+        meta:{
+            role:["editor","admin"]
+        }
+    },
 ];
 
 const router = new VueRouter({
