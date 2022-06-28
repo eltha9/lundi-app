@@ -116,7 +116,7 @@ export default new Vuex.Store({
         if (data) context.commit("setDialogData", data);
     },
     closeDialog(context) {
-        if(context.state.dialogType === "saveTemplate")context.state.dialogData.callBack(false)
+        if(context.state.dialogType === "saveTemplate") context.state.dialogData.callBack(false)
 
         context.commit("setIsDialogOpen", false);
         context.commit("setDialogType", null);

@@ -1,23 +1,29 @@
 <template>
-	<p class="t-p text-greyscale-700 mb-4" :contenteditable="edit" :class="fontTransform">
+	<input v-if="edit" v-model="str" type="text" class="t-p mb-4 w-100" :class="fontTransform" placeholder="Votre text" />
+	<p v-else class="t-p text-greyscale-700 mb-4" :class="fontTransform">
 		{{ str }}
 	</p>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+	input.t-p:focus {
+		border: none;
+		outline: none;
+	}
+</style>
 <script>
 	export default {
-		name: 't-p',
+		name: "t-p",
 		props: {
 			type: {
 				required: false,
 				type: String,
-				default: '',
+				default: "",
 			},
 			value: {
 				required: true,
 				type: String,
-				default: 'écrivez ici',
+				default: "écrivez ici",
 			},
 			edit: {
 				required: true,
@@ -27,19 +33,19 @@
 		},
 		data() {
 			return {
-				str: '',
+				str: "",
 			};
 		},
 		computed: {
 			fontTransform() {
-				if (this.type === 'bold') return 'font-bold';
-				else if (this.type === 'italic') return 'italic';
-				return '';
+				if (this.type === "bold") return "font-bold";
+				else if (this.type === "italic") return "italic";
+				return "";
 			},
 		},
 		watch: {
 			str(newValue) {
-				this.$emit('input', newValue);
+				this.$emit("input", newValue);
 			},
 		},
 		mounted() {
