@@ -73,39 +73,103 @@
 							<div v-for="(section, i) in template.content" class="section-menu sato-l-m text-greyscale-400" :key="i">
 								<h6 class="sato-l-m">Section {{ i + 1 }}</h6>
 								<template v-for="(item, j) in section">
-									<div v-if="item.type[0] === 'h'" :key="i + '-' + j">
+									<div
+										v-if="item.type[0] === 'h'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-text mr-3"></i>
 										Title
 									</div>
-									<div v-else-if="item.type === 'p'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'p'"
+										:key="i + '-' + j + '-' + item.type + item.subType"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-fog mr-3"></i>
 										Paragraph
 									</div>
-									<div v-else-if="item.type === 'img'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'img'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-image mr-3"></i>
 										Image
 									</div>
-									<div v-else-if="item.type === 'video'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'video'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-webcam mr-3"></i>
 										Vidéo
 									</div>
-									<div v-else-if="item.type === 'toDo'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'toDo'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-list mr-3"></i>
 										To-do
 									</div>
-									<div v-else-if="item.type === 'download'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'download'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-download mr-3"></i>
 										Télécharger
 									</div>
-									<div v-else-if="item.type === 'upload'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'upload'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-export mr-3"></i>
 										Mise en ligne
 									</div>
-									<div v-else-if="item.type === 'link'" :key="i + '-' + j">
+									<div
+										v-else-if="item.type === 'link'"
+										:key="i + '-' + j + '-' + item.type"
+										draggable
+										@dragstart="dragStart($event, i + '-' + j)"
+										@dragover.prevent
+										@dragenter.prevent
+										@drop="drop($event, i + '-' + j)"
+									>
 										<i class="icon-link mr-3"></i>
 										Lien
 									</div>
-									<div v-else :key="i + '-' + j"></div>
+									<div v-else :key="i + '-' + j + '-' + item.type"></div>
 								</template>
 								<button @click="addToSection(i)" class="add-to-section">
 									<i class="icon-add text-ternary-300 mr-2.5"></i>
@@ -513,6 +577,35 @@
 			addToSection(id) {
 				this.addToSectionNb = id;
 				this.isMenuAdd = true;
+			},
+			// drag and drop
+			drop(event, key) {
+				let itemTemp = event.dataTransfer.getData("itemID").split("-");
+				let targetTemp = key.split("-");
+				const item = { section: parseInt(itemTemp[0]), nb: parseInt(itemTemp[1]) };
+				const target = { section: parseInt(targetTemp[0]), nb: parseInt(targetTemp[1]) };
+				const itemData = JSON.parse(JSON.stringify(this.template.content[item.section][item.nb]));
+
+				// adding to section
+				if (target.nb === 0) {
+					if (item.section !== target.section) {
+						console.log();
+						this.template.content[target.section] = [itemData, ...this.template.content[target.section]];
+					}
+					// else {
+					// }
+				}
+				// else {
+				// 	if (item.section !== target.section) {
+				// 	} else {
+				// 	}
+				// }
+				console.log(JSON.parse(JSON.stringify(this.template.content[target.section])));
+			},
+			dragStart(event, key) {
+				event.dataTransfer.dropEffect = "move";
+				event.dataTransfer.effectAllowed = "move";
+				event.dataTransfer.setData("itemID", key);
 			},
 		},
 	};
