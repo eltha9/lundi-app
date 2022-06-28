@@ -11,7 +11,7 @@ export const getUserInformation = (userId) => {
 		firstName: 'Elmo',
 		lastName: '',
 		profilePic: '/assets/test/avatar.jpeg',
-		email: 'elmo@sesame.street',
+		email: 'elmo@sesame.stree',
 		role: 'Lead dev',
         userPerm:'admin',
         lastActivity:"2022-06-20",
@@ -20,18 +20,27 @@ export const getUserInformation = (userId) => {
 		id: userId,
         templates:[
             {
-                id: "upyzer",
-                name:"nom de template",
-                teamName:"team plop",
+                id: "temp1",
+                name:"Arriver",
+                teamName:"Team rh",
                 progress: 45,
                 docs:[
                     "doc id"
                 ]
             },
             {
-                id: "upyzer",
-                name:"nom de template",
-                teamName:"team plop",
+                id: "temp3",
+                name:"Bonne conduite en entreprise",
+                teamName:"Team rh",
+                progress: 45,
+                docs:[
+                    "doc id"
+                ]
+            },
+            {
+                id: "temp2",
+                name:"Utilisation des Systèmes d'information",
+                teamName:"Team SI",
                 progress: 95,
                 docs:[
                     "doc id"
@@ -41,21 +50,21 @@ export const getUserInformation = (userId) => {
         ],
         documents:[
             {
-                name:"plop.pdf",
+                name:"Contrat-de-travail.pdf",
                 uploadName:"contrat de travail",
                 uploadDate:"2022-06-22",
-                teamName:"la team name",
-                templateName:"administratif",
+                teamName:"Team rh",
+                templateName:"Arriver",
                 date:"2022-04-22",
                 status:"toLate",
                 id:"azeaze",
             },
             {
-                name:"plop.pdf",
-                uploadName:"contrat de travail",
+                name:"chartre-informatique.pdf",
+                uploadName:"Chartre informatique",
                 uploadDate:"2022-06-22",
-                teamName:"la team name",
-                templateName:"administratif",
+                teamName:"Team rh",
+                templateName:"Arriver",
                 date:"2022-04-22",
                 status:"good",
                 id:"azeaze",
@@ -69,113 +78,71 @@ export const login =(psw,email)=>{
     return {
         jwt: "agzryozetrgouaeroayertg",
         me:{
-            firstName: 'Elmo',
-            lastName: '',
-            profilePic: '/assets/test/avatar.jpeg',
-            email: 'elmo@sesame.street',
-            role: 'Lead dev',
-            userPerm:'admin',
-            lastActivity:"2022-06-20",
-            createdDate:"2022-03-02",
-            progress:50,
-            id: "ageruogyat",
-            templates:[
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plop",
-                    progress: 45,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plop",
-                    progress: 45,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plap",
-                    progress: 95,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                
-            ],
-            documents:[
-                {
-                    name:"plop.pdf",
-                    uploadName:"contrat de travail",
-                    uploadDate:"2022-06-22",
-                    teamName:"la team name",
-                    templateName:"administratif",
-                    date:"2022-04-22",
-                    status:"toLate",
-                    id:"azeaze",
-                },
-                {
-                    name:"plop.pdf",
-                    uploadName:"contrat de travail",
-                    uploadDate:"2022-06-22",
-                    teamName:"la team name",
-                    templateName:"administratif",
-                    date:"2022-04-22",
-                    status:"good",
-                    id:"azeaze",
-                },
-            ],
+            firstName: 'Jean Michel',
+		lastName: 'Genestier',
+		profilePic: '/assets/test/jmg.jpg',
+		email: 'jm@le-raincy.fr',
+		role: 'Lead dev',
+        userPerm:'admin',
+        lastActivity:"2022-06-20",
+        createdDate:"2022-03-02",
+        progress:50,
+		id: "az1",
+        templates:[
+            {
+                id: "temp1",
+                name:"Arriver",
+                teamName:"Team rh",
+                progress: 45,
+                docs:[
+                    "doc id"
+                ]
+            },
+            {
+                id: "temp3",
+                name:"Bonne conduite en entreprise",
+                teamName:"Team rh",
+                progress: 45,
+                docs:[
+                    "doc id"
+                ]
+            },
+            {
+                id: "temp2",
+                name:"",
+                teamName:"team plop",
+                progress: 95,
+                docs:[
+                    "doc id"
+                ]
+            },
+            
+        ],
+        documents:[
+            {
+                name:"Contrat-de-travail.pdf",
+                uploadName:"contrat de travail",
+                uploadDate:"2022-06-22",
+                teamName:"Team rh",
+                templateName:"Arriver",
+                date:"2022-04-22",
+                status:"toLate",
+                id:"azeaze",
+            },
+            {
+                name:"chartre-informatique.pdf",
+                uploadName:"Chartre informatique",
+                uploadDate:"2022-06-22",
+                teamName:"Team rh",
+                templateName:"Arriver",
+                date:"2022-04-22",
+                status:"good",
+                id:"azeaze",
+            },
+        ],
             settings: {
                 favs: [
-                  {
-                    title: "fav1",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
+                  
                 ],
               },
         },
@@ -185,113 +152,71 @@ export const login =(psw,email)=>{
 }
 export const getMe = (jwt)=>{
     return {
-            firstName: 'Elmo',
-            lastName: '',
-            profilePic: '/assets/test/avatar.jpeg',
-            email: 'elmo@sesame.street',
-            role: 'Lead dev',
-            userPerm:'admin',
-            lastActivity:"2022-06-20",
-            createdDate:"2022-03-02",
-            progress:50,
-            id: "ageruogyat",
-            templates:[
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plop",
-                    progress: 45,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plop",
-                    progress: 45,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                {
-                    id: "upyzer",
-                    name:"nom de template",
-                    teamName:"team plap",
-                    progress: 95,
-                    lastUpdate: '2022-03-02',
-                    docs:[
-                        "doc id"
-                    ]
-                },
-                
-            ],
-            documents:[
-                {
-                    name:"plop.pdf",
-                    uploadName:"contrat de travail",
-                    uploadDate:"2022-06-22",
-                    teamName:"la team name",
-                    templateName:"administratif",
-                    date:"2022-04-22",
-                    status:"toLate",
-                    id:"azeaze",
-                },
-                {
-                    name:"plop.pdf",
-                    uploadName:"contrat de travail",
-                    uploadDate:"2022-06-22",
-                    teamName:"la team name",
-                    templateName:"administratif",
-                    date:"2022-04-22",
-                    status:"good",
-                    id:"azeaze",
-                },
-            ],
+        firstName: 'Jean Michel',
+		lastName: 'Genestier',
+		profilePic: '/assets/test/jmg.jpg',
+		email: 'jm@le-raincy.fr',
+		role: 'Lead dev',
+        userPerm:'admin',
+        lastActivity:"2022-06-20",
+        createdDate:"2022-03-02",
+        progress:50,
+		id: "az1",
+        templates:[
+            {
+                id: "temp1",
+                name:"Arriver",
+                teamName:"Team rh",
+                progress: 45,
+                docs:[
+                    "doc id"
+                ]
+            },
+            {
+                id: "temp3",
+                name:"Bonne conduite en entreprise",
+                teamName:"Team rh",
+                progress: 45,
+                docs:[
+                    "doc id"
+                ]
+            },
+            {
+                id: "temp2",
+                name:"",
+                teamName:"team plop",
+                progress: 95,
+                docs:[
+                    "doc id"
+                ]
+            },
+            
+        ],
+        documents:[
+            {
+                name:"Contrat-de-travail.pdf",
+                uploadName:"contrat de travail",
+                uploadDate:"2022-06-22",
+                teamName:"Team rh",
+                templateName:"Arriver",
+                date:"2022-04-22",
+                status:"toLate",
+                id:"azeaze",
+            },
+            {
+                name:"chartre-informatique.pdf",
+                uploadName:"Chartre informatique",
+                uploadDate:"2022-06-22",
+                teamName:"Team rh",
+                templateName:"Arriver",
+                date:"2022-04-22",
+                status:"good",
+                id:"azeaze",
+            },
+        ],
             settings: {
                 favs: [
-                  {
-                    title: "fav1",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
-                  {
-                    title: "fav2",
-                    link: "",
-                  },
+                  
                 ],
               },
     };
@@ -306,81 +231,18 @@ export const getCompagnieInformation= (jwt)=>{
             teams: [
               {
                 id: "hazkeh",
-                name: "test",
+                name: "Team rh",
                 users: ["id1sd", "idsdqs1", "idx1"],
                 lastUpdate: "2022-06-18",
                 isFav: false,
               },
               {
                 id: "haazeazeazeh",
-                name: "test",
+                name: "Team SI",
                 users: ["id1sd", "idsdqs1", "idx1"],
                 lastUpdate: "2022-06-18",
                 isFav: false,
-              },
-              {
-                id: "haazeajkljiu",
-                name: "test",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-18",
-                isFav: false,
-              },
-              {
-                id: "haazeajkljidsu",
-                name: "test",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-18",
-                isFav: false,
-              },
-              {
-                id: "ma-super-team",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-team0",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-team9",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-tea5m",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-team4",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-team3",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
-              {
-                id: "ma-super-team2",
-                name: "Ma super team",
-                users: ["id1sd", "idsdqs1", "idx1"],
-                lastUpdate: "2022-06-20",
-                isFav: true,
-              },
+              }
             ],
           },
     }
@@ -389,71 +251,24 @@ export const getCompagnieInformation= (jwt)=>{
 }
 export const getMyTeam = (jwt)=>{
     return {
-        name:"Team design",
+        name:"Team rh",
         id:"auzgeiugaze",
         members:[
             {
                 firstName: 'Elmo',
                 lastName: '',
                 profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
+                email: 'elmo@sesame.stree',
                 role: 'Lead dev',
-                id:"yuerouryt"
+                id: "cookied",
+                
             },
             {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
-                id:"yuerouryt"
-            },
-            {
-                firstName: 'Elmo',
-                lastName: '',
-                profilePic: '/assets/test/avatar.jpeg',
-                email: 'elmo@sesame.street',
-                role: 'Lead dev',
+                firstName: 'Mr',
+                lastName: 'Cookie',
+                profilePic: '',
+                email: 'cookie@cookie.cookie',
+                role: 'Senior dev',
                 id:"yuerouryt"
             },
         ]

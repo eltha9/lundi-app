@@ -2,7 +2,7 @@
 	<div class="flex flex-col justify-between h-full w-full">
 		<div class="content">
 			<h3 class="salva-h3 text-greyscale-black mb-4">Etes-vous sûr de vouloir quitter sans sauvegarder</h3>
-			<p class="sato-p-l text-greyscale-700 mb-8">un text d'explication'</p>
+			<p class="sato-p-l text-greyscale-700 mb-8"></p>
 			<div>
 				<l-select v-model="forWho" name="Pour qui ?" :options="forWhoOtpions" class="mb-6" />
 				<l-select v-model="seniority" name="Séniorité" :options="seniorityOptions" />

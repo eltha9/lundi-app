@@ -91,7 +91,7 @@
 			</div> -->
 			<div class="bottom-user">
 				<div class="flex items-center">
-					<avatar :url="me.picture" :class="isSidebarCollapsed ? '' : 'mr-4'" small />
+					<avatar :url="me.profilePic" :class="isSidebarCollapsed ? '' : 'mr-4'" small />
 					<span v-if="!isSidebarCollapsed" class="sato-p-s text-greyscale-white">{{ getFullName }}</span>
 				</div>
 				<button>
@@ -275,10 +275,12 @@
 			...mapState(["isSidebarCollapsed", "me", "compagnie", "role"]),
 			...mapGetters(["getFullName"]),
 		},
+		mounted() {
+			console.log(this.me);
+		},
 		methods: {
 			...mapMutations(["setSidebarCollapsed"]),
 			collapseBar() {
-				console.log("plp");
 				this.setSidebarCollapsed(!this.isSidebarCollapsed);
 			},
 		},

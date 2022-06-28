@@ -2,7 +2,7 @@
 	<div class="flex flex-col justify-between h-full w-full">
 		<div class="content">
 			<h3 class="salva-h3 text-greyscale-black mb-4">Invitez des membres dans l'équipe</h3>
-			<p class="sato-p-l text-greyscale-700 mb-8">un text d'explication</p>
+			<p class="sato-p-l text-greyscale-700 mb-8"></p>
 
 			<div class="emails">
 				<l-input v-model="maillerModel" name="mario@lundi.ovh" class="my-6" @enter="addEmail" />

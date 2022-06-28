@@ -444,68 +444,68 @@
 						[
 							{
 								type: "h1",
-								str: "section name",
+								str: "",
 							},
-							{
-								type: "h2",
-								str: "section name",
-							},
-							{
-								type: "h3",
-								str: "section name",
-							},
-							{
-								type: "h4",
-								str: "section name",
-							},
-							{
-								type: "p",
-								subType: "",
-								str: "lorem ipsum",
-							},
-							{
-								type: "p",
-								subType: "italic",
-								str: "lorem ipsum",
-							},
-							{
-								type: "p",
-								subType: "bold",
-								str: "lorem ipsum",
-							},
-							{
-								type: "img",
-								fileName: "",
-								fileUrl: "https://picsum.photos/200/300?grayscale",
-							},
-							{
-								type: "video",
-								fileName: "somepdf.pdf",
-								fileUrl: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
-							},
-							{
-								type: "download",
-								fileName: "somepdf.pdf",
-								fileUrl: "https://elph.fr/",
-							},
-							{
-								type: "upload",
-								fileName: "plopplop",
-								fileUrl: "azeg",
-							},
-							{
-								type: "link",
-								url: "http://elph.fr",
-							},
-							{
-								type: "toDo",
-								items: [
-									{
-										str: "azae",
-										checked: false,
-									},
-								],
-							},
+							// {
+							// 	type: "h2",
+							// 	str: "section name",
+							// },
+							// {
+							// 	type: "h3",
+							// 	str: "section name",
+							// },
+							// {
+							// 	type: "h4",
+							// 	str: "section name",
+							// },
+							// {
+							// 	type: "p",
+							// 	subType: "",
+							// 	str: "lorem ipsum",
+							// },
+							// {
+							// 	type: "p",
+							// 	subType: "italic",
+							// 	str: "lorem ipsum",
+							// },
+							// {
+							// 	type: "p",
+							// 	subType: "bold",
+							// 	str: "lorem ipsum",
+							// },
+							// {
+							// 	type: "img",
+							// 	fileName: "",
+							// 	fileUrl: "https://picsum.photos/200/300?grayscale",
+							// },
+							// {
+							// 	type: "video",
+							// 	fileName: "somepdf.pdf",
+							// 	fileUrl: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+							// },
+							// {
+							// 	type: "download",
+							// 	fileName: "somepdf.pdf",
+							// 	fileUrl: "https://elph.fr/",
+							// },
+							// {
+							// 	type: "upload",
+							// 	fileName: "plopplop",
+							// 	fileUrl: "azeg",
+							// },
+							// {
+							// 	type: "link",
+							// 	url: "http://elph.fr",
+							// },
+							// {
+							// 	type: "toDo",
+							// 	items: [
+							// 		{
+							// 			str: "azae",
+							// 			checked: false,
+							// 		},
+							// 	],
+							// },
 						],
 					],
 				},
@@ -528,7 +528,7 @@
 			addTitle() {
 				this.template.content[this.addToSectionNb].push({
 					type: "h1",
-					str: "Votre titre",
+					str: "",
 				});
 				this.isMenuAdd = false;
 			},
@@ -536,7 +536,7 @@
 				this.template.content[this.addToSectionNb].push({
 					type: "p",
 					subType: "",
-					str: "Votre text",
+					str: "",
 				});
 				this.isMenuAdd = false;
 			},
@@ -561,7 +561,7 @@
 					type: "toDo",
 					items: [
 						{
-							str: "Une tache",
+							str: "",
 							checked: false,
 						},
 					],
@@ -592,7 +592,12 @@
 				this.isMenuAdd = false;
 			},
 			addSection() {
-				this.template.content.push([]);
+				this.template.content.push([
+					{
+						type: "h1",
+						str: "",
+					},
+				]);
 			},
 			addToSection(id) {
 				this.addToSectionNb = id;
