@@ -1,11 +1,17 @@
 <template>
 	<div class="t-download mb-10">
-		<div class="content" :style="{ gridColumn: edit ? '1/5' : '1/9' }">
+		<div class="content" :style="{gridColumn: edit ? '1/5' : '1/9'}">
 			<l-file v-if="edit" v-model="file" placeholder="un fichier" />
 			<div v-else class="wrapper">
 				<l-file v-model="file" placeholder="un fichier" class="flex-1" style="grid-column: 1/5" />
 
-				<a class="shower flex-1 text-greyscale-300 py-5 px-6 flex justify-between items-center" :href="file" target="_blank" style="grid-column: 5/9">
+				<a
+					v-if="fileName.trim() !== ''"
+					class="shower flex-1 text-greyscale-300 py-5 px-6 flex justify-between items-center"
+					:href="file"
+					target="_blank"
+					style="grid-column: 5/9"
+				>
 					<div class="sato-l-l font-bold text-greyscale-700 flex items-center">
 						<div class="icon-drawer bg-semantic-positive-100 text-semantic-positive-500 mr-4">
 							<i class="icon-document"></i>
@@ -51,7 +57,7 @@
 	}
 </style>
 <script>
-	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
+	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
 	export default {
 		components: {
 			LFile,
@@ -60,7 +66,7 @@
 			value: {
 				require: true,
 				type: String,
-				default: "",
+				default: '',
 			},
 			edit: {
 				require: true,
@@ -70,18 +76,18 @@
 			fileName: {
 				require: false,
 				type: String,
-				default: "",
+				default: '',
 			},
 		},
 		data() {
 			return {
-				file: "",
+				file: '',
 			};
 		},
 		watch: {
 			file(newValue) {
 				console.log(this.file);
-				this.$emit("input", newValue);
+				this.$emit('input', newValue);
 			},
 		},
 		mounted() {
