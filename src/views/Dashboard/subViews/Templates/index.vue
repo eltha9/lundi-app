@@ -215,10 +215,10 @@
 							<btn secondary icon class="mr-3" @click="canEdit = !canEdit">
 								<i :class="canEdit ? 'icon-eye' : 'icon-eye-off'"></i>
 							</btn>
-							<btn secondary icon class="mr-3" @click="openDialog({type:'saveTemplate',data: template})">
+							<btn secondary icon class="mr-3" @click="openDialog({type: 'saveTemplate', data: template})">
 								<i class="icon-save"></i>
 							</btn>
-							<btn primary class="flex items-center" @click="openDialog({type:'publishTemplate',data: template})">
+							<btn primary class="flex items-center" @click="openDialog({type: 'publishTemplate', data: template})">
 								Publish
 								<template #right>
 									<i class="icon-cloud-upload"></i>
@@ -260,7 +260,7 @@
 									<t-todo v-if="item.type === 'toDo'" :key="i" v-model="item.items" :edit="canEdit" :superKey="i + '-'" />
 								</template>
 								<!-- next section btn -->
-								<btn primary class="self-center w-fit">
+								<btn primary class="self-center w-fit mt-28">
 									<template #left>
 										<i class="icon-lock"></i>
 									</template>
@@ -450,12 +450,107 @@
 						[
 							{
 								type: 'h1',
-								str: '',
+								str: 'Arrêt maladie et congés payés',
 							},
-							// {
-							// 	type: "h2",
-							// 	str: "section name",
-							// },
+							{
+								type: 'h2',
+								str: 'Arrêt maladie : quelles sont les règles ?',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: 'L’arrêt de travail du salarié causé par une maladie professionnelle ou non, peut avoir des impacts sur les modalités de prise des congés. C’est le cas notamment lorsque le salarié tombe malade pendant ses congés, ou bien lorsqu’il est en arrêt maladie avant la prise de ses congés.',
+							},
+							{
+								type: 'h2',
+								str: 'Prérequis : Arrêt de travail',
+							},
+							{
+								type: 'toDo',
+								items: [
+									{
+										str: 'Prévenir au plus vite votre référent le jour J',
+										checked: false,
+									},
+									{
+										str: 'Fournir un justificatif médical dans un délai de 48h',
+										checked: false,
+									},
+									{
+										str: 'Rester à domicile jusuqu’a la finde l’arrêt de travail ',
+										checked: false,
+									},
+									{
+										str: 'Fournir le volet 3 de votre arret de travail',
+										checked: false,
+									},
+								],
+							},
+							{
+								type: 'h2',
+								str: 'Indemnisation',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "En principe, la loi prévoit un délai de carence de 3 jours  pour le versement des indemnités journalières en cas d’arrêt maladie. Sauf Que la Convention Syntex prévoit un autre dispositif: En cas d'ancienneté inférieure à un an : Les 3 premiers jours de carence sont considérés comme jours d'absence et ne seront pas indemnisés.Au delà: nous pratiquons le maintien de salaire et la subrogation et les IJSS sont perçus par l’entreprise",
+							},
+							{
+								type: 'p',
+								subType: 'bold',
+								str: 'Notre syndicat',
+							},
+							{
+								type: 'link',
+								url: 'https://www.syntex.fr/',
+							},
+							{
+								type: 'h2',
+								str: 'Incidences fiscales',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "Les IJSS sont imposables et à ce titre sont à déclarer aux services fiscaux ; en cas de maintien du salaire (avec subrogation vers l'employeur) et pour éviter une double imposition, le net imposable fourni par l'employeur aux services fiscaux tient compte de la situation (il est donc réduit de la partie IJSS  que vous déclarez par ailleurs).",
+							},
+							{
+								type: 'h2',
+								str: 'Régime spéciaux maladie chronique d’un enfant',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "Vous avez droit de prendre un congé spécifique en cas d'annonce d'un handicap, d'une pathologie chronique ou d'un cancer de votre enfant. Aucune condition d'ancienneté n'est exigée pour avoir droit au congé. La durée du congé est de 2 jours minimum. Vous devez prendre ce congé durant la période où se produit l'événement. Durant le congé, vous êtes rémunéré.",
+							},
+							{
+								type: 'upload',
+								fileName: '',
+								fileUrl: '',
+							},
+							{
+								type: 'h2',
+								str: 'Prise de congés payés',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: 'Dans le cadre de notre convention collective (Syntec), les jours de congés sont calculés en jours ouvrés (cinq semaines = 25 jours ouvrés par an, du lundi au vendredi inclus) et sont acquis mensuellement sur la base de 2,083333 jours par mois complet. ',
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "La période d'acquisition s'étend du 1er juin de l'année N-1 au 31 mai de l'année N ",
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "La validation des congés dépend du planning de production pour la période demandée avec un arbitrage prenant en compte les projets en cours, les projets potentiels et les éventuelles absences enregistrées dans l'équipe à cette même période. Premier arrivé sur les souhaits de congés, premier servi ! Si d'une année à l'autre il apparaît qu'une même période est plus prisée par plusieurs d'entre vous et que nous ne pouvons l'accorder à tous, nous tâcherons de tourner afin que nul ne soit \"privilégié\" par rapport aux autres. ",
+							},
+							{
+								type: 'p',
+								subType: '',
+								str: "La période d'acquisition s'étend du 1er juin de l'année N-1 au 31 mai de l'année N ",
+							},
 							// {
 							// 	type: "h3",
 							// 	str: "section name",
@@ -502,15 +597,6 @@
 							// {
 							// 	type: "link",
 							// 	url: "http://elph.fr",
-							// },
-							// {
-							// 	type: "toDo",
-							// 	items: [
-							// 		{
-							// 			str: "azae",
-							// 			checked: false,
-							// 		},
-							// 	],
 							// },
 						],
 					],
