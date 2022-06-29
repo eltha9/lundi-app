@@ -209,21 +209,23 @@
 								placeholder="Titre du template"
 							/>
 							<span v-else class="upper p-1" name="nameEditor">{{ template.name }}</span>
-							<i class="icon-edit ml-3 text-greyscale-500"></i>
+							<i v-if="canEdit" class="icon-edit ml-3 text-greyscale-500"></i>
 						</label>
 						<div class="flex">
-							<btn secondary icon class="mr-3" @click="canEdit = !canEdit">
-								<i :class="canEdit ? 'icon-eye' : 'icon-eye-off'"></i>
-							</btn>
-							<btn secondary icon class="mr-3" @click="openDialog({type:'saveTemplate',data: template})">
-								<i class="icon-save"></i>
-							</btn>
-							<btn primary class="flex items-center" @click="openDialog({type:'publishTemplate',data: template})">
-								Publish
-								<template #right>
-									<i class="icon-cloud-upload"></i>
-								</template>
-							</btn>
+							<template v-if="role !== 'onboardee'">
+								<btn secondary icon class="mr-3" @click="canEdit = !canEdit">
+									<i :class="canEdit ? 'icon-eye' : 'icon-eye-off'"></i>
+								</btn>
+								<btn secondary icon class="mr-3" @click="openDialog({type: 'saveTemplate', data: template})">
+									<i class="icon-save"></i>
+								</btn>
+								<btn primary class="flex items-center" @click="openDialog({type: 'publishTemplate', data: template})">
+									Publish
+									<template #right>
+										<i class="icon-cloud-upload"></i>
+									</template>
+								</btn>
+							</template>
 						</div>
 					</div>
 					<div class="main-content flex-1 bg-greyscale-white">
@@ -639,6 +641,8 @@
 				event.dataTransfer.effectAllowed = 'move';
 				event.dataTransfer.setData('itemID', key);
 			},
+			remove(section, id) {},
+			duplicate(section, id) {},
 		},
 	};
 </script>
