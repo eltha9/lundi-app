@@ -6,7 +6,7 @@
     <div class="top-bar flex flex-col">
       <nav-header
         :title="
-          subView === 'Vue d\'ensemble' ? 'Suivientreprise' : teamData.name
+          subView === 'Vue d\'ensemble' ? 'Suivi entreprise' : teamData.name
         "
         :is-fav="teamData.isFav"
         :can-fav="false"

@@ -186,7 +186,7 @@
 						style="border-radius: 8px; border: 1px solid"
 						@click="isMenuAdd ? (isMenuAdd = !isMenuAdd) : addSection()"
 					>
-						{{ !isMenuAdd ? 'Ajouter une section' : 'Retour' }}
+						{{ !isMenuAdd ? "Ajouter une section" : "Retour" }}
 
 						<i v-if="!isMenuAdd" class="icon-add ml-1.5"></i>
 					</button>
@@ -213,14 +213,14 @@
 						</label>
 						<div class="flex">
 							<template v-if="role !== 'onboardee'">
-								<btn secondary icon class="mr-3" @click="canEdit = !canEdit">
+								<btn secondary icon class="mr-3" @click="show()">
 									<i :class="canEdit ? 'icon-eye' : 'icon-eye-off'"></i>
 								</btn>
-								<btn secondary icon class="mr-3" @click="openDialog({type: 'saveTemplate', data: template})">
+								<btn secondary icon class="mr-3" @click="openDialog({ type: 'saveTemplate', data: template })">
 									<i class="icon-save"></i>
 								</btn>
-								<btn primary class="flex items-center" @click="openDialog({type: 'publishTemplate', data: template})">
-									Publish
+								<btn primary class="flex items-center" @click="openDialog({ type: 'publishTemplate', data: template })">
+									Publier
 									<template #right>
 										<i class="icon-cloud-upload"></i>
 									</template>
@@ -230,8 +230,36 @@
 					</div>
 					<div class="main-content flex-1 bg-greyscale-white">
 						<div class="drawer pb-4 w-full">
-							<div class="txt-drawer flex flex-col mt-24">
-								<template v-for="(item, i) in template.content[0]">
+							<div v-if="canEdit" class="txt-drawer mt-24 mb-10">
+								<div v-for="(section, j) in template.content" :key="j" class="mt-24 flex flex-col">
+									<template v-for="(item, i) in section">
+										<t-h v-if="item.type[0] === 'h'" :key="i" v-model="item.str" :type="item.type" :edit="canEdit" />
+										<t-p v-if="item.type === 'p'" :key="i" v-model="item.str" :type="item.subType" :edit="canEdit" />
+										<t-content
+											v-if="item.type === 'img'"
+											:key="i"
+											v-model="item.fileName"
+											:edit="canEdit"
+											:type="item.type"
+											:url="item.fileUrl"
+										/>
+										<t-content v-if="item.type === 'video'" :key="i" v-model="item.fileName" :edit="canEdit" :type="item.type" />
+										<t-link v-if="item.type === 'link'" v-model="item.url" :key="i" :edit="canEdit" />
+										<t-download v-if="item.type === 'download'" :key="i" v-model="item.fileUrl" :fileName="item.fileName" :edit="canEdit" />
+										<t-upload
+											v-if="item.type === 'upload'"
+											:key="i"
+											class="to-download"
+											v-model="item.fileUrl"
+											:fileName="item.fileName"
+											:edit="canEdit"
+										/>
+										<t-todo v-if="item.type === 'toDo'" :key="i" v-model="item.items" :edit="canEdit" :superKey="i + '-'" />
+									</template>
+								</div>
+							</div>
+							<div v-else class="txt-drawer flex flex-col mt-24 mb-10">
+								<template v-for="(item, i) in template.content[sectionNavigator]">
 									<t-h v-if="item.type[0] === 'h'" :key="i" v-model="item.str" :type="item.type" :edit="canEdit" />
 									<t-p v-if="item.type === 'p'" :key="i" v-model="item.str" :type="item.subType" :edit="canEdit" />
 									<t-content
@@ -244,13 +272,7 @@
 									/>
 									<t-content v-if="item.type === 'video'" :key="i" v-model="item.fileName" :edit="canEdit" :type="item.type" />
 									<t-link v-if="item.type === 'link'" v-model="item.url" :key="i" :edit="canEdit" />
-									<t-download
-										v-if="item.type === 'download'"
-										:key="i"
-										v-model="item.fileUrl"
-										:fileName="item.fileName"
-										:edit="canEdit"
-									/>
+									<t-download v-if="item.type === 'download'" :key="i" v-model="item.fileUrl" :fileName="item.fileName" :edit="canEdit" />
 									<t-upload
 										v-if="item.type === 'upload'"
 										:key="i"
@@ -261,8 +283,9 @@
 									/>
 									<t-todo v-if="item.type === 'toDo'" :key="i" v-model="item.items" :edit="canEdit" :superKey="i + '-'" />
 								</template>
+
 								<!-- next section btn -->
-								<btn primary class="self-center w-fit mt-28">
+								<btn primary class="self-center w-fit mt-28" @click="sectionNavigator++">
 									<template #left>
 										<i class="icon-lock"></i>
 									</template>
@@ -399,30 +422,30 @@
 		border: none;
 		outline: none;
 	}
-	input[type='text'],
+	input[type="text"],
 	textarea {
 		background-color: transparent;
 	}
 </style>
 
 <script>
-	import {mapActions, mapState} from 'vuex';
-	import Btn from '@/components/lundi-uiKit/Button.vue';
-	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
-	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
-	import LMenu from '@/components/lundi-uiKit/L-Menu.vue';
-	import Sidebar from '@/views/Dashboard/Sidebar/index.vue';
+	import { mapActions, mapState } from "vuex";
+	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
+	import LMenu from "@/components/lundi-uiKit/L-Menu.vue";
+	import Sidebar from "@/views/Dashboard/Sidebar/index.vue";
 	// template components
-	import TP from './components/t-p.vue';
-	import TH from './components/t-h.vue';
-	import TContent from './components/t-content.vue';
-	import TTodo from './components/t-todo.vue';
-	import TLink from './components/t-link.vue';
-	import TDownload from './components/t-download.vue';
-	import TUpload from './components/t-upload.vue';
+	import TP from "./components/t-p.vue";
+	import TH from "./components/t-h.vue";
+	import TContent from "./components/t-content.vue";
+	import TTodo from "./components/t-todo.vue";
+	import TLink from "./components/t-link.vue";
+	import TDownload from "./components/t-download.vue";
+	import TUpload from "./components/t-upload.vue";
 
 	export default {
-		name: 'DashboardTemplates',
+		name: "DashboardTemplates",
 		components: {
 			Btn,
 			LCheckbox,
@@ -444,113 +467,114 @@
 				templateId: null,
 				section: 0,
 				addToSectionNb: null,
-				teamId: '',
+				teamId: "",
 				isMenuAdd: false,
+				sectionNavigator: 0,
 				template: {
-					name: 'untitled',
+					name: "untitled",
 					content: [
 						[
 							{
-								type: 'h1',
-								str: 'Arrêt maladie et congés payés',
+								type: "h1",
+								str: "Arrêt maladie et congés payés",
 							},
 							{
-								type: 'h2',
-								str: 'Arrêt maladie : quelles sont les règles ?',
+								type: "h2",
+								str: "Arrêt maladie : quelles sont les règles ?",
 							},
 							{
-								type: 'p',
-								subType: '',
-								str: 'L’arrêt de travail du salarié causé par une maladie professionnelle ou non, peut avoir des impacts sur les modalités de prise des congés. C’est le cas notamment lorsque le salarié tombe malade pendant ses congés, ou bien lorsqu’il est en arrêt maladie avant la prise de ses congés.',
+								type: "p",
+								subType: "",
+								str: "L’arrêt de travail du salarié causé par une maladie professionnelle ou non, peut avoir des impacts sur les modalités de prise des congés. C’est le cas notamment lorsque le salarié tombe malade pendant ses congés, ou bien lorsqu’il est en arrêt maladie avant la prise de ses congés.",
 							},
 							{
-								type: 'h2',
-								str: 'Prérequis : Arrêt de travail',
+								type: "h2",
+								str: "Prérequis : Arrêt de travail",
 							},
 							{
-								type: 'toDo',
+								type: "toDo",
 								items: [
 									{
-										str: 'Prévenir au plus vite votre référent le jour J',
+										str: "Prévenir au plus vite votre référent le jour J",
 										checked: false,
 									},
 									{
-										str: 'Fournir un justificatif médical dans un délai de 48h',
+										str: "Fournir un justificatif médical dans un délai de 48h",
 										checked: false,
 									},
 									{
-										str: 'Rester à domicile jusuqu’a la finde l’arrêt de travail ',
+										str: "Rester à domicile jusuqu’a la finde l’arrêt de travail ",
 										checked: false,
 									},
 									{
-										str: 'Fournir le volet 3 de votre arret de travail',
+										str: "Fournir le volet 3 de votre arret de travail",
 										checked: false,
 									},
 								],
 							},
 							{
-								type: 'h2',
-								str: 'Indemnisation',
+								type: "h2",
+								str: "Indemnisation",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "En principe, la loi prévoit un délai de carence de 3 jours  pour le versement des indemnités journalières en cas d’arrêt maladie. Sauf Que la Convention Syntex prévoit un autre dispositif: En cas d'ancienneté inférieure à un an : Les 3 premiers jours de carence sont considérés comme jours d'absence et ne seront pas indemnisés.Au delà: nous pratiquons le maintien de salaire et la subrogation et les IJSS sont perçus par l’entreprise",
 							},
 							{
-								type: 'p',
-								subType: 'bold',
-								str: 'Notre syndicat',
+								type: "p",
+								subType: "bold",
+								str: "Notre syndicat",
 							},
 							{
-								type: 'link',
-								url: 'https://www.syntex.fr/',
+								type: "link",
+								url: "https://www.syntex.fr/",
 							},
 							{
-								type: 'h2',
-								str: 'Incidences fiscales',
+								type: "h2",
+								str: "Incidences fiscales",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "Les IJSS sont imposables et à ce titre sont à déclarer aux services fiscaux ; en cas de maintien du salaire (avec subrogation vers l'employeur) et pour éviter une double imposition, le net imposable fourni par l'employeur aux services fiscaux tient compte de la situation (il est donc réduit de la partie IJSS  que vous déclarez par ailleurs).",
 							},
 							{
-								type: 'h2',
-								str: 'Régime spéciaux maladie chronique d’un enfant',
+								type: "h2",
+								str: "Régime spéciaux maladie chronique d’un enfant",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "Vous avez droit de prendre un congé spécifique en cas d'annonce d'un handicap, d'une pathologie chronique ou d'un cancer de votre enfant. Aucune condition d'ancienneté n'est exigée pour avoir droit au congé. La durée du congé est de 2 jours minimum. Vous devez prendre ce congé durant la période où se produit l'événement. Durant le congé, vous êtes rémunéré.",
 							},
 							{
-								type: 'upload',
-								fileName: '',
-								fileUrl: '',
+								type: "upload",
+								fileName: "",
+								fileUrl: "",
 							},
 							{
-								type: 'h2',
-								str: 'Prise de congés payés',
+								type: "h2",
+								str: "Prise de congés payés",
 							},
 							{
-								type: 'p',
-								subType: '',
-								str: 'Dans le cadre de notre convention collective (Syntec), les jours de congés sont calculés en jours ouvrés (cinq semaines = 25 jours ouvrés par an, du lundi au vendredi inclus) et sont acquis mensuellement sur la base de 2,083333 jours par mois complet. ',
+								type: "p",
+								subType: "",
+								str: "Dans le cadre de notre convention collective (Syntec), les jours de congés sont calculés en jours ouvrés (cinq semaines = 25 jours ouvrés par an, du lundi au vendredi inclus) et sont acquis mensuellement sur la base de 2,083333 jours par mois complet. ",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "La période d'acquisition s'étend du 1er juin de l'année N-1 au 31 mai de l'année N ",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "La validation des congés dépend du planning de production pour la période demandée avec un arbitrage prenant en compte les projets en cours, les projets potentiels et les éventuelles absences enregistrées dans l'équipe à cette même période. Premier arrivé sur les souhaits de congés, premier servi ! Si d'une année à l'autre il apparaît qu'une même période est plus prisée par plusieurs d'entre vous et que nous ne pouvons l'accorder à tous, nous tâcherons de tourner afin que nul ne soit \"privilégié\" par rapport aux autres. ",
 							},
 							{
-								type: 'p',
-								subType: '',
+								type: "p",
+								subType: "",
 								str: "La période d'acquisition s'étend du 1er juin de l'année N-1 au 31 mai de l'année N ",
 							},
 							// {
@@ -601,17 +625,27 @@
 							// 	url: "http://elph.fr",
 							// },
 						],
+						[
+							{
+								type: "h1",
+								str: "Arrêt maladie et congés payés",
+							},
+							{
+								type: "h2",
+								str: "Arrêt maladie : quelles sont les règles ?",
+							},
+						],
 					],
 				},
 			};
 		},
 		computed: {
-			...mapState(['role', 'compagnie']),
+			...mapState(["role", "compagnie"]),
 		},
 		beforeMount() {
 			if (this.$route.params.id) this.templateId = this.$route.params.id;
 			if (this.$route.params.teamId) this.teamId = this.$route.params.teamId;
-			if (this.role === 'onboardee') this.canEdit = false;
+			if (this.role === "onboardee") this.canEdit = false;
 			else this.canEdit = true;
 		},
 		// beforeRouteLeave(to, from, next) {
@@ -619,44 +653,44 @@
 		// },
 		mounted() {},
 		methods: {
-			...mapActions(['openDialog']),
+			...mapActions(["openDialog"]),
 			addTitle() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'h1',
-					str: '',
+					type: "h1",
+					str: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addParagraph() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'p',
-					subType: '',
-					str: '',
+					type: "p",
+					subType: "",
+					str: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addImage() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'img',
-					fileName: '',
-					fileUrl: '',
+					type: "img",
+					fileName: "",
+					fileUrl: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addVideo() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'video',
-					fileName: '',
-					fileUrl: '',
+					type: "video",
+					fileName: "",
+					fileUrl: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addTodo() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'toDo',
+					type: "toDo",
 					items: [
 						{
-							str: '',
+							str: "",
 							checked: false,
 						},
 					],
@@ -665,32 +699,32 @@
 			},
 			addDownload() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'download',
-					fileName: '',
-					fileUrl: '',
+					type: "download",
+					fileName: "",
+					fileUrl: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addUpload() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'upload',
-					fileName: '',
-					fileUrl: '',
+					type: "upload",
+					fileName: "",
+					fileUrl: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addLink() {
 				this.template.content[this.addToSectionNb].push({
-					type: 'link',
-					url: '',
+					type: "link",
+					url: "",
 				});
 				this.isMenuAdd = false;
 			},
 			addSection() {
 				this.template.content.push([
 					{
-						type: 'h1',
-						str: '',
+						type: "h1",
+						str: "",
 					},
 				]);
 			},
@@ -698,12 +732,16 @@
 				this.addToSectionNb = id;
 				this.isMenuAdd = true;
 			},
+			show() {
+				this.canEdit = !this.canEdit;
+				this.sectionNavigator = 0;
+			},
 			// drag and drop
 			drop(event, key) {
-				let itemTemp = event.dataTransfer.getData('itemID').split('-');
-				let targetTemp = key.split('-');
-				const item = {section: parseInt(itemTemp[0]), nb: parseInt(itemTemp[1])};
-				const target = {section: parseInt(targetTemp[0]), nb: parseInt(targetTemp[1])};
+				let itemTemp = event.dataTransfer.getData("itemID").split("-");
+				let targetTemp = key.split("-");
+				const item = { section: parseInt(itemTemp[0]), nb: parseInt(itemTemp[1]) };
+				const target = { section: parseInt(targetTemp[0]), nb: parseInt(targetTemp[1]) };
 				const itemData = JSON.parse(JSON.stringify(this.template.content[item.section][item.nb]));
 
 				// adding to section
@@ -723,9 +761,9 @@
 				console.log(JSON.parse(JSON.stringify(this.template.content[target.section])));
 			},
 			dragStart(event, key) {
-				event.dataTransfer.dropEffect = 'move';
-				event.dataTransfer.effectAllowed = 'move';
-				event.dataTransfer.setData('itemID', key);
+				event.dataTransfer.dropEffect = "move";
+				event.dataTransfer.effectAllowed = "move";
+				event.dataTransfer.setData("itemID", key);
 			},
 			remove(section, id) {},
 			duplicate(section, id) {},

@@ -1,6 +1,6 @@
 <template>
 	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
-		<div class="container">
+		<div class="l-container">
 			<div class="top flex justify-between mb-10">
 				<h1 class="salva-h1 text-greyscale-black">Mon espace</h1>
 				<div class="sato-l-m text-greyscale-600">
@@ -28,7 +28,7 @@
 </template>
 
 <style lang="scss" scoped>
-	.container {
+	.l-container {
 		grid-column: 1/13;
 		.template-container {
 			display: grid;
