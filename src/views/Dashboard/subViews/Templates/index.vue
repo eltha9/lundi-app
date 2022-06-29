@@ -186,7 +186,7 @@
 						style="border-radius: 8px; border: 1px solid"
 						@click="isMenuAdd ? (isMenuAdd = !isMenuAdd) : addSection()"
 					>
-						{{ !isMenuAdd ? "Ajouter une section" : "Retour" }}
+						{{ !isMenuAdd ? 'Ajouter une section' : 'Retour' }}
 
 						<i v-if="!isMenuAdd" class="icon-add ml-1.5"></i>
 					</button>
@@ -212,13 +212,13 @@
 							<i class="icon-edit ml-3 text-greyscale-500"></i>
 						</label>
 						<div class="flex">
-							<btn secondary icon class="mr-3">
-								<i class="icon-eye"></i>
+							<btn secondary icon class="mr-3" @click="canEdit = !canEdit">
+								<i :class="canEdit ? 'icon-eye' : 'icon-eye-off'"></i>
 							</btn>
-							<btn secondary icon class="mr-3">
+							<btn secondary icon class="mr-3" @click="openDialog({type:'saveTemplate',data: template})">
 								<i class="icon-save"></i>
 							</btn>
-							<btn primary class="flex items-center">
+							<btn primary class="flex items-center" @click="openDialog({type:'publishTemplate',data: template})">
 								Publish
 								<template #right>
 									<i class="icon-cloud-upload"></i>
@@ -242,7 +242,13 @@
 									/>
 									<t-content v-if="item.type === 'video'" :key="i" v-model="item.fileName" :edit="canEdit" :type="item.type" />
 									<t-link v-if="item.type === 'link'" v-model="item.url" :key="i" :edit="canEdit" />
-									<t-download v-if="item.type === 'download'" :key="i" v-model="item.fileUrl" :fileName="item.fileName" :edit="canEdit" />
+									<t-download
+										v-if="item.type === 'download'"
+										:key="i"
+										v-model="item.fileUrl"
+										:fileName="item.fileName"
+										:edit="canEdit"
+									/>
 									<t-upload
 										v-if="item.type === 'upload'"
 										:key="i"
@@ -391,30 +397,30 @@
 		border: none;
 		outline: none;
 	}
-	input[type="text"],
+	input[type='text'],
 	textarea {
 		background-color: transparent;
 	}
 </style>
 
 <script>
-	import { mapState } from "vuex";
-	import Btn from "@/components/lundi-uiKit/Button.vue";
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
-	import LFile from "@/components/lundi-uiKit/inputs/L-file.vue";
-	import LMenu from "@/components/lundi-uiKit/L-Menu.vue";
-	import Sidebar from "@/views/Dashboard/Sidebar/index.vue";
+	import {mapActions, mapState} from 'vuex';
+	import Btn from '@/components/lundi-uiKit/Button.vue';
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
+	import LFile from '@/components/lundi-uiKit/inputs/L-file.vue';
+	import LMenu from '@/components/lundi-uiKit/L-Menu.vue';
+	import Sidebar from '@/views/Dashboard/Sidebar/index.vue';
 	// template components
-	import TP from "./components/t-p.vue";
-	import TH from "./components/t-h.vue";
-	import TContent from "./components/t-content.vue";
-	import TTodo from "./components/t-todo.vue";
-	import TLink from "./components/t-link.vue";
-	import TDownload from "./components/t-download.vue";
-	import TUpload from "./components/t-upload.vue";
+	import TP from './components/t-p.vue';
+	import TH from './components/t-h.vue';
+	import TContent from './components/t-content.vue';
+	import TTodo from './components/t-todo.vue';
+	import TLink from './components/t-link.vue';
+	import TDownload from './components/t-download.vue';
+	import TUpload from './components/t-upload.vue';
 
 	export default {
-		name: "DashboardTemplates",
+		name: 'DashboardTemplates',
 		components: {
 			Btn,
 			LCheckbox,
@@ -436,15 +442,15 @@
 				templateId: null,
 				section: 0,
 				addToSectionNb: null,
-				teamId: "",
+				teamId: '',
 				isMenuAdd: false,
 				template: {
-					name: "untitled",
+					name: 'untitled',
 					content: [
 						[
 							{
-								type: "h1",
-								str: "",
+								type: 'h1',
+								str: '',
 							},
 							// {
 							// 	type: "h2",
@@ -512,12 +518,12 @@
 			};
 		},
 		computed: {
-			...mapState(["role", "compagnie", "openDialog"]),
+			...mapState(['role', 'compagnie']),
 		},
 		beforeMount() {
 			if (this.$route.params.id) this.templateId = this.$route.params.id;
 			if (this.$route.params.teamId) this.teamId = this.$route.params.teamId;
-			if (this.role === "onboardee") this.canEdit = false;
+			if (this.role === 'onboardee') this.canEdit = false;
 			else this.canEdit = true;
 		},
 		// beforeRouteLeave(to, from, next) {
@@ -525,43 +531,44 @@
 		// },
 		mounted() {},
 		methods: {
+			...mapActions(['openDialog']),
 			addTitle() {
 				this.template.content[this.addToSectionNb].push({
-					type: "h1",
-					str: "",
+					type: 'h1',
+					str: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addParagraph() {
 				this.template.content[this.addToSectionNb].push({
-					type: "p",
-					subType: "",
-					str: "",
+					type: 'p',
+					subType: '',
+					str: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addImage() {
 				this.template.content[this.addToSectionNb].push({
-					type: "img",
-					fileName: "",
-					fileUrl: "",
+					type: 'img',
+					fileName: '',
+					fileUrl: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addVideo() {
 				this.template.content[this.addToSectionNb].push({
-					type: "video",
-					fileName: "",
-					fileUrl: "",
+					type: 'video',
+					fileName: '',
+					fileUrl: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addTodo() {
 				this.template.content[this.addToSectionNb].push({
-					type: "toDo",
+					type: 'toDo',
 					items: [
 						{
-							str: "",
+							str: '',
 							checked: false,
 						},
 					],
@@ -570,32 +577,32 @@
 			},
 			addDownload() {
 				this.template.content[this.addToSectionNb].push({
-					type: "download",
-					fileName: "",
-					fileUrl: "",
+					type: 'download',
+					fileName: '',
+					fileUrl: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addUpload() {
 				this.template.content[this.addToSectionNb].push({
-					type: "upload",
-					fileName: "",
-					fileUrl: "",
+					type: 'upload',
+					fileName: '',
+					fileUrl: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addLink() {
 				this.template.content[this.addToSectionNb].push({
-					type: "link",
-					url: "",
+					type: 'link',
+					url: '',
 				});
 				this.isMenuAdd = false;
 			},
 			addSection() {
 				this.template.content.push([
 					{
-						type: "h1",
-						str: "",
+						type: 'h1',
+						str: '',
 					},
 				]);
 			},
@@ -605,10 +612,10 @@
 			},
 			// drag and drop
 			drop(event, key) {
-				let itemTemp = event.dataTransfer.getData("itemID").split("-");
-				let targetTemp = key.split("-");
-				const item = { section: parseInt(itemTemp[0]), nb: parseInt(itemTemp[1]) };
-				const target = { section: parseInt(targetTemp[0]), nb: parseInt(targetTemp[1]) };
+				let itemTemp = event.dataTransfer.getData('itemID').split('-');
+				let targetTemp = key.split('-');
+				const item = {section: parseInt(itemTemp[0]), nb: parseInt(itemTemp[1])};
+				const target = {section: parseInt(targetTemp[0]), nb: parseInt(targetTemp[1])};
 				const itemData = JSON.parse(JSON.stringify(this.template.content[item.section][item.nb]));
 
 				// adding to section
@@ -628,9 +635,9 @@
 				console.log(JSON.parse(JSON.stringify(this.template.content[target.section])));
 			},
 			dragStart(event, key) {
-				event.dataTransfer.dropEffect = "move";
-				event.dataTransfer.effectAllowed = "move";
-				event.dataTransfer.setData("itemID", key);
+				event.dataTransfer.dropEffect = 'move';
+				event.dataTransfer.effectAllowed = 'move';
+				event.dataTransfer.setData('itemID', key);
 			},
 		},
 	};

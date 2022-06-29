@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col justify-between h-full w-full">
 		<div class="content">
-			<h3 class="salva-h3 text-greyscale-black mb-4">Etes-vous sûr de vouloir quitter sans sauvegarder</h3>
+			<h3 class="salva-h3 text-greyscale-black mb-4">Sauvegarder le template</h3>
 			<p class="sato-p-l text-greyscale-700"></p>
 		</div>
 		<div class="bottom-cta flex justify-between">
@@ -18,14 +18,14 @@
 </style>
 
 <script>
-	import Btn from "@/components/lundi-uiKit/Button.vue";
-	import { mapActions } from "vuex";
+	import Btn from '@/components/lundi-uiKit/Button.vue';
+	import {mapActions} from 'vuex';
 	export default {
 		components: {
 			Btn,
 		},
 		methods: {
-			...mapActions(["closeDialog", "saveTemplate"]),
+			...mapActions(['closeDialog', 'saveTemplate']),
 		},
 	};
 </script>
