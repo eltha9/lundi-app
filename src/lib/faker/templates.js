@@ -61,99 +61,102 @@ export const TEMPLATE = {
   name: "Ma première journée",
   id: "template-1",
   content: [
-    {
-      type: "h1",
-      str: "Ta première journée",
-    },
-    {
-      type: "toDo",
-      items: [
+    [
+
         {
-          str: "Faire le point de lancement de mission avec ton manager",
-          checked: false,
+          type: "h1",
+          str: "Ta première journée",
         },
         {
-          str: "Signer ton contrat de travail",
-          checked: false,
+          type: "toDo",
+          items: [
+            {
+              str: "Faire le point de lancement de mission avec ton manager",
+              checked: false,
+            },
+            {
+              str: "Signer ton contrat de travail",
+              checked: false,
+            },
+            {
+              str: "Descendre tous les aspects pratiques de la to-do d'onboarding",
+              checked: false,
+            },
+          ],
         },
         {
-          str: "Descendre tous les aspects pratiques de la to-do d'onboarding",
-          checked: false,
-        },
-      ],
-    },
-    {
-      type: "h2",
-      str: "Découvrir l'équipe de Acme.co",
-    },
-    {
-      type: "toDo",
-      items: [
-        {
-          str: "Rencontre ton buddy et prends un café avec lui",
-          checked: false,
+          type: "h2",
+          str: "Découvrir l'équipe de Acme.co",
         },
         {
-          str: "Découvre l'organigramme pour savoir qui fait quoi",
-          checked: false,
-        },
-      ],
-    },
-    {
-      type: "link",
-      url: "https://acme.co/sales/team-view",
-    },
-    {
-      type: "h2",
-      str: "Découvre la vision de Acme.co",
-    },
-    {
-      type: "toDo",
-      items: [
-        {
-          str: "Lecture de notre vision",
-          checked: false,
-        },
-      ],
-    },
-    {
-      type: "link",
-      url: "https://acme.co/our-vision",
-    },
-    {
-      type: "h2",
-      str: "L'administratif",
-    },
-    {
-      type: "toDo",
-      items: [
-        {
-          str: "Signe ton contrat avec ton manager",
-          checked: false,
+          type: "toDo",
+          items: [
+            {
+              str: "Rencontre ton buddy et prends un café avec lui",
+              checked: false,
+            },
+            {
+              str: "Découvre l'organigramme pour savoir qui fait quoi",
+              checked: false,
+            },
+          ],
         },
         {
-          str: "Renseigne tes informations clés dans PayFit - (invitation par email)",
-          checked: false,
+          type: "link",
+          url: "https://acme.co/sales/team-view",
         },
         {
-          str: "Renseigne tes informations dans Alan - (invitation par emai)",
-          checked: false,
+          type: "h2",
+          str: "Découvre la vision de Acme.co",
         },
-      ],
-    },
-    {
-      type: "h4",
-      str: "Ton contrat",
-    },
-    {
-      type: "download",
-      fileName: "Contrat.pdf",
-      fileUrl: "https://acme.co/yugazye165zer32fz/contrat.pdf",
-    },
-    {
-      type: "upload",
-      fileName: "",
-      fileUrl: "",
-    },
+        {
+          type: "toDo",
+          items: [
+            {
+              str: "Lecture de notre vision",
+              checked: false,
+            },
+          ],
+        },
+        {
+          type: "link",
+          url: "https://acme.co/our-vision",
+        },
+        {
+          type: "h2",
+          str: "L'administratif",
+        },
+        {
+          type: "toDo",
+          items: [
+            {
+              str: "Signe ton contrat avec ton manager",
+              checked: false,
+            },
+            {
+              str: "Renseigne tes informations clés dans PayFit - (invitation par email)",
+              checked: false,
+            },
+            {
+              str: "Renseigne tes informations dans Alan - (invitation par emai)",
+              checked: false,
+            },
+          ],
+        },
+        {
+          type: "h4",
+          str: "Ton contrat",
+        },
+        {
+          type: "download",
+          fileName: "Contrat.pdf",
+          fileUrl: "https://acme.co/yugazye165zer32fz/contrat.pdf",
+        },
+        {
+          type: "upload",
+          fileName: "",
+          fileUrl: "",
+        },
+    ]
   ],
 };

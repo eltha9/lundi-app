@@ -163,7 +163,7 @@ export const ONBOARDEE = {
                 tags: ["Tout", "Junior"],
                 users: ["a", "b", "c"],
                 teamName: 'Sales',
-                progress: 0,
+                progress: 100,
                 docs: ['doc id'],
             },
             {
@@ -185,7 +185,7 @@ export const ONBOARDEE = {
                 tags: ["Tout", "Junior"],
                 users: ["a", "b", "c"],
                 teamName: 'Sales',
-                progress: 0,
+                progress: 30,
                 docs: ['doc id'],
             },
             {
@@ -196,7 +196,7 @@ export const ONBOARDEE = {
                 tags: ["Tout", "Junior"],
                 users: ["a", "b", "c"],
                 teamName: 'Sales',
-                progress: 0,
+                progress: 90,
                 docs: ['doc id'],
             },
             {
@@ -207,7 +207,7 @@ export const ONBOARDEE = {
                 tags: ["Tout", "Junior"],
                 users: ["a", "b", "c"],
                 teamName: 'Sales',
-                progress: 0,
+                progress: 40,
                 docs: ['doc id'],
             },
     ],

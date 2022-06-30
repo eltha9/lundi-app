@@ -10,67 +10,8 @@ export const getAvatarLink = (userId) => {
 };
 
 export const getUserInformation = (userId) => {
+    console.log(MY_TEAM)
   return MY_TEAM.members.find((user) => user.id === userId);
-  //   {
-  //     firstName: "Elmo",
-  //     lastName: "",
-  //     profilePic: "/assets/test/avatar.jpeg",
-  //     email: "elmo@sesame.stree",
-  //     role: "Lead dev",
-  //     userPerm: "admin",
-  //     lastActivity: "2022-06-20",
-  //     createdDate: "2022-03-02",
-  //     progress: 50,
-  //     id: userId,
-  //     templates: [
-  //       {
-  //         id: "temp1",
-  //         name: "Arriver",
-  //         teamName: "Ressource Humaine",
-  //         lastUpdate: "2022-06-20",
-  //         progress: 45,
-  //         docs: ["doc id"],
-  //       },
-  //       {
-  //         id: "temp3",
-  //         name: "Bonne conduite en entreprise",
-  //         teamName: "Ressource Humaine",
-  //         lastUpdate: "2022-06-20",
-  //         progress: 45,
-  //         docs: ["doc id"],
-  //       },
-  //       {
-  //         id: "temp2",
-  //         name: "Utilisation des Systèmes d'information",
-  //         teamName: "Team SI",
-  //         lastUpdate: "2022-06-20",
-  //         progress: 95,
-  //         docs: ["doc id"],
-  //       },
-  //     ],
-  //     documents: [
-  //       {
-  //         name: "Contrat-de-travail.pdf",
-  //         uploadName: "contrat de travail",
-  //         uploadDate: "2022-06-22",
-  //         teamName: "Ressource Humaine",
-  //         templateName: "Arriver",
-  //         date: "2022-04-22",
-  //         status: "toLate",
-  //         id: "azeaze",
-  //       },
-  //       {
-  //         name: "chartre-informatique.pdf",
-  //         uploadName: "Chartre informatique",
-  //         uploadDate: "2022-06-22",
-  //         teamName: "Ressource Humaine",
-  //         templateName: "Arriver",
-  //         date: "2022-04-22",
-  //         status: "good",
-  //         id: "azeaze",
-  //       },
-  //     ],
-  //   };
   const data = httpRequest({ url: `/user?id=${userId}` });
   return data;
 };

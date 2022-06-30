@@ -11,7 +11,7 @@
 				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
 			/>
 			<div class="sub-bar mt-4 sato-l-l font-bold text-greyscale-600">
-				<span>Suivi > {{ teamId }} > </span><span class="text-greyscale-800">{{ member.firstName + " " + member.lastName }}</span>
+				<span>Suivi > Sales > </span><span class="text-greyscale-800">{{ member.firstName + " " + member.lastName }}</span>
 			</div>
 			<div class="sub-view-drawer flex-1 mt-6 flex flex-col">
 				<div class="top mb-10">

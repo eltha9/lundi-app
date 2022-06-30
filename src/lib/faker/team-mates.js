@@ -1,3 +1,107 @@
+const doc = {
+    templates: [
+        {
+            id: "template-1",
+            name: "Ma première journée",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 45,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-2",
+            name: "Découvrir l'équipe",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 20,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-3",
+            name: "La vie chez Acme.co ",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 100,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-4",
+            name: "La vente chez Acme.co",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 0,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-5",
+            name: "Les missions de l'account Executive",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 30,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-6",
+            name: "Les comptes et outils à configurer",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 90,
+            docs: ['doc id'],
+        },
+        {
+            id: "template-7",
+            name: "Les outils pour les sales",
+            status: "toAssign",
+            lastUpdate: "2022-06-01",
+            tags: ["Tout", "Junior"],
+            users: ["a", "b", "c"],
+            teamName: 'Sales',
+            progress: 40,
+            docs: ['doc id'],
+        },
+],
+    documents: [
+        {
+            name: 'Contrat-de-travail.pdf',
+            uploadName: 'contrat de travail',
+            uploadDate: '2022-06-22',
+            teamName: 'Resource Humaine',
+            templateName: 'Arriver',
+            date: '2022-04-22',
+            status: 'toLate',
+            id: 'azeaze',
+        },
+        {
+            name: 'charte-informatique.pdf',
+            uploadName: 'Charte informatique',
+            uploadDate: '2022-06-22',
+            teamName: 'Resource Humaine',
+            templateName: 'Arriver',
+            date: '2022-04-22',
+            status: 'good',
+            id: 'azeaze',
+        },
+    ],
+}
+
 export const MY_TEAM = {
   name: "Sales",
   id: "auzgeiugaze",
@@ -13,6 +117,8 @@ export const MY_TEAM = {
       createdDate: "2022-06-15",
       lastActivity: "2022-06-30",
       userPerm: "editor",
+      ...doc
+      
     },
     {
       firstName: "Clément",
@@ -25,6 +131,7 @@ export const MY_TEAM = {
       createdDate: "2022-06-15",
       lastActivity: "2022-06-25",
       userPerm: "editor",
+      ...doc
     },
     {
       firstName: "Némo",
@@ -37,6 +144,7 @@ export const MY_TEAM = {
       createdDate: "2022-06-15",
       lastActivity: "2022-06-25",
       userPerm: "onboardee",
+      ...doc
     },
     {
       firstName: "Constance",
@@ -49,6 +157,7 @@ export const MY_TEAM = {
       createdDate: "2022-06-15",
       lastActivity: "2022-06-25",
       userPerm: "onboardee",
+      ...doc
     },
     {
       firstName: "Théa",
@@ -61,6 +170,8 @@ export const MY_TEAM = {
       createdDate: "2022-06-15",
       lastActivity: "2022-06-25",
       userPerm: "onboardee",
+      ...doc
     },
   ],
 };
+

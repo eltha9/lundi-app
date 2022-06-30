@@ -6,7 +6,7 @@
 	>
 		<div class="top-card flex justify-between mb-12">
 			<div class="info">
-				<h4 class="salva-h4 text-greyscale-800 mb-2 capitalize">
+				<h4 class="salva-h4 text-greyscale-800 mb-2 upper">
 					{{ template.name }}
 				</h4>
 				<div class="date text-greyscale-500 sato-l-m">

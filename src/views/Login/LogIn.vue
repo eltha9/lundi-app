@@ -49,8 +49,8 @@
 		},
 		data() {
 			return {
-				emailModel: "",
-				passwordModel: "",
+				emailModel: "alban.d@gmail.com",
+				passwordModel: "azerty",
 			};
 		},
 		methods: {
