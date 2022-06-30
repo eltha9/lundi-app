@@ -1,7 +1,7 @@
 <template>
 	<div class="main-view create-compagnie">
 		<div class="timeliner">
-			<img src="@/../public/assets/lundi-temp.png" class="mt-8 mb-2" alt="Lundi logo" />
+			<img src="@/../public/assets/lundi.svg" class="mt-8 mb-12 h-10" alt="Lundi logo" />
 			<div class="flex justify-center mb-16" v-show="timeLineStep !== stepCount">
 				<time-line :to-show="timeLineStep" :steps="steps" />
 			</div>
@@ -38,12 +38,12 @@
 	}
 </style>
 <script>
-	import TimeLine from "@/components/lundi-uiKit/TimeLine.vue";
-	import Step1 from "./Step-1.vue";
-	import Step2 from "./Step-2.vue";
-	import Step3 from "./Step-3.vue";
-	import Complete from "./Complete.vue";
-	import { mapState } from "vuex";
+	import TimeLine from '@/components/lundi-uiKit/TimeLine.vue';
+	import Step1 from './Step-1.vue';
+	import Step2 from './Step-2.vue';
+	import Step3 from './Step-3.vue';
+	import Complete from './Complete.vue';
+	import {mapState} from 'vuex';
 	export default {
 		components: {
 			TimeLine,
@@ -58,15 +58,15 @@
 				stepCount: 4,
 				createData: {
 					customisation: {
-						role: "",
+						role: '',
 						profilePicture: null,
 					},
 					compagnie: {
-						sector: "",
-						size: "",
+						sector: '',
+						size: '',
 					},
 					teams: {
-						name: "",
+						name: '',
 						tags: [],
 					},
 					invitation: {
@@ -78,25 +78,25 @@
 				 * editor
 				 * onboardee
 				 */
-				accountType: "",
+				accountType: '',
 			};
 		},
 		computed: {
-			...mapState(["timeLineStep"]),
+			...mapState(['timeLineStep']),
 		},
 		beforeMount() {
 			this.checkAccountType();
 
 			switch (this.accountType) {
-				case "admin":
+				case 'admin':
 					this.steps = [true, false, true, true];
 					this.stepCount = 4;
 					break;
-				case "editor":
+				case 'editor':
 					this.steps = [true, false, true, false];
 					this.stepCount = 3;
 					break;
-				case "onboardee":
+				case 'onboardee':
 				default:
 					this.steps = [true, false, true, false];
 					this.stepCount = 3;
@@ -104,7 +104,7 @@
 		},
 		methods: {
 			checkAccountType() {
-				this.accountType = "admin";
+				this.accountType = 'onboardee';
 				/* 
                     Checkaccount type
                 */

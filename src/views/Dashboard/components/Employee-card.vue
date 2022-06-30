@@ -4,7 +4,7 @@
 		class="employee-card px-6 py-4 flex flex-col text-greyscale-200 bg-greyscale-white"
 		:style="{ gridColumn: `${enhancedPosition.start}/${enhancedPosition.end}` }"
 	>
-		<div class="picture mb-4 text-greyscale-300" :class="userData.profilePic === '' ? 'empty bg-primray-100' : ''">
+		<div class="picture mb-4 text-greyscale-300" :class="userData.profilePic === '' ? 'empty bg-primary-100' : ''">
 			<i v-if="userData.profilePic === ''" class="icon-user text-primary-500"></i>
 			<img v-else :src="userData.profilePic" :alt="fullName" />
 		</div>
@@ -16,7 +16,7 @@
 			<i class="icon-copy copy ml-1" @click="copyEmail()"></i>
 		</div>
 		<div class="flex justify-center">
-			<span class="user-role py-2 px-3 font-bold sato-l-xs uppercase text-ternary-500 bg-ternary-100 mt-4">
+			<span class="user-role py-2 px-3 font-bold sato-l-xs uppercase text-ternary-500 bg-ternary-100 mt-4 truncate" :title="userData.role">
 				{{ userData.role }}
 			</span>
 		</div>

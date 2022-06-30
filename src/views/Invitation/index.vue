@@ -4,7 +4,7 @@
 			<img src="@/../public/assets/login-image.png" alt="login image" />
 		</div>
 		<div class="left bg-background-100">
-			<img src="@/../public/assets/lundi-temp.png" class="mt-8 mb-12" alt="Lundi logo" />
+			<img src="@/../public/assets/lundi.svg" class="mt-8 mb-12 h-10" alt="Lundi logo" />
 			<div class="login-title mb-3">
 				<h1 class="salva-d-s text-primary-700">L'onboarding qui <br /><span class="text-primary-300">grandit avec vous</span></h1>
 			</div>
@@ -47,10 +47,17 @@
 </style>
 
 <script>
-	import SignIn from "./SignIn.vue";
+	import {mapActions} from 'vuex';
+	import SignIn from './SignIn.vue';
 	export default {
 		components: {
 			SignIn,
+		},
+		mounted() {
+			this.logMe({psw: 'kzeazee', email: 'azleze'});
+		},
+		methods: {
+			...mapActions(['logMe']),
 		},
 	};
 </script>

@@ -32,6 +32,11 @@
 			}
 		}
 	}
+	.upper {
+		&::first-letter {
+			text-transform: uppercase;
+		}
+	}
 </style>
 
 <script>

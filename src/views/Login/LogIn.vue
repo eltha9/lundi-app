@@ -1,20 +1,20 @@
 <template>
 	<div class="login">
-		<form class="login-form">
+		<div class="login-form">
 			<div class="inputs mb-12">
 				<l-input v-model="emailModel" name="Email" class="mb-6" />
 				<l-input v-model="passwordModel" name="Mot de passe" type="password" />
 			</div>
 			<div class="submit-div flex flex-col items-center">
-				<btn class="button mb-6" primary @click.native.prevent="logIn()">Se connecter</btn>
+				<btn class="button mb-6" primary @click="logIn()">Se connecter</btn>
 				<span class="text-greyscale-700"> Vous n’avez pas de compte ? <button class="switch-btn" @click="toggleLogin()">Inscrivez-vous</button> </span>
 			</div>
-		</form>
+		</div>
 	</div>
 </template>
 <style lang="scss" scoped>
 	.login {
-		form.login-form {
+		.login-form {
 			display: grid;
 			grid-template-columns: repeat(6, 1fr);
 			gap: 16px;
@@ -49,14 +49,17 @@
 		},
 		data() {
 			return {
-				emailModel: "",
-				passwordModel: "",
+				emailModel: "alban.d@gmail.com",
+				passwordModel: "azerty",
 			};
 		},
 		methods: {
 			...mapMutations(["toggleLogin"]),
-			logIn() {
-				this.$router.push({ name: "dashboard-home" });
+			...mapActions(["logMe"]),
+			async logIn() {
+				const res = await this.logMe({ psw: this.passwordModel, email: this.emailModel });
+
+				if (res) this.$router.push({ name: "dashboard-home" });
 			},
 		},
 	};

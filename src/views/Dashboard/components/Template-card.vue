@@ -6,7 +6,7 @@
 					<div class="dot mr-1" :class="status.pseudoBgColor"></div>
 					{{ status.name }}
 				</div>
-				<h4 class="salva-h4 text-greyscale-800 mb-2 capitalize">{{ infos.name }}</h4>
+				<h4 class="salva-h4 text-greyscale-800 mb-2 upper">{{ infos.name }}</h4>
 				<div class="date text-greyscale-500 sato-l-m">
 					<i class="icon-update mr-1"></i>
 					<span>{{ lastUpdate }} jours</span>
@@ -41,7 +41,7 @@
 		<div class="bottom-card flex justify-between">
 			<avatar-stack :users="infos.users" />
 			<div class="tags flex justify-end">
-				<div v-for="(tag, i) in infos.tags" :key="i" class="tag px-2 py-1" :class="getTagColor(tag)">
+				<div v-for="(tag, i) in infos.tags" :key="i" class="tag px-2 py-1 uppercase font-bold sato-l-xs flex items-center" :class="getTagColor(tag)">
 					{{ tag }}
 				</div>
 			</div>

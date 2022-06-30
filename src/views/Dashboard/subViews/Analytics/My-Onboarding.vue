@@ -1,32 +1,21 @@
 <template>
-	<main v-if="member.id" class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
+	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
-			<nav-header
-				:title="member.firstName + ' ' + member.lastName"
-				:can-fav="false"
-				:as-team-option="false"
-				:users="[member.id]"
-				right-cta-title="Inviter"
-				:as-setting="false"
-				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
-			/>
-			<div class="sub-bar mt-4 sato-l-l font-bold text-greyscale-600">
-				<span>Suivi > Sales > </span><span class="text-greyscale-800">{{ member.firstName + " " + member.lastName }}</span>
-			</div>
+			<h1 class="salva-h1 text-greyscale-black mb-6">Mon suivi</h1>
 			<div class="sub-view-drawer flex-1 mt-6 flex flex-col">
 				<div class="top mb-10">
 					<camamber-card class="graph" />
 					<div class="table h-full flex flex-col">
 						<div class="flex flex-col h-full">
 							<div class="mb-4 flex justify-between">
-								<h4 class="salva-h4 text-greyscale-800">Progression par bloc</h4>
+								<h4 class="salva-h4 text-greyscale-800">Ma progression par bloc</h4>
 								<div class="text-greyscale-600 sato-l-m">
-									<span class="salva-h3 text-greyscale-700 mr-1">{{ 4 }}</span
+									<span class="salva-h3 text-greyscale-700 mr-1">{{ me.templates.length }}</span
 									>templates assignés
 								</div>
 							</div>
 							<div class="flex-1 table-container">
-								<l-table :headers="progressionTableHeader" :items="member.templates" :showCheckBox="false" options>
+								<l-table :headers="progressionTableHeader" :items="me.templates" :showCheckBox="false" options>
 									<template #item-progress="{ item }">
 										<l-progress-bar :progress="item.progress" />
 									</template>
@@ -53,9 +42,9 @@
 					</div>
 				</div>
 				<div class="bottom flex flex-col flex-1">
-					<h3 class="salva-h3 text-greyscale-black mb-6">Documents du salarié</h3>
+					<h3 class="salva-h3 text-greyscale-black mb-6">Mes documents</h3>
 					<div class="flex-1 table-container">
-						<l-table :headers="documentTableHeaders" :items="member.documents" :showCheckBox="false" options>
+						<l-table :headers="documentTableHeaders" :items="me.documents" :showCheckBox="false" options>
 							<template #item-name="{ item }">
 								<div class="flex items-center">
 									<div
@@ -169,7 +158,6 @@
 	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
 	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
 	import LTable from "@/components/lundi-uiKit/L-Table.vue";
-	import { getUserInformation } from "@/lib/utilis.js";
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
 	import RoleSelection from "@/views/Dashboard/components/Role-selection.vue";
 	import GraphCard from "../../components/Stats/Graph-card.vue";
@@ -221,13 +209,11 @@
 			CamamberCard,
 		},
 		computed: {
-			...mapState(["isSidebarCollapsed", "compagnie"]),
+			...mapState(["isSidebarCollapsed", "compagnie", "me"]),
 		},
 		data() {
 			return {
 				subView: "",
-				teamId: "",
-				member: {},
 				onboardingSwitch: "enCours",
 				startDate: "2022-01-01",
 				endDate: "2022-12-31",
@@ -283,8 +269,6 @@
 			};
 		},
 		beforeMount() {
-			this.teamId = this.$route.params.teamId;
-			this.member = getUserInformation(this.$route.params.id);
 			this.$options.status = STATUS;
 		},
 		methods: {

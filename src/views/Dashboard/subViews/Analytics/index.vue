@@ -2,12 +2,14 @@
 	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
 			<nav-header
-				:title="subView === 'Vue d\'ensemble' ? 'Suivientreprise' : teamData.name"
+				:title="subView === 'Vue d\'ensemble' ? 'Suivi entreprise' : teamData.name"
 				:is-fav="teamData.isFav"
 				:can-fav="false"
 				:as-team-option="subView !== 'Vue d\'ensemble'"
 				:users="['aze', 'sdf', 'zeeree']"
 				right-cta-title="Inviter"
+				:as-setting="false"
+				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
 			/>
 			<div class="sub-bar flex justify-between mt-10">
 				<nav-bar v-model="subView" :items="['Vue d\'ensemble', 'Vue par équipe']" />
@@ -29,17 +31,17 @@
 				</div>
 			</div>
 			<div class="sub-view-drawer flex-1 mt-6">
-				<div v-if="subView === 'Vue par équipe'" class="flex flex-col">
+				<div v-if="subView === 'Vue par équipe'" class="flex flex-col h-full">
 					<div class="template-container flex justify-between mb-10">
 						<graph-card class="flex-1" />
 						<div class="stat-container flex-1">
-							<simple-stat-card style="grid-column: 1/4" name="Arrivées en cours" subTitle="sur la période" :value="null" valueUnit="nouveaux" />
-							<simple-stat-card style="grid-column: 4/7" name="membres" subTitle="Team plop" :value="null" valueUnit="" />
-							<simple-stat-card style="grid-column: 1/4" name="Durée moyenne" subTitle="sur la période" :value="null" valueUnit="jours" />
+							<simple-stat-card style="grid-column: 1/4" name="Arrivées en cours" subTitle="sur la période" :value="2" valueUnit="nouveaux" />
+							<simple-stat-card style="grid-column: 4/7" name="membres" :subTitle="`Team ${teamData.name}`" :value="null" valueUnit="" />
+							<simple-stat-card style="grid-column: 1/4" name="Durée moyenne" subTitle="sur la période" :value="72" valueUnit="jours" />
 							<simple-stat-card style="grid-column: 4/7" name="Briques complétées" subTitle="sur la période" :value="null" valueUnit="" />
 						</div>
 					</div>
-					<div class="flex-1">
+					<div class="flex-1 flex flex-col">
 						<div class="onboardee-bar flex justify-between items-center mb-6">
 							<div class="onboardee-bar-left flex items-center">
 								<h3 class="salva-h3 text-greyscale-black mr-8">Onboardings</h3>
@@ -69,55 +71,62 @@
 								</router-link>
 							</div>
 						</div>
-						<l-table
-							v-if="teamData.members.length > 0"
-							:headers="onboardeeTableHeader"
-							:items="teamData.members"
-							:showCheckBox="true"
-							options
-							class="table-wrapper"
-						>
-							<template #item-name="{ item }">
-								<div class="flex">
-									<avatar :url="item.profilePic" />
-									<div class="flex flex-col justify-between ml-4">
-										<span class="sato-l-m text-greyscale-black">{{ item.firstName }} {{ item.lastName }}</span>
-										<div class="flex jsutify-between items-center text-greyscale-500 cursor-pointer" @click="copyEmail(item.email)">
-											<span class="truncate flex-1 sato-l-s">{{ item.email }}</span>
-											<i class="icon-copy text-base ml-2"></i>
+						<div class="flex-1 table-drawer">
+							<l-table
+								v-if="teamData.members.length > 0"
+								:headers="onboardeeTableHeader"
+								:items="teamData.members"
+								:showCheckBox="true"
+								options
+								class="table-wrapper w-full"
+							>
+								<template #item-name="{ item }">
+									<div class="flex">
+										<avatar :url="item.profilePic" />
+										<div class="flex flex-col justify-between ml-4">
+											<span class="sato-l-m text-greyscale-black">{{ item.firstName }} {{ item.lastName }}</span>
+											<div class="flex jsutify-between items-center text-greyscale-500 cursor-pointer" @click="copyEmail(item.email)">
+												<span class="truncate flex-1 sato-l-s">{{ item.email }}</span>
+												<i class="icon-copy text-base ml-2"></i>
+											</div>
 										</div>
 									</div>
-								</div>
-							</template>
-							<template #item-userPerm="{ item }">
-								<role-selection v-model="item.userPerm" />
-							</template>
-							<template #item-role="{ item }">
-								<div class="text-greyscale-500 flex items-center">
-									<i class="icon-work mr-1 text-base"></i>
-									<span class="sato-l-s font-bold">{{ item.role }}</span>
-								</div>
-							</template>
-							<template #item-progress="{ item }">
-								<l-progress-bar class="w-32" :progress="item.progress" />
-							</template>
-							<template #item-createdDate="{ item }">
-								<div class="text-greyscale-500 flex items-center">
-									<i class="icon-calendar mr-1 text-base"></i>
-									<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
-								</div>
-							</template>
-							<template #options="{ item }">
-								<router-link :to="{ name: 'dashboard-analytics-team-member', params: { id: item.id, teamId: 'plop' } }">
-									<btn ternary icon>
-										<i class="icon-arrow-right"></i>
-									</btn>
-								</router-link>
-							</template>
-						</l-table>
+								</template>
+								<template #item-userPerm="{ item }">
+									<role-selection v-model="item.userPerm" />
+								</template>
+								<template #item-role="{ item }">
+									<div class="text-greyscale-500 flex items-center">
+										<i class="icon-work mr-1 text-base"></i>
+										<span class="sato-l-s font-bold">{{ item.role }}</span>
+									</div>
+								</template>
+								<template #item-progress="{ item }">
+									<l-progress-bar class="w-32" :progress="item.progress" />
+								</template>
+								<template #item-createdDate="{ item }">
+									<div class="text-greyscale-500 flex items-center">
+										<i class="icon-calendar mr-1 text-base"></i>
+										<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
+									</div>
+								</template>
+								<template #options="{ item }">
+									<router-link
+										:to="{
+											name: 'dashboard-analytics-team-member',
+											params: { id: item.id, teamId: 'plop' },
+										}"
+									>
+										<btn ternary icon>
+											<i class="icon-arrow-right"></i>
+										</btn>
+									</router-link>
+								</template>
+							</l-table>
+						</div>
 					</div>
 				</div>
-				<div v-else-if="subView === 'Vue d\'ensemble'" class="flex flex-col">
+				<div v-else-if="subView === 'Vue d\'ensemble'" class="flex flex-col h-full">
 					<div class="template-container flex justify-between mb-10">
 						<graph-card class="flex-1" />
 						<div class="flex-1 flex" style="gap: 16px">
@@ -126,20 +135,20 @@
 									style="grid-column: 1/4"
 									name="Arrivées en cours"
 									subTitle="sur la période"
-									:value="null"
+									:value="12"
 									valueUnit="nouveaux"
 								/>
-								<simple-stat-card style="grid-column: 1/4" name="Durée moyenne" subTitle="sur la période" :value="null" valueUnit="jours" />
+								<simple-stat-card style="grid-column: 1/4" name="Durée moyenne" subTitle="sur la période" :value="72" valueUnit="jours" />
 							</div>
 							<div class="flex-1 small-card flex flex-col justify-between">
 								<!-- card -->
 								<div class="card flex-1 flex flex-col justify-between">
 									<div class="top-card flex justify-between items-center">
 										<span class="salva-l-l text-greyscale-800">Templates</span>
-										<span class="sato-l-l text-semantic-info-500">+7</span>
+										<span class="sato-l-l text-semantic-info-500">+1</span>
 									</div>
 									<div class="bottom flex justify-between items-center">
-										<span class="salva-h3 text-greyscale-700">56</span>
+										<span class="salva-h3 text-greyscale-700">{{ compagnieTempalesNb }}</span>
 										<router-link :to="{ name: 'dashboard-teams' }" class="cursor-pointer">
 											<i class="icon-arrow-right text-greyscale-black"></i>
 										</router-link>
@@ -152,7 +161,7 @@
 										<span class="sato-l-l text-semantic-info-500"></span>
 									</div>
 									<div class="bottom flex justify-between items-center">
-										<span class="salva-h3 text-greyscale-700">56</span>
+										<span class="salva-h3 text-greyscale-700">{{ employeeCount }}</span>
 										<router-link :to="{ name: 'dashboard-teams' }" class="cursor-pointer">
 											<i class="icon-arrow-right text-greyscale-black"></i>
 										</router-link>
@@ -161,11 +170,11 @@
 								<!-- card -->
 								<div class="card flex-1 flex flex-col justify-between">
 									<div class="top-card flex justify-between items-center">
-										<span class="salva-l-l text-greyscale-800 capitalize">équipe</span>
-										<span class="sato-l-l text-semantic-info-500">+7</span>
+										<span class="salva-l-l text-greyscale-800 capitalize">équipes</span>
+										<span class="sato-l-l text-semantic-info-500">0</span>
 									</div>
 									<div class="bottom flex justify-between items-center">
-										<span class="salva-h3 text-greyscale-700">56</span>
+										<span class="salva-h3 text-greyscale-700">{{ compagnie.teams.length }}</span>
 										<router-link :to="{ name: 'dashboard-teams' }" class="cursor-pointer">
 											<i class="icon-arrow-right text-greyscale-black"></i>
 										</router-link>
@@ -174,7 +183,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex-1">
+					<div class="flex-1 flex flex-col">
 						<div class="onboardee-bar flex justify-between items-center mb-6">
 							<div class="onboardee-bar-left flex items-center">
 								<h3 class="salva-h3 text-greyscale-black mr-8">Onboardings</h3>
@@ -204,52 +213,59 @@
 								</router-link>
 							</div>
 						</div>
-						<l-table
-							v-if="teamData.members.length > 0"
-							:headers="onboardeeTableHeader"
-							:items="teamData.members"
-							:showCheckBox="true"
-							options
-							class="table-wrapper"
-						>
-							<template #item-name="{ item }">
-								<div class="flex">
-									<avatar :url="item.profilePic" />
-									<div class="flex flex-col justify-between ml-4">
-										<span class="sato-l-m text-greyscale-black">{{ item.firstName }} {{ item.lastName }}</span>
-										<div class="flex jsutify-between items-center text-greyscale-500 cursor-pointer" @click="copyEmail(item.email)">
-											<span class="truncate flex-1 sato-l-s">{{ item.email }}</span>
-											<i class="icon-copy text-base ml-2"></i>
+						<div class="table-drawer flex-1">
+							<l-table
+								v-if="teamData.members.length > 0"
+								:headers="onboardeeTableHeader"
+								:items="teamData.members"
+								:showCheckBox="true"
+								options
+								class="table-wrapper w-full"
+							>
+								<template #item-name="{ item }">
+									<div class="flex">
+										<avatar :url="item.profilePic" />
+										<div class="flex flex-col justify-between ml-4">
+											<span class="sato-l-m text-greyscale-black">{{ item.firstName }} {{ item.lastName }}</span>
+											<div class="flex jsutify-between items-center text-greyscale-500 cursor-pointer" @click="copyEmail(item.email)">
+												<span class="truncate flex-1 sato-l-s">{{ item.email }}</span>
+												<i class="icon-copy text-base ml-2"></i>
+											</div>
 										</div>
 									</div>
-								</div>
-							</template>
-							<template #item-userPerm="{ item }">
-								<role-selection v-model="item.userPerm" />
-							</template>
-							<template #item-role="{ item }">
-								<div class="text-greyscale-500 flex items-center">
-									<i class="icon-work mr-1 text-base"></i>
-									<span class="sato-l-s font-bold">{{ item.role }}</span>
-								</div>
-							</template>
-							<template #item-progress="{ item }">
-								<l-progress-bar class="w-32" :progress="item.progress" />
-							</template>
-							<template #item-createdDate="{ item }">
-								<div class="text-greyscale-500 flex items-center">
-									<i class="icon-calendar mr-1 text-base"></i>
-									<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
-								</div>
-							</template>
-							<template #options="{ item }">
-								<router-link :to="{ name: 'dashboard-analytics-team-member', params: { id: item.id, teamId: 'plop' } }">
-									<btn ternary icon>
-										<i class="icon-arrow-right"></i>
-									</btn>
-								</router-link>
-							</template>
-						</l-table>
+								</template>
+								<template #item-userPerm="{ item }">
+									<role-selection v-model="item.userPerm" />
+								</template>
+								<template #item-role="{ item }">
+									<div class="text-greyscale-500 flex items-center">
+										<i class="icon-work mr-1 text-base"></i>
+										<span class="sato-l-s font-bold">{{ item.role }}</span>
+									</div>
+								</template>
+								<template #item-progress="{ item }">
+									<l-progress-bar class="w-32" :progress="item.progress" />
+								</template>
+								<template #item-createdDate="{ item }">
+									<div class="text-greyscale-500 flex items-center">
+										<i class="icon-calendar mr-1 text-base"></i>
+										<span class="sato-l-s font-bold">{{ formatArrivalDate(item.createdDate) }}</span>
+									</div>
+								</template>
+								<template #options="{ item }">
+									<router-link
+										:to="{
+											name: 'dashboard-analytics-team-member',
+											params: { id: item.id, teamId: 'plop' },
+										}"
+									>
+										<btn ternary icon>
+											<i class="icon-arrow-right"></i>
+										</btn>
+									</router-link>
+								</template>
+							</l-table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -337,6 +353,16 @@
 			}
 		}
 	}
+	.table-drawer {
+		position: relative;
+		overflow-y: auto;
+		.table-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding-bottom: 16px;
+		}
+	}
 </style>
 
 <script>
@@ -347,7 +373,7 @@
 	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
 	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
 	import LTable from "@/components/lundi-uiKit/L-Table.vue";
-	import { getUserInformation } from "@/lib/utilis.js";
+	import { getUserInformation, getMyTeam } from "@/lib/utilis.js";
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
 	import RoleSelection from "@/views/Dashboard/components/Role-selection.vue";
 	import GraphCard from "../../components/Stats/Graph-card.vue";
@@ -370,6 +396,16 @@
 		},
 		computed: {
 			...mapState(["isSidebarCollapsed", "compagnie"]),
+			compagnieTempalesNb() {
+				let temp = 0;
+				this.compagnie.teams.map((team) => (temp += team.templates.length));
+				return temp;
+			},
+			employeeCount() {
+				let temp = 0;
+				this.compagnie.teams.map((team) => (temp += team.users.length));
+				return temp;
+			},
 		},
 		data() {
 			return {
@@ -411,102 +447,8 @@
 		beforeMount() {
 			this.teamId = this.$route.params.id;
 
-			this.teamData = {
-				id: this.teamId,
-				name: "ma super team",
-				isFav: false,
-				members: [getUserInformation("ajzge"), getUserInformation("ajzgazee"), getUserInformation("ajzgecxvx")],
-				templates: [
-					{
-						id: "plop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "pldqsdop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqsdd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs0dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs7dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs4dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs3dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs2dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs1dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-				],
-			};
+			// this.teamData = this.compagnie
+			this.teamData = getMyTeam("");
 		},
 		methods: {
 			...mapActions(["openDialog"]),

@@ -3,7 +3,15 @@
 		<div class="top flex flex-col flex-1">
 			<div class="top-logo px-6 pb-6 flex flex-col">
 				<div class="flex items-center mb-1 text-greyscale-200 corp-name" :class="isSidebarCollapsed ? 'justify-center' : 'justify-between'">
-					<span class="salva-h3">{{ isSidebarCollapsed ? compagnie.name[0] : compagnie.name }}</span>
+					<template v-if="isSidebarCollapsed">
+						<span class="salva-h3">{{ compagnie.name[0] }}</span>
+					</template>
+					<template v-else>
+						<div v-if="compagnie.logo.trim() !== ''" class="logo w-full">
+							<img :src="compagnie.logo" alt="" class="h-7" />
+						</div>
+						<span v-else class="salva-h3 truncate">{{ compagnie.name }}</span>
+					</template>
 					<button class="collapser" @click="collapseBar()" v-show="!isSidebarCollapsed">
 						<i class="icon-chevron-double-left"></i>
 					</button>
@@ -14,19 +22,31 @@
 				<span class="text-greyscale-400 sato-l-s">Lundi</span>
 			</div>
 			<div class="top-menu menu-list flex flex-col py-8 px-3 sato-l-l">
+				<!-- home dashboard -->
 				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
-					<span class="sato-l-l">Home</span>
+					<span class="sato-l-l">{{ role === "onboardee" ? "Mon espace" : "Acceuil" }}</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
+				<!-- team -->
+				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
 					<i class="icon-grid"></i>
-					<span class="sato-l-l">Mon équipes</span>
+					<span class="sato-l-l">Mon équipe</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
+				<router-link v-else :to="{ name: 'dashboard-my-team' }" class="link" title="Mon équipe">
+					<i class="icon-grid"></i>
+					<span class="sato-l-l">Mon équipe</span>
+				</router-link>
+				<!-- analytics -->
+				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
 					<i class="icon-layout"></i>
-					<span class="sato-l-l">Dashboard</span>
+					<span class="sato-l-l">Suivi</span>
 				</router-link>
-				<router-link :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
+				<router-link v-else :to="{ name: 'dashboard-analytics-me' }" class="link" title="Mon onboarding">
+					<i class="icon-layout"></i>
+					<span class="sato-l-l">Mon onboarding</span>
+				</router-link>
+				<!-- collaborators -->
+				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-collaborators' }" class="link" title="Collaborateurs">
 					<i class="icon-users"></i>
 					<span class="sato-l-l">Collaborateurs</span>
 				</router-link>
@@ -71,7 +91,7 @@
 			</div> -->
 			<div class="bottom-user">
 				<div class="flex items-center">
-					<avatar :url="me.picture" :class="isSidebarCollapsed ? '' : 'mr-4'" small />
+					<avatar :url="me.profilePic" :class="isSidebarCollapsed ? '' : 'mr-4'" small />
 					<span v-if="!isSidebarCollapsed" class="sato-p-s text-greyscale-white">{{ getFullName }}</span>
 				</div>
 				<button>
@@ -252,13 +272,15 @@
 			};
 		},
 		computed: {
-			...mapState(["isSidebarCollapsed", "me", "compagnie"]),
+			...mapState(["isSidebarCollapsed", "me", "compagnie", "role"]),
 			...mapGetters(["getFullName"]),
+		},
+		mounted() {
+			console.log(this.me);
 		},
 		methods: {
 			...mapMutations(["setSidebarCollapsed"]),
 			collapseBar() {
-				console.log("plp");
 				this.setSidebarCollapsed(!this.isSidebarCollapsed);
 			},
 		},

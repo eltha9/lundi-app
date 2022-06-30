@@ -3,9 +3,9 @@
 		<div class="step-title salva-h3 text-greyscale-800 mb-3">Créez ou rejoignez votre équipe</div>
 		<div class="sato-l-l text-greeyscale-700 mb-8">
 			{{
-				role === "admin"
-					? "Sélectionnez ou crée l’équipe métier qui correspond à votre poste pour contribuer à la création et à l’amélioration des oboardings de votre entreprise."
-					: "Choisissez l’équipe métier qui correspond à votre poste pour y retrouver toutes les informations nécéssaire à votre arrivée dans l’entreprise."
+				role === 'admin'
+					? 'Sélectionnez ou crée l’équipe métier qui correspond à votre poste pour contribuer à la création et à l’amélioration des oboardings de votre entreprise.'
+					: 'Choisissez l’équipe métier qui correspond à votre poste pour y retrouver toutes les informations nécéssaire à votre arrivée dans l’entreprise.'
 			}}
 		</div>
 		<div class="team-container">
@@ -37,7 +37,7 @@
 						class="team flex justify-between items-center py-3 px-4"
 					>
 						<div class="flex items-center">
-							<l-checkbox :checked="data.selectedTeam === team.id" :name="team.id" class="mr-3" @click="selectTeam(team.id)" />
+							<l-checkbox :checked="data.selectedTeam === team.id" :name="team.id + i" class="mr-3" @click="selectTeam(team.id)" />
 							<span class="salva-l-m" :class="data.selectedTeam === team.id ? '' : 'text-greyscale-black'">{{ team.name }}</span>
 						</div>
 						<avatar-stack :user-limit="2" :users="team.users" small />
@@ -92,11 +92,11 @@
 	}
 </style>
 <script>
-	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
-	import Btn from "@/components/lundi-uiKit/Button.vue";
-	import AvatarStack from "@/components/lundi-uiKit/avatar/AvatarStack.vue";
-	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
-	import { mapState, mapMutations } from "vuex";
+	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
+	import Btn from '@/components/lundi-uiKit/Button.vue';
+	import AvatarStack from '@/components/lundi-uiKit/avatar/AvatarStack.vue';
+	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
+	import {mapState, mapMutations} from 'vuex';
 	export default {
 		components: {
 			LInput,
@@ -111,27 +111,27 @@
 				default: () => {
 					return {
 						createdTeam: {},
-						selectedTeam: "",
+						selectedTeam: '',
 					};
 				},
 			},
 			role: {
 				require: false,
 				type: String,
-				default: "admin",
+				default: 'admin',
 			},
 		},
 		data() {
 			return {
-				data: { createdTeam: {}, selectedTeam: "" },
-				teamCreation: "",
+				data: {createdTeam: {}, selectedTeam: ''},
+				teamCreation: '',
 			};
 		},
 		computed: {
-			...mapState(["me", "compagnie"]),
+			...mapState(['me', 'compagnie']),
 			isDisable() {
 				return false;
-				if (this.data.compagnieName.trim() === "") return true;
+				if (this.data.compagnieName.trim() === '') return true;
 				if (this.data.logo === null) return true;
 				return false;
 			},
@@ -140,7 +140,7 @@
 			this.data = this.value;
 		},
 		methods: {
-			...mapMutations(["setTimeLineStep"]),
+			...mapMutations(['setTimeLineStep']),
 			nextStep(nb) {
 				if (this.isDisable) return;
 				this.setTimeLineStep(nb);
@@ -154,11 +154,11 @@
 					selected: true,
 				};
 				this.data.createdTeam = team;
-				this.teamCreation = "";
+				this.teamCreation = '';
 			},
 			selectTeam(id) {
 				if (this.data.selectedTeam === id) {
-					this.data.selectedTeam = "";
+					this.data.selectedTeam = '';
 					return;
 				}
 				this.data.selectedTeam = id;

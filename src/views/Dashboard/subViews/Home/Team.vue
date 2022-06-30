@@ -8,6 +8,8 @@
 				:as-team-option="true"
 				:users="['aze', 'sdf', 'zeeree']"
 				right-cta-title="Inviter"
+				:as-setting="false"
+				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
 			/>
 			<div class="stat-bar mt-6 flex">
 				<stat-card
@@ -35,7 +37,7 @@
 						name: 'Templates',
 						mainValue: 7,
 						mainUnit: '',
-						secondaryValue: 56,
+						secondaryValue: teamData.templates.length || 0,
 						secondaryUnit: '',
 						link: 'dashboard-analytics',
 					}"
@@ -43,9 +45,9 @@
 				<stat-card
 					:stat="{
 						name: 'Employés',
-						mainValue: -7,
+						mainValue: 1,
 						mainUnit: '',
-						secondaryValue: 3,
+						secondaryValue: teamUsers.length,
 						secondaryUnit: '',
 						link: 'dashboard-analytics',
 					}"
@@ -53,7 +55,16 @@
 			</div>
 			<div class="sub-bar flex justify-between mt-10">
 				<nav-bar v-model="subView" :items="['templates', 'membres']" />
-				<btn v-if="subView === 'templates'" ternary @click="openDialog({ type: 'publishTemplate' })">
+				<btn
+					v-if="subView === 'templates'"
+					ternary
+					@click="
+						$router.push({
+							name: 'dashboard-templates-create',
+							params: { teamId: teamData.id },
+						})
+					"
+				>
 					Créer un template
 					<template #right>
 						<i class="icon-arrow-right"></i>
@@ -75,9 +86,9 @@
 				</div>
 				<div v-else-if="subView === 'membres'" class="template-container">
 					<l-table
-						v-if="teamData.members.length > 0"
+						v-if="teamData.users.length > 0"
 						:headers="memberTableHeader"
-						:items="teamData.members"
+						:items="teamUsers"
 						:showCheckBox="true"
 						options
 						class="table-wrapper"
@@ -194,7 +205,7 @@
 	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
 	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
 	import LTable from "@/components/lundi-uiKit/L-Table.vue";
-	import { getUserInformation } from "@/lib/utilis.js";
+	import { getUserInformation, getTeamData } from "@/lib/utilis.js";
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
 	import RoleSelection from "@/views/Dashboard/components/Role-selection.vue";
 	export default {
@@ -217,6 +228,7 @@
 				subView: "",
 				teamId: "",
 				teamData: {},
+				teamUsers: [],
 				memberTableHeader: [
 					{
 						name: "Nom & Prénom",
@@ -246,105 +258,15 @@
 				],
 			};
 		},
-		beforeMount() {
+		async beforeMount() {
 			this.teamId = this.$route.params.id;
 
-			this.teamData = {
-				id: this.teamId,
-				name: "ma super team",
-				isFav: false,
-				members: [getUserInformation("ajzge"), getUserInformation("ajzgazee"), getUserInformation("ajzgecxvx")],
-				templates: [
-					{
-						id: "plop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "pldqsdop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqsdd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs0dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs7dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs4dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs3dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs2dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs1dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-				],
-			};
+			this.teamData = await getTeamData(this.teamId);
+			this.teamUsers = this.teamData.users.map((userID) => {
+				console.log(getUserInformation(userID));
+				return getUserInformation(userID);
+			});
+			console.log(this.teamUsers);
 		},
 		methods: {
 			...mapActions(["openDialog"]),

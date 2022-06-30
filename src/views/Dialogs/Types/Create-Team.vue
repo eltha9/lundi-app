@@ -2,7 +2,7 @@
 	<div class="flex flex-col justify-between h-full w-full">
 		<div class="content">
 			<h3 class="salva-h3 text-greyscale-black mb-4">Créez une nouvelle équipe</h3>
-			<p class="sato-p-l text-greyscale-700 mb-8">un text d'explication</p>
+			<p class="sato-p-l text-greyscale-700 mb-8"></p>
 
 			<div>
 				<l-input v-model="teamNameModel" name="Nom de l'équipe" class="mt-8" @enter="addTeamName()" />

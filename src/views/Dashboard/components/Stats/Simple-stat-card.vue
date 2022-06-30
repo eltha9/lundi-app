@@ -2,7 +2,7 @@
 	<div class="simple-stat-card flex flex-col justify-between text-greyscale-300 bg-greyscale-white p-6">
 		<div class="top mb-20 flex justify-between">
 			<div class="top-left">
-				<div class="mb-1 font-bold salva-l-l text-greyscale-800 capitalize">{{ name }}</div>
+				<div class="mb-1 font-bold salva-l-l text-greyscale-800 upper">{{ name }}</div>
 				<div class="sato-l-m font-bold text-greyscale-600">{{ subTitle }}</div>
 			</div>
 			<div class="top-right sato-l-l text-semantic-info-500">

@@ -1,160 +1,29 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
+import {login, getCompagnieInformation, getMe} from '@/lib/utilis.js';
 Vue.use(Vuex);
 
-const full = {
-	me: {
-		role: 'admin', // admin, edit, manager, onborder
-		firstName: 'Théa',
-		lastName: 'D',
-		picture: '/assets/test/avatar.jpeg',
-		settings: {
-			favs: [
-				{
-					title: 'fav1',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-				{
-					title: 'fav2',
-					link: '',
-				},
-			],
-		},
-	},
-	compagnie: {
-		name: 'Boite-a.con',
-		teams: [
-			{
-				id: 'hazkeh',
-				name: 'test',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-18',
-				isFav: false,
-			},
-			{
-				id: 'haazeazeazeh',
-				name: 'test',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-18',
-				isFav: false,
-			},
-			{
-				id: 'haazeajkljiu',
-				name: 'test',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-18',
-				isFav: false,
-			},
-			{
-				id: 'haazeajkljidsu',
-				name: 'test',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-18',
-				isFav: false,
-			},
-			{
-				id: 'ma-super-team',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-team0',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-team9',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-tea5m',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-team4',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-team3',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-			{
-				id: 'ma-super-team2',
-				name: 'Ma super team',
-				users: ['id1sd', 'idsdqs1', 'idx1'],
-				lastUpdate: '2022-06-20',
-				isFav: true,
-			},
-		],
-	},
-};
 export default new Vuex.Store({
 	state: {
 		isSidebarCollapsed: false,
-		compagnie: full.compagnie,
-		me: full.me,
+		compagnie: {},
+		me: {},
+		JWT: '',
+		role: '',
 		createAccount: false,
 		timeLineStep: 1,
-        isDialogOpen : false,
-        /**
-         * Possible dialogType
-         *      createTeam
-         *      deleteTemplate
-         *      saveTemplate
-         *      PublishTempalte
-         * 
-         */
-        dialogType: null,
-        dialogData: {}
+		isDialogOpen: false,
+		/**
+		 * Possible dialogType
+		 *      createTeam
+		 *      deleteTemplate
+		 *      saveTemplate
+		 *      publishTempalte
+		 *      invitation
+		 *
+		 */
+		dialogType: null,
+		dialogData: {},
 	},
 	getters: {
 		getFullName(state) {
@@ -162,6 +31,16 @@ export default new Vuex.Store({
 		},
 	},
 	mutations: {
+		setJWT(state, jwt) {
+			state.JWT = jwt;
+		},
+		setMe(state, me) {
+			state.me = me;
+			state.role = me.userPerm;
+		},
+		setCompagnie(state, compagnie) {
+			state.compagnie = compagnie;
+		},
 		setSidebarCollapsed(state, status) {
 			state.isSidebarCollapsed = status;
 		},
@@ -173,45 +52,92 @@ export default new Vuex.Store({
 
 			state.createAccount = !state.createAccount;
 		},
-        setIsDialogOpen(state, status){
-            state.isDialogOpen = status
-        },
-        setDialogType(state, dialogType){
-            state.dialogType = dialogType
-        },
-        setDialogData(state, data){
-            state.dialogData = data
-        }
-
+		setIsDialogOpen(state, status) {
+			state.isDialogOpen = status;
+		},
+		setDialogType(state, dialogType) {
+			state.dialogType = dialogType;
+		},
+		setDialogData(state, data) {
+			state.dialogData = data;
+		},
 	},
 	actions: {
-        openDialog(context, {type,data}){
-            context.commit("setIsDialogOpen", true)
-            context.commit("setDialogType", type)
-            if(data)context.commit("setDialogData", data)
-        },
-        closeDialog(context){
-            
-            context.commit("setIsDialogOpen", false)
-            context.commit("setDialogType", null)
-            context.commit("setDialogData", {})
-        },
-        // delete tempalte
-        deleteTemplate(context){
+		/**
+		 *      LOGIN
+		 */
+		logMe(context, {psw = '', email = ''}) {
+			const data = login(psw, email);
+			if (data.me.id) {
+				window.localStorage.setItem('jwt', data.jwt);
+				context.commit('setJWT', data.jwt);
+				context.commit('setMe', data.me);
+				const compagnieData = getCompagnieInformation(data.jwt);
+				context.commit('setCompagnie', compagnieData.compagnie);
+				return true;
+			}
+			return false;
+		},
+		disconectMe(context) {
+			window.localStorage.removeItem('jwt');
+			context.commit('setJWT', '');
+			context.commit('setMe', {});
+			context.commit('setCompagnie', {});
+			window.location = '/';
+		},
+		async amIConnected(context, jwt) {
+			const data = await getMe(jwt);
+			if (data.me.id) {
+				window.localStorage.setItem('jwt', jwt);
+				context.commit('setJWT', jwt);
+				context.commit('setMe', data.me);
+				const compagnieData = getCompagnieInformation(jwt);
+				context.commit('setCompagnie', compagnieData.compagnie);
+				return data.me.userPerm;
+			}
+			return false;
+		},
+		/**
+		 *      CREATE ACCOUNT
+		 */
+		createMe() {},
 
-        },
-        // create Team
-        createTeam(context, teamName){
+		/**
+		 *      DIALOGS
+		 */
+		openDialog(context, {type, data}) {
+			context.commit('setDialogType', type);
+			context.commit('setIsDialogOpen', true);
+			if (data) context.commit('setDialogData', data);
+		},
+		closeDialog(context) {
+			// if(context.state.dialogType === "saveTemplate") context.state.dialogData.callBack(false)
 
-        },
-        // save templatre
-        saveTemplate(context){
-
-        },
-        // publish template
-        publishTemplate(context, {seniority="",forWho=""}){
-
-        }
-    },
+			context.commit('setIsDialogOpen', false);
+			context.commit('setDialogType', null);
+			context.commit('setDialogData', {});
+		},
+		// delete tempalte
+		deleteTemplate(context) {
+			context.dispatch('closeDialog');
+		},
+		// create Team
+		createTeam(context, teamName) {
+			context.dispatch('closeDialog');
+		},
+		// save templatre
+		saveTemplate(context) {
+			context.dispatch('closeDialog');
+			context.state.dialogData.callBack();
+		},
+		// publish template
+		publishTemplate(context, {seniority = '', forWho = ''}) {
+			context.dispatch('closeDialog');
+		},
+		// invitation
+		invitation(context, mails) {
+			context.dispatch('closeDialog');
+		},
+	},
 	modules: {},
 });
