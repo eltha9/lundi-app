@@ -3,8 +3,9 @@
 		<div class="top mb-10">
 			<h4 class="salva-h4 text-greyscale-800">Progression global</h4>
 		</div>
-		<div class="graph flex-1 flex justify-center items-center">
-			<span class="sato-l-m font-bold text-greyscale-black">Pas encore de données pour le moment.</span>
+		<div class="graph flex-1 flex items-center">
+			<!-- <span class="sato-l-m font-bold text-greyscale-black">Pas encore de données pour le moment.</span> -->
+			<img src="@/assets/Pie_chart.png" />
 		</div>
 		<div class="bottom flex justify-between mt-10">
 			<div class="flex flex-col">
@@ -26,6 +27,13 @@
 	.camamber-card {
 		border: 1px solid;
 		border-radius: 12px;
+		.graph {
+			img {
+				margin: 0 auto;
+				height: 100px;
+				// height: 100%;
+			}
+		}
 	}
 </style>
 

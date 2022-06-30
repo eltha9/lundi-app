@@ -10,7 +10,7 @@
 							<div class="mb-4 flex justify-between">
 								<h4 class="salva-h4 text-greyscale-800">Ma progression par bloc</h4>
 								<div class="text-greyscale-600 sato-l-m">
-									<span class="salva-h3 text-greyscale-700 mr-1">{{ 4 }}</span
+									<span class="salva-h3 text-greyscale-700 mr-1">{{ me.templates.length }}</span
 									>templates assignés
 								</div>
 							</div>
