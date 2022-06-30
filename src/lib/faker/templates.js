@@ -1,7 +1,7 @@
 export const TEMPALTES = [
   {
     id: "template-1",
-    name: "Ma première journée",
+    name: "Bienvenue chez nous !",
     status: "toAssign",
     lastUpdate: "2022-06-01",
     tags: ["Tout", "Junior"],
@@ -58,7 +58,7 @@ export const TEMPALTES = [
 ];
 
 export const TEMPLATE = {
-  name: "Ma première journée",
+  name: "Bienvenue chez nous !",
   id: "template-1",
   content: [
     [

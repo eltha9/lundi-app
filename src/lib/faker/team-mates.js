@@ -2,7 +2,7 @@ const doc = {
     templates: [
         {
             id: "template-1",
-            name: "Ma première journée",
+            name: "Bienvenue chez nous !",
             status: "toAssign",
             lastUpdate: "2022-06-01",
             tags: ["Tout", "Junior"],

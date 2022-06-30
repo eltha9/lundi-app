@@ -170,7 +170,7 @@
 								<!-- card -->
 								<div class="card flex-1 flex flex-col justify-between">
 									<div class="top-card flex justify-between items-center">
-										<span class="salva-l-l text-greyscale-800 capitalize">équipe</span>
+										<span class="salva-l-l text-greyscale-800 capitalize">équipes</span>
 										<span class="sato-l-l text-semantic-info-500">0</span>
 									</div>
 									<div class="bottom flex justify-between items-center">

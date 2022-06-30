@@ -9,8 +9,7 @@ export const getAvatarLink = (userId) => {
   return data.imgLink;
 };
 
-export const getUserInformation = (userId) => {
-    console.log(MY_TEAM)
+export const getUserInformation =  (userId) => {
   return MY_TEAM.members.find((user) => user.id === userId);
   const data = httpRequest({ url: `/user?id=${userId}` });
   return data;

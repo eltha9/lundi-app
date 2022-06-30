@@ -25,7 +25,7 @@
 				<!-- home dashboard -->
 				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
-					<span class="sato-l-l">{{ role === "onnboardee" ? "Mon espace" : "Home" }}</span>
+					<span class="sato-l-l">{{ role === "onboardee" ? "Mon espace" : "Acceuil" }}</span>
 				</router-link>
 				<!-- team -->
 				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">
@@ -39,7 +39,7 @@
 				<!-- analytics -->
 				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-analytics' }" class="link" title="Dashboard">
 					<i class="icon-layout"></i>
-					<span class="sato-l-l">Dashboard</span>
+					<span class="sato-l-l">Suivi</span>
 				</router-link>
 				<router-link v-else :to="{ name: 'dashboard-analytics-me' }" class="link" title="Mon onboarding">
 					<i class="icon-layout"></i>

@@ -37,9 +37,9 @@
 			<div class="sub-view-drawer flex-1 mt-6">
 				<div v-if="subView === 'employés'" class="template-container">
 					<l-table
-						v-if="teamData.members.length > 0"
+						v-if="teamData.users.length > 0"
 						:headers="memberTableHeader"
-						:items="teamData.members"
+						:items="teamData.users"
 						:showCheckBox="true"
 						class="template-wrapper"
 					>
@@ -81,9 +81,9 @@
 				</div>
 				<div v-else-if="subView === 'onboardés'" class="template-container">
 					<l-table
-						v-if="teamData.members.length > 0"
+						v-if="teamData.users.length > 0"
 						:headers="memberTableHeader"
-						:items="teamData.members"
+						:items="teamData.users"
 						:showCheckBox="true"
 						options
 						class="template-wrapper"
@@ -189,11 +189,12 @@
 	import StatCard from "@/views/Dashboard/components/Stat-card.vue";
 	import TemplateCard from "@/views/Dashboard/components/Template-card.vue";
 	import LTable from "@/components/lundi-uiKit/L-Table.vue";
-	import { getUserInformation } from "@/lib/utilis.js";
+	import { getUserInformation, getTeamData } from "@/lib/utilis.js";
 	import Avatar from "@/components/lundi-uiKit/avatar/Avatar.vue";
 	import RoleSelection from "@/views/Dashboard/components/Role-selection.vue";
 	import SimpleSelection from "@/views/Dashboard/components/Simple-selection.vue";
 	import { ROLES } from "@/lib/config";
+	import { MY_TEAM } from "@/lib/faker/team-mates";
 	export default {
 		name: "DashboardHome",
 		components: {
@@ -246,262 +247,12 @@
 				],
 			};
 		},
-		beforeMount() {
-			this.teamId = "plop";
+		async beforeMount() {
+			this.teamId = "team-6";
 
-			this.teamData = {
-				id: this.teamId,
-				name: "ma super team",
-				isFav: false,
-				members: [
-					{
-						firstName: "A",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "d@gmail.com",
-						role: "Lead a",
-						userPerm: "admin",
-						lastActivity: "2022-05-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "hkj",
-					},
-					{
-						firstName: "B",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "e@gmail.com",
-						role: "Lead b",
-						userPerm: "admin",
-						lastActivity: "2022-06-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: ",;n,;",
-					},
-					{
-						firstName: "C",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead c",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-					{
-						firstName: "J",
-						lastName: "Dos santos",
-						profilePic: "/assets/test/avatar.jpeg",
-						email: "f@gmail.com",
-						role: "Lead O",
-						userPerm: "admin",
-						lastActivity: "2022-03-20",
-						createdDate: "2022-03-02",
-						progress: 50,
-						id: "oiuytrezertyui",
-					},
-				],
-				templates: [
-					{
-						id: "plop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "pldqsdop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilop",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqsdd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs0dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs7dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs4dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs3dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs2dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-					{
-						id: "popipoilopsqs1dd",
-						name: "template test",
-						status: "toAssign",
-						lastUpdate: "2022-06-01",
-						tags: ["Tout", "Junior"],
-						users: ["a", "b", "c"],
-					},
-				],
-			};
+			this.teamData = await getTeamData(this.teamId);
+			this.teamData.users = MY_TEAM.members;
+			console.log(this.teamData);
 		},
 		methods: {
 			...mapActions(["openDialog"]),
