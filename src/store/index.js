@@ -85,15 +85,15 @@ export default new Vuex.Store({
 			context.commit('setCompagnie', {});
 			window.location = '/';
 		},
-		amIConnected(context, jwt) {
-			const data = getMe(jwt);
-			if (data.id) {
+		async amIConnected(context, jwt) {
+			const data = await getMe(jwt);
+			if (data.me.id) {
 				window.localStorage.setItem('jwt', jwt);
 				context.commit('setJWT', jwt);
-				context.commit('setMe', data);
+				context.commit('setMe', data.me);
 				const compagnieData = getCompagnieInformation(jwt);
 				context.commit('setCompagnie', compagnieData.compagnie);
-				return data.userPerm;
+				return data.me.userPerm;
 			}
 			return false;
 		},

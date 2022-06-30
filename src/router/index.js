@@ -160,7 +160,7 @@ const router = new VueRouter({
         const data = await store.dispatch("amIConnected",JWT)
         if(data === false) return next({name:"login"})
         if(to.meta.role.length === 0) return next()
-        if(to.meta.role.includes(data)) return next()
+        if(to.meta.role.includes(data))return next()
         else return next({name:"login"})
     }
     // default palce when you're not log in
