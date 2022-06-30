@@ -2,6 +2,7 @@ import { httpRequest } from "./http";
 import { ADMIN, ONBOARDEE } from "./faker/user";
 import { COMPANY_INFORMATION } from "./faker/compagny";
 import { MY_TEAM } from "./faker/team-mates";
+import { TEMPALTES, TEMPLATE } from "./faker/templates";
 export const getAvatarLink = (userId) => {
   return "/assets/test/avatar.jpeg";
   const data = httpRequest({ url: `/avatar?id=${userId}` });
@@ -96,4 +97,12 @@ export const getMyTeam = (jwt) => {
   return MY_TEAM;
   const data = httpRequest({ url: `` });
   return data;
+};
+export const getTeamData = (id) => {
+  return COMPANY_INFORMATION.compagnie.teams.find((team) => team.id === id);
+  const data = httpRequest({ url: `` });
+  return data;
+};
+export const getTemplate = (id) => {
+  return TEMPLATE;
 };
