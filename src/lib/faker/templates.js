@@ -65,97 +65,113 @@ export const TEMPLATE = {
 
         {
           type: "h1",
-          str: "Ta première journée",
-        },
-        {
-          type: "toDo",
-          items: [
-            {
-              str: "Faire le point de lancement de mission avec ton manager",
-              checked: false,
-            },
-            {
-              str: "Signer ton contrat de travail",
-              checked: false,
-            },
-            {
-              str: "Descendre tous les aspects pratiques de la to-do d'onboarding",
-              checked: false,
-            },
-          ],
+          str: "Bienvenue chez nous !",
         },
         {
           type: "h2",
-          str: "Découvrir l'équipe de Acme.co",
+          str: "A la découverte de vos collègues, des process, notre état d'esprit, nos projets, nos missions de travail",
         },
         {
-          type: "toDo",
-          items: [
-            {
-              str: "Rencontre ton buddy et prends un café avec lui",
-              checked: false,
-            },
-            {
-              str: "Découvre l'organigramme pour savoir qui fait quoi",
-              checked: false,
-            },
-          ],
+            type:"p",
+            subType:"",
+            str:"On le sait, ça fait beaucoup d'informations à appréhender ! Pour faciliter ton intégration, nous avons mis en place ce petit template Lundi qui te guidera pas à pas dans l'appréhension de nos méthodes et de notre culture d'entreprise."
         },
         {
-          type: "link",
-          url: "https://acme.co/sales/team-view",
+            type: "h2",
+            str: "Pourquoi Acme.co ?",
         },
         {
-          type: "h2",
-          str: "Découvre la vision de Acme.co",
+            type: "h3",
+            str: "1. Manifesto",
         },
         {
-          type: "toDo",
-          items: [
-            {
-              str: "Lecture de notre vision",
-              checked: false,
-            },
-          ],
+            type:"p",
+            subType:"",
+            str:"On le sait, ça fait beaucoup d'informations à appréhender ! Pour faciliter ton intégration, nous avons mis en place ce petit template Lundi qui te guidera pas à pas dans l'appréhension de nos méthodes et de notre culture d'entreprise."
         },
         {
-          type: "link",
-          url: "https://acme.co/our-vision",
+            type: "h3",
+            str: "2. Raison d’être",
         },
         {
-          type: "h2",
-          str: "L'administratif",
+            type:"p",
+            subType:"",
+            str:"Une approche humaine au cœur de notre dynamique managériale et du rapport au client. Un esprit start-up, grâce à l'innovation constante dans le secteur de la distribution automobile. Et, une qualité d'exécution de référence par le biais de réalisations non négociables telles que la qualité, la rentabilité et nos parts de marché à atteindre."
         },
         {
-          type: "toDo",
-          items: [
-            {
-              str: "Signe ton contrat avec ton manager",
-              checked: false,
-            },
-            {
-              str: "Renseigne tes informations clés dans PayFit - (invitation par email)",
-              checked: false,
-            },
-            {
-              str: "Renseigne tes informations dans Alan - (invitation par emai)",
-              checked: false,
-            },
-          ],
+            type: "h3",
+            str: "3. Nos engagements",
         },
         {
-          type: "h4",
-          str: "Ton contrat",
+            type:"p",
+            subType:"",
+            str:"Nous croyons fondamentalement que le talent est distribué à chacun d’entre nous de manière égale. Cela signifie que nous voyons votre expérience unique et que nous croyons en la force de chaque intersection d’ ethnie, de religion ou de croyance, d’origine ethnique, de capacités physiques différente, de structure familiale, de socioéconomique, d’âge, de nationalité ou de citoyenneté, de statut marital, domestique ou de partenariat civil, d’orientation sexuelle, d’identité de genre."
         },
         {
-          type: "download",
-          fileName: "Contrat.pdf",
-          fileUrl: "https://acme.co/yugazye165zer32fz/contrat.pdf",
+            type: "h2",
+            str: "Cohésion d’équipe",
+          },
+          {
+              type:"toDo",
+              items:[
+                  {
+                      str:"Vérifiez que j’ai bien reçu les invitations pour les weekly stand up",
+                      checked: false,
+                  },
+                  {
+                      str:"Vérifiez que j’ai bien reçu les invitations pour les séances cohésions et jeux en équipes",
+                      checked: false,
+                  },
+                  {
+                      str:"Vérifiez que j’ai bien reçu les invitations récurentes pour les arrivées des nouveaux collaborateurs ",
+                      checked: false,
+                  },
+                  {
+                      str:"Renseignez votre nouveau job sur Linnkedin",
+                      checked: false,
+                  },
+
+              ]
+          },
+          {
+            type: "h2",
+            str: "Formation ",
+          },
+          {
+            type:"p",
+            subType:"",
+            str:"Pour les nouveaux arrivés, si vous avez réalisé un bootcamp ou venez d’être diplomé durant les 12 dernires mois, veuillez uploder votre certificat de formation."
         },
         {
-          type: "upload",
-          fileName: "",
-          fileUrl: "",
+            type: "upload",
+            fileName: "",
+            fileUrl: "",
+        }
+       
+    ],
+    [
+        {
+            type: "h2",
+            str: "Votre poste",
+        },
+        {
+            type:"p",
+            subType:"",
+            str:"Tu bénéficieras d’une formation à la prospection, à notre produit et à notre marché, puis d’un accompagnement continu par un leader."
+        },
+        {
+            type:"p",
+            subType:"",
+            str:"L’équipe outbound sales est aujourd’hui composée de deux personnes. La vente outbound consiste à générer nos propres opportunités, en prospectant des entrepreneurs indépendants et des TPE (cold calling et/ou emailing)."
+        },
+        {
+            type: "h2",
+            str: "Responsabbilités",
+        },
+        {
+            type:"p",
+            subType:"",
+            str:"Constitution de bases de données, analyses de sites web existants pour prospecter avec des suggestions d’amélioration, prises de rdv au téléphone, en fonction de la montée en compétence et des besoins de Simplébo : réaliser des ventes"
         },
     ]
   ],

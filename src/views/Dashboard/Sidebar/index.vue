@@ -25,7 +25,7 @@
 				<!-- home dashboard -->
 				<router-link :to="{ name: 'dashboard-home' }" class="link" title="home">
 					<i class="icon-home"></i>
-					<span class="sato-l-l">{{ role === "onboardee" ? "Mon espace" : "Acceuil" }}</span>
+					<span class="sato-l-l">{{ role === "onboardee" ? "Mon espace" : "Accueil" }}</span>
 				</router-link>
 				<!-- team -->
 				<router-link v-if="role !== 'onboardee'" :to="{ name: 'dashboard-teams' }" class="link" title="Equipes">

@@ -24,7 +24,7 @@
 							</button>
 							<button @click="addParagraph">
 								<i class="icon-fog mr-3"></i>
-								Paragraph
+								Paragraphe
 							</button>
 						</div>
 						<!-- media -->
@@ -198,7 +198,7 @@
 				<div class="content flex flex-col w-full h-full">
 					<div class="flex justify-between items-center mb-8">
 						<div class="satol-l-l font-bold text-greyscale-600">
-							Accueil > {{ teamId }} > <span class="text-greyscale-800 upper">{{ template.name }}</span>
+							Accueil > Sales > <span class="text-greyscale-800 upper">{{ template.name }}</span>
 						</div>
 						<label class="font-bold sato-l-xl text-greyscale-black cursor-pointer" for="nameEditor">
 							<input

@@ -3,14 +3,9 @@
 		<table>
 			<thead class="font-bold">
 				<th class="checker-head text-greyscale-800"></th>
-				<th v-for="(header, i) in headers" :key="`${i}-${header.key}`" class="text-greyscale-800">
+				<th v-for="(header, i) in headers" :key="`${i}-${header.key}`" class="text-greyscale-800 upper">
 					{{ header.name }}
-					<i
-						v-if="header.sorted"
-						class="text-inherit sato-l-s ml-2 cursor-pointer"
-						:class="getSortClass(header.key)"
-						@click="sort(header.key)"
-					></i>
+					<i v-if="header.sorted" class="text-inherit sato-l-s ml-2 cursor-pointer" :class="getSortClass(header.key)" @click="sort(header.key)"></i>
 				</th>
 				<th v-if="options"></th>
 			</thead>
@@ -80,8 +75,8 @@
 </style>
 
 <script>
-	import LCheckbox from '@/components/lundi-uiKit/inputs/L-checkbox.vue';
-	import Btn from '@/components/lundi-uiKit/Button.vue';
+	import LCheckbox from "@/components/lundi-uiKit/inputs/L-checkbox.vue";
+	import Btn from "@/components/lundi-uiKit/Button.vue";
 	export default {
 		components: {
 			LCheckbox,
@@ -120,7 +115,7 @@
 		},
 		data() {
 			return {
-				states: [null, 'up', 'down'],
+				states: [null, "up", "down"],
 				sortBy: null, // this will be the name of colum we will sort
 				sortState: null,
 
@@ -131,7 +126,7 @@
 		},
 		watch: {
 			tableItems(newValue) {
-				this.$emit('input', newValue);
+				this.$emit("input", newValue);
 			},
 			items() {
 				this.tableItems = JSON.parse(JSON.stringify(this.items));
@@ -141,7 +136,7 @@
 		},
 		mounted() {
 			this.tableItems = JSON.parse(JSON.stringify(this.items));
-			this.tableItems.map((item) => ({...item, checked: false}));
+			this.tableItems.map((item) => ({ ...item, checked: false }));
 			this.deepTableItemsCopy = JSON.parse(JSON.stringify(this.tableItems));
 		},
 		methods: {
@@ -165,13 +160,13 @@
 			getSortClass(name) {
 				let classes = [];
 				if (name === this.sortBy) {
-					if (this.sortState === 1) classes.push('icon-sort-top');
-					else if (this.sortState === 2) classes.push('icon-sort-bot');
-					else classes.push('icon-sort2');
+					if (this.sortState === 1) classes.push("icon-sort-top");
+					else if (this.sortState === 2) classes.push("icon-sort-bot");
+					else classes.push("icon-sort2");
 				} else {
-					classes.push('icon-sort2');
+					classes.push("icon-sort2");
 				}
-				return classes.join(' ');
+				return classes.join(" ");
 			},
 			upSort(colName) {
 				this.tableItems.sort((a, b) => (a[colName] < b[colName] ? 1 : -1));

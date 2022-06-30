@@ -1,7 +1,7 @@
 <template>
 	<div class="camamber-card bg-greyscale-white text-greyscale-300 p-6 flex flex-col">
 		<div class="top mb-10">
-			<h4 class="salva-h4 text-greyscale-800">Progression global</h4>
+			<h4 class="salva-h4 text-greyscale-800">Progression globale</h4>
 		</div>
 		<div class="graph flex-1 flex items-center">
 			<!-- <span class="sato-l-m font-bold text-greyscale-black">Pas encore de données pour le moment.</span> -->

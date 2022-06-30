@@ -10,7 +10,7 @@
 		</div>
 		<div class="bottom-cta flex justify-between">
 			<btn @click="closeDialog()" secondary class="flex-1">Annuler</btn>
-			<btn @click="publishTemplate({seniority, forWho})" primary class="flex-1">
+			<btn @click="publishTemplate({ seniority, forWho })" primary class="flex-1">
 				Publier
 				<template #right>
 					<i class="icon-cloud-upload"></i>
@@ -27,10 +27,10 @@
 </style>
 
 <script>
-	import Btn from '@/components/lundi-uiKit/Button.vue';
-	import LSelect from '@/components/lundi-uiKit/inputs/L-select.vue';
-	import {mapActions} from 'vuex';
-	import {SENIORITY} from '@/lib/config.js';
+	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import LSelect from "@/components/lundi-uiKit/inputs/L-select.vue";
+	import { mapActions } from "vuex";
+	import { SENIORITY } from "@/lib/config.js";
 	export default {
 		components: {
 			Btn,
@@ -38,15 +38,15 @@
 		},
 		data() {
 			return {
-				forWho: '',
-				seniority: '',
-				forWhoOtpions: [],
+				forWho: "",
+				seniority: "",
+				forWhoOtpions: ["Votre équipe", "Toute l'entreprise"],
 				seniorityOptions: SENIORITY,
 			};
 		},
 		computed: {},
 		methods: {
-			...mapActions(['closeDialog', 'publishTemplate']),
+			...mapActions(["closeDialog", "publishTemplate"]),
 		},
 	};
 </script>

@@ -56,6 +56,7 @@
 <script>
 	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
 	import Btn from "@/components/lundi-uiKit/Button.vue";
+	import { mapActions } from "vuex";
 	export default {
 		components: {
 			LInput,
@@ -70,7 +71,10 @@
 			};
 		},
 		methods: {
-			createAccount() {
+			...mapActions(["logMe"]),
+
+			async createAccount() {
+				const res = await this.logMe({ psw: this.passwordModel, email: "gaetan.a@gmail.com" });
 				this.$router.push({ name: "invitation-create" });
 			},
 			goToLogin() {

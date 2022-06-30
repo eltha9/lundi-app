@@ -14,7 +14,7 @@ export const COMPANY_INFORMATION = {
       },
       {
         id: "team-2",
-        name: "Resource humaines",
+        name: "Ressources humaines",
         users: ["id1sd", "idsdqs1", "idx1"],
         lastUpdate: "2022-06-18",
         isFav: false,
