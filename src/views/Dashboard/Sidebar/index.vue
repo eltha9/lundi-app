@@ -7,10 +7,10 @@
 						<span class="salva-h3">{{ compagnie.name[0] }}</span>
 					</template>
 					<template v-else>
-						<div v-if="compagnie.logo.trim() !== ''" class="logo w-full">
+						<div v-if="compagnie.logo.trim() !== ''" class="logo w-full cursor-pointer" @click="goToHome()">
 							<img :src="compagnie.logo" alt="" class="h-7" />
 						</div>
-						<span v-else class="salva-h3 truncate">{{ compagnie.name }}</span>
+						<span v-else class="salva-h3 truncate cursor-pointer" @click="goToHome()">{{ compagnie.name }}</span>
 					</template>
 					<button class="collapser" @click="collapseBar()" v-show="!isSidebarCollapsed">
 						<i class="icon-chevron-double-left"></i>
@@ -282,6 +282,9 @@
 			...mapMutations(["setSidebarCollapsed"]),
 			collapseBar() {
 				this.setSidebarCollapsed(!this.isSidebarCollapsed);
+			},
+			goToHome() {
+				this.$router.push({ name: "dashboard-home" });
 			},
 		},
 	};

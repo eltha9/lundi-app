@@ -6,10 +6,10 @@
 				<div class="top flex flex-col flex-1">
 					<div class="top-logo px-6 pb-6 flex flex-col">
 						<div class="flex items-center mb-1 text-greyscale-200 corp-name justify-between">
-							<div v-if="compagnie.logo.trim() !== ''" class="logo w-full">
-								<img :src="compagnie.logo" alt="" class="h-7" />
+							<div v-if="compagnie.logo.trim() !== ''" class="logo w-full cursor-pointer" @click="goToHome()">
+								<img :src="compagnie.logo" alt="" class="h-7" @click="goToHome()" />
 							</div>
-							<span v-else class="salva-h3 truncate">{{ compagnie.name }}</span>
+							<span v-else class="salva-h3 truncate cursor-pointer">{{ compagnie.name }}</span>
 						</div>
 						<span class="text-greyscale-400 sato-l-s">Lundi</span>
 					</div>
@@ -614,6 +614,9 @@
 			},
 			remove(section, id) {},
 			duplicate(section, id) {},
+			goToHome() {
+				this.$router.push({ name: "dashboard-home" });
+			},
 		},
 	};
 </script>
