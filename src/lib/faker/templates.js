@@ -5,7 +5,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-2',
@@ -13,7 +13,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-3',
@@ -21,7 +21,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-4',
@@ -29,7 +29,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-5',
@@ -37,7 +37,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-6',
@@ -45,7 +45,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 	{
 		id: 'template-7',
@@ -53,7 +53,7 @@ export const TEMPALTES = [
 		status: 'toAssign',
 		lastUpdate: '2022-06-01',
 		tags: ['Tout', 'Junior'],
-		users: ['a', 'b', 'c'],
+		users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 	},
 ];
 

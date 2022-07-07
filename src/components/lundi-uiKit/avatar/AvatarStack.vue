@@ -1,13 +1,10 @@
 <template>
-	<div class="avatar-stack" :style="{width: `${avatarStackWidth}px`, height: `${avatarStackHeight}px`}">
-		<div class="avatars" v-for="(userId, i) in showedAvatar" :key="userId" :style="{transform: `translateX(${i * 50}%)`}">
-			<Avatar :small="small" :large="large" />
+	<div class="avatar-stack" :style="{ width: `${avatarStackWidth}px`, height: `${avatarStackHeight}px` }">
+		<div class="avatars" v-for="(userId, i) in showedAvatar" :key="userId" :style="{ transform: `translateX(${i * 50}%)` }">
+			<Avatar :small="small" :large="large" :userId="userId" />
 		</div>
-		<div v-if="avatarLeft > 0" class="avatars" :style="{transform: `translateX(${userLimit * 50}%)`}">
-			<div
-				class="count text-greyscale-white bg-ternary-900 sato-p-s"
-				:style="{width: `${avatarStackHeight}px`, height: `${avatarStackHeight}px`}"
-			>
+		<div v-if="avatarLeft > 0" class="avatars" :style="{ transform: `translateX(${userLimit * 50}%)` }">
+			<div class="count text-greyscale-white bg-ternary-900 sato-p-s" :style="{ width: `${avatarStackHeight}px`, height: `${avatarStackHeight}px` }">
 				+{{ avatarLeft }}
 			</div>
 		</div>
@@ -35,10 +32,10 @@
 </style>
 
 <script>
-	import Avatar from './Avatar';
+	import Avatar from "./Avatar";
 	export default {
-		name: 'AvatarStack',
-		components: {Avatar},
+		name: "AvatarStack",
+		components: { Avatar },
 		props: {
 			users: {
 				type: Array,

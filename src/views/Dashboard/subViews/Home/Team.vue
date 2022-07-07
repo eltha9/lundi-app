@@ -6,7 +6,7 @@
 				:is-fav="teamData.isFav"
 				:can-fav="true"
 				:as-team-option="true"
-				:users="['aze', 'sdf', 'zeeree']"
+				:users="teamData.users"
 				right-cta-title="Inviter"
 				:as-setting="false"
 				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
@@ -262,11 +262,7 @@
 			this.teamId = this.$route.params.id;
 
 			this.teamData = await getTeamData(this.teamId);
-			this.teamUsers = this.teamData.users.map((userID) => {
-				console.log(getUserInformation(userID));
-				return getUserInformation(userID);
-			});
-			console.log(this.teamUsers);
+			this.teamUsers = this.teamData.users.map((userID) => getUserInformation(userID));
 		},
 		methods: {
 			...mapActions(["openDialog"]),

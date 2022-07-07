@@ -4,7 +4,7 @@ import {COMPANY_INFORMATION} from './faker/compagny';
 import {MY_TEAM} from './faker/team-mates';
 import {TEMPALTES, TEMPLATE} from './faker/templates';
 export const getAvatarLink = (userId) => {
-	return '/assets/test/avatar.jpeg';
+    return MY_TEAM.members.find(user =>user.id === userId)?.profilePic || '/assets/test/avatar.jpeg';
 	const data = httpRequest({url: `/avatar?id=${userId}`});
 	return data.imgLink;
 };

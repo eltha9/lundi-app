@@ -14,7 +14,7 @@
 					</template>
 					<button class="collapser" @click="collapseBar()" v-show="!isSidebarCollapsed">
 						<i class="icon-chevron-double-left"></i>
-					</button>
+					</button>   
 					<button v-if="isSidebarCollapsed" class="responsive-uncollapser bg-primary-700 text-greyscale-white" @click="collapseBar()">
 						<i class="icon-chevron-double-right"></i>
 					</button>

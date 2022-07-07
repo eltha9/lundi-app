@@ -6,7 +6,7 @@
 				:is-fav="teamData.isFav"
 				:can-fav="false"
 				:as-team-option="subView !== 'Vue d\'ensemble'"
-				:users="['aze', 'sdf', 'zeeree']"
+				:users="subView === 'Vue d\'ensemble' ? plopData : usersTeamIds"
 				right-cta-title="Inviter"
 				:as-setting="false"
 				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
@@ -406,6 +406,9 @@
 				this.compagnie.teams.map((team) => (temp += team.users.length));
 				return temp;
 			},
+			usersTeamIds() {
+				return this.teamData.members.map((user) => user.id) || [];
+			},
 		},
 		data() {
 			return {
@@ -415,6 +418,28 @@
 				onboardingSwitch: "enCours",
 				startDate: "2022-01-01",
 				endDate: "2022-12-31",
+				plopData: [
+					"aze",
+					"sdf",
+					"mate-1",
+					"mate-2",
+					"mate-3",
+					"mate-4",
+					"mate-5",
+					"mate-6",
+					"mate-7",
+					"zeeree",
+					"a",
+					"b",
+					"c",
+					"d",
+					"e",
+					"f",
+					"g",
+					"h",
+					"i",
+					"j",
+				],
 				onboardeeTableHeader: [
 					{
 						name: "Nom & Prénom",

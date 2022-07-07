@@ -6,7 +6,7 @@
 				:is-fav="teamData.isFav"
 				:can-fav="true"
 				:as-team-option="true"
-				:users="['aze', 'sdf', 'zeeree']"
+				:users="usersTeamIds"
 				right-cta-title="Créer une équipe"
 				:as-setting="false"
 				@cta="openDialog({ type: 'createTeam' })"
@@ -210,6 +210,9 @@
 		},
 		computed: {
 			...mapState(["isSidebarCollapsed", "compagnie"]),
+			usersTeamIds() {
+				return this.teamData.users.map((user) => user.id) || ["a", "b", "c"];
+			},
 		},
 		data() {
 			return {

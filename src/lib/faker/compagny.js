@@ -47,7 +47,7 @@ export const COMPANY_INFORMATION = {
 			{
 				id: 'team-6',
 				name: 'Sales',
-				users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5'],
+				users: ['mate-1', 'mate-2', 'mate-3', 'mate-4', 'mate-5','mate-6','mate-7'],
 				lastUpdate: '2022-06-18',
 				isFav: false,
 				templates: [...TEMPALTES],

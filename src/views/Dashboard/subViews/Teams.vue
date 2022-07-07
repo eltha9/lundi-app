@@ -6,7 +6,7 @@
 				:is-fav="teamData.isFav"
 				:can-fav="true"
 				:as-team-option="true"
-				:users="['aze', 'sdf', 'zeeree']"
+				:users="usersTeamIds"
 				right-cta-title="Inviter"
 				:as-setting="false"
 				@cta="openDialog({ type: 'invitation', data: { teamId: teamData.id } })"
@@ -290,6 +290,9 @@
 			},
 			templateNB() {
 				return this.teamData.templates.length;
+			},
+			usersTeamIds() {
+				return this.teamData.users.map((user) => user.id) || ["a", "b", "c"];
 			},
 		},
 		data() {
