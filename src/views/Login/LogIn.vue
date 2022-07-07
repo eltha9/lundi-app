@@ -7,7 +7,9 @@
 			</div>
 			<div class="submit-div flex flex-col items-center">
 				<btn class="button mb-6" primary @click="logIn()">Se connecter</btn>
-				<span class="text-greyscale-700"> Vous n’avez pas de compte ? <button class="switch-btn" @click="toggleLogin()">Inscrivez-vous</button> </span>
+				<span class="text-greyscale-700">
+					Vous n’avez pas de compte ? <button class="switch-btn" @click="toggleLogin()">Inscrivez-vous</button>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -39,9 +41,9 @@
 	}
 </style>
 <script>
-	import LInput from "@/components/lundi-uiKit/inputs/L-input.vue";
-	import Btn from "@/components/lundi-uiKit/Button.vue";
-	import { mapActions, mapMutations } from "vuex";
+	import LInput from '@/components/lundi-uiKit/inputs/L-input.vue';
+	import Btn from '@/components/lundi-uiKit/Button.vue';
+	import {mapActions, mapMutations} from 'vuex';
 	export default {
 		components: {
 			LInput,
@@ -49,17 +51,17 @@
 		},
 		data() {
 			return {
-				emailModel: "alban.d@gmail.com",
-				passwordModel: "azerty",
+				emailModel: 'alban.d@frichti.co',
+				passwordModel: 'azerty',
 			};
 		},
 		methods: {
-			...mapMutations(["toggleLogin"]),
-			...mapActions(["logMe"]),
+			...mapMutations(['toggleLogin']),
+			...mapActions(['logMe']),
 			async logIn() {
-				const res = await this.logMe({ psw: this.passwordModel, email: this.emailModel });
+				const res = await this.logMe({psw: this.passwordModel, email: this.emailModel});
 
-				if (res) this.$router.push({ name: "dashboard-home" });
+				if (res) this.$router.push({name: 'dashboard-home'});
 			},
 		},
 	};
