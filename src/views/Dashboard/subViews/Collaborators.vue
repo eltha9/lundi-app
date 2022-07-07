@@ -1,5 +1,5 @@
 <template>
-	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
+	<main v-if="teamData.id" class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
 			<nav-header
 				:title="teamData.name"

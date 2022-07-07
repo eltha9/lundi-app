@@ -1,5 +1,5 @@
 <template>
-	<main class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
+	<main v-if="teamData.id" class="main-view dashboard" :class="isSidebarCollapsed ? 'collapsed ' : ''">
 		<div class="top-bar flex flex-col">
 			<nav-header
 				:title="teamData.name"
@@ -292,7 +292,7 @@
 				return this.teamData.templates.length;
 			},
 			usersTeamIds() {
-				return this.teamData.users.map((user) => user.id) || ["a", "b", "c"];
+				return this.teamData.users?.map((user) => user.id) || ["a", "b", "c"];
 			},
 		},
 		data() {
