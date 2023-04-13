@@ -51,8 +51,8 @@
 		},
 		data() {
 			return {
-				emailModel: 'alban.d@frichti.co',
-				passwordModel: 'azerty',
+				emailModel: '',
+				passwordModel: '',
 			};
 		},
 		methods: {
